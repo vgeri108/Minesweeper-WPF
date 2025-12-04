@@ -9,4 +9,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="hatter.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="hatter.png" />
+  </ItemGroup>
+
 </Project>
