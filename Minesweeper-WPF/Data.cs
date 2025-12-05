@@ -14,4 +14,8 @@ namespace Minesweeper_WPF
         public static int meretSZ = 9;
         public static int aknakszama = 0;
     }
+    class Configuration
+    {
+        public static string CurrentTheme = "Screenshot";
+    }
 }

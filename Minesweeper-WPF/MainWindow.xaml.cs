@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Minesweeper_WPF;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,12 @@ namespace Minesweeper_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BoardManager generator;
         public MainWindow()
         {
             InitializeComponent();
+            generator = new BoardManager(GameBoard);
+            BoardManager.InitFist();
         }
     }
 }

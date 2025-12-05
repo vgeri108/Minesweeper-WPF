@@ -1,4 +1,4 @@
-Ide kellenek a következő képek 256*256 pixeles felbontásban:
+
 	-> 1.png
 	-> 2.png
 	-> 3.png

@@ -29,7 +29,7 @@
                     <MenuItem Header="További játékok az interneten"/>
                 </MenuItem>
             </Menu>
-            <UniformGrid x:Name="GameBoard" Rows="9" Columns="9"/>
+            <UniformGrid x:Name="GameBoard" Rows="9" Columns="9" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </StackPanel>
     </Grid>
 </Window>
