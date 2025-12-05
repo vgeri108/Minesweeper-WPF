@@ -46,9 +46,7 @@ namespace Minesweeper_WPF
                     btn.Content = new Image
                     {
                         Source = new BitmapImage(Appearance.Images.fedes),
-                        Stretch = Stretch.UniformToFill,
-                        Width = 32,
-                        Height = 32
+                        Stretch = Stretch.Uniform,
                     };
                     //btn.Click += Cell_Click;
                     //btn.MouseRightButtonUp += Cell_RightClick;

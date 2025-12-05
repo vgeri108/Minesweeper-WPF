@@ -7,29 +7,44 @@
         mc:Ignorable="d"
         Title="Aknakereső" Height="450" Width="450">
     <Grid>
-        <StackPanel>
-            <StackPanel.Background>
-                <ImageBrush ImageSource="/hatter.png" Stretch="UniformToFill"/>
-            </StackPanel.Background>
-            <Menu>
-                <MenuItem Header="Játék">
-                    <MenuItem Header="Új játék"/>
-                    <Separator/>
-                    <MenuItem Header="Statisztika"/>
-                    <MenuItem Header="Beállítások"/>
-                    <MenuItem Header="Megjelenés módosítása"/>
-                    <Separator/>
-                    <MenuItem Header="Kilépés"/>
-                </MenuItem>
-                <MenuItem Header="Súgó">
-                    <MenuItem Header="Súgó megjelenítése"/>
-                    <Separator/>
-                    <MenuItem Header="Az aknakereső névjegye"/>
-                    <Separator/>
-                    <MenuItem Header="További játékok az interneten"/>
-                </MenuItem>
-            </Menu>
-            <UniformGrid x:Name="GameBoard" Rows="9" Columns="9" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        </StackPanel>
+        <!-- Háttér -->
+        <Grid.Background>
+            <ImageBrush ImageSource="/hatter.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <!-- Sorok: menü felül, tábla alatta -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Menü -->
+            <RowDefinition Height="*"/>
+            <!-- Játéktábla kitölti a maradék helyet -->
+        </Grid.RowDefinitions>
+
+        <!-- Menü -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="Játék">
+                <MenuItem Header="Új játék"/>
+                <Separator/>
+                <MenuItem Header="Statisztika"/>
+                <MenuItem Header="Beállítások"/>
+                <MenuItem Header="Megjelenés módosítása"/>
+                <Separator/>
+                <MenuItem Header="Kilépés"/>
+            </MenuItem>
+            <MenuItem Header="Súgó">
+                <MenuItem Header="Súgó megjelenítése"/>
+                <Separator/>
+                <MenuItem Header="Az aknakereső névjegye"/>
+                <Separator/>
+                <MenuItem Header="További játékok az interneten"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Játéktábla -->
+        <UniformGrid x:Name="GameBoard"
+                     Grid.Row="1"
+                     Rows="9" Columns="9"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch"/>
     </Grid>
 </Window>
