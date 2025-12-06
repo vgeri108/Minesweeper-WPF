@@ -23,6 +23,8 @@ namespace Minesweeper_WPF
             InitializeComponent();
             generator = new BoardManager(GameBoard);
             BoardManager.InitFist();
+            BoardManager.Generate(0,0);
+            BoardManager.Draw();
         }
     }
 }
