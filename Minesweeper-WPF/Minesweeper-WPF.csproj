@@ -12,6 +12,14 @@
   <ItemGroup>
     <None Remove="Assets\Images\GameBoard\Screenshot\Covered.png" />
     <None Remove="hatter.png" />
+    <Content Include="Assets\**\*.*">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Assets\App.xaml.cs" />
+    <Compile Remove="Assets\WidthToMarginConverter.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Minesweeper_WPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <local:WidthToMarginConverter x:Key="WidthToMarginConverter"/>
     </Application.Resources>
 </Application>

@@ -42,11 +42,13 @@ namespace Minesweeper_WPF
                         FontSize = 15,
                         Margin = new Thickness(0),
                         Padding = new Thickness(0),
+                        MinWidth = 24,
+                        MinHeight = 24,
                     };
                     btn.Content = new Image
                     {
                         Source = new BitmapImage(Appearance.Images.fedes),
-                        Stretch = Stretch.Uniform,
+                        Stretch = Stretch.UniformToFill,
                     };
                     //btn.Click += Cell_Click;
                     //btn.MouseRightButtonUp += Cell_RightClick;

@@ -5,23 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
-        Title="Aknakereső" Height="450" Width="450">
+        Title="Aknakereső" Height="505" Width="460">
+
     <Grid>
         <!-- Háttér -->
         <Grid.Background>
             <ImageBrush ImageSource="/hatter.png" Stretch="UniformToFill"/>
         </Grid.Background>
 
-        <!-- Sorok: menü felül, tábla alatta -->
+        <!-- Sorok: menü, közös tartalom (tábla + alsó panel együtt skálázva) -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <!-- Menü -->
             <RowDefinition Height="*"/>
-            <!-- Játéktábla kitölti a maradék helyet -->
+            <!-- Tartalom -->
         </Grid.RowDefinitions>
 
         <!-- Menü -->
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" Background="White">
             <MenuItem Header="Játék">
                 <MenuItem Header="Új játék"/>
                 <Separator/>
@@ -40,11 +41,75 @@
             </MenuItem>
         </Menu>
 
-        <!-- Játéktábla -->
-        <UniformGrid x:Name="GameBoard"
-                     Grid.Row="1"
-                     Rows="9" Columns="9"
-                     HorizontalAlignment="Stretch"
-                     VerticalAlignment="Stretch"/>
+        <!-- Közös ViewBox: a pálya és az alsó panel együtt, arányosan skálázódik az ablakkal -->
+        <Viewbox Grid.Row="1"
+                 Stretch="Uniform"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="{Binding ActualHeight,
+                          RelativeSource={RelativeSource AncestorType=Window},
+                          Converter={StaticResource WidthToMarginConverter}}">
+            <!-- Alap layout méret: a ViewBox ezt skálázza fel/le -->
+            <StackPanel Width="400">
+                <!-- Játéktábla -->
+                <UniformGrid x:Name="GameBoard"
+                             Rows="9" Columns="9"
+                             Width="400" Height="400"/>
+
+                <!-- Alsó információs sáv: bal–jobb rögzítés, elemek a képek mellett -->
+                <DockPanel Height="40" Margin="0,10,0,0" LastChildFill="True">
+                    <!-- Bal csoport: óra + időszámláló közvetlen egymás mellett -->
+                    <StackPanel DockPanel.Dock="Left"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Image Source="/Assets/Images/GUI/Icons/clock.png"
+                               Width="40" Height="40"
+                               VerticalAlignment="Center"
+                               Margin="0,0,5,0"/>
+                        <Border Background="#31569C"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="10"
+                                Width="80"
+                                VerticalAlignment="Center">
+                            <TextBlock x:Name="TimerDisplay"
+                                       Text="0"
+                                       Foreground="White"
+                                       FontSize="20"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Jobb csoport: aknaszámláló + virág közvetlen egymás mellett -->
+                    <StackPanel DockPanel.Dock="Right"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Border Background="#31569C"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="10"
+                                Width="80"
+                                VerticalAlignment="Center"
+                                Margin="0,0,5,0">
+                            <TextBlock x:Name="MineCounter"
+                                       Text="10"
+                                       Foreground="White"
+                                       FontSize="20"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                        <Image Source="/Assets/Images/GUI/Icons/flower.png"
+                               Width="40" Height="40"
+                               VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Középső kitöltő: üres tér, hogy a szélső csoportok ne csússzanak össze -->
+                    <Grid/>
+                </DockPanel>
+            </StackPanel>
+        </Viewbox>
     </Grid>
 </Window>
