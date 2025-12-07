@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,11 @@ namespace Minesweeper_WPF
         private static int aknakszama = Data.aknakszama;
         private static string semmi = Appearance.Characters.semmi;
         private static string minemark = Appearance.Characters.akna;
+        
+        public static void InitNew()
+        {
+            
+        }
         public static void InitFist()
         {
             gameBoard.Children.Clear();
@@ -35,49 +41,60 @@ namespace Minesweeper_WPF
             {
                 for (int y = 0; y < meretM; y++)
                 {
-                    Button btn = new Button
-                    {
-                        Tag = new Point(x,y),
-                        FontWeight = FontWeights.Bold,
-                        FontSize = 15,
-                        Margin = new Thickness(0),
-                        Padding = new Thickness(0),
-                        MinWidth = 24,
-                        MinHeight = 24,
-                    };
-                    btn.Content = new Image
-                    {
-                        Source = new BitmapImage(Appearance.Images.fedes),
-                        Stretch = Stretch.UniformToFill,
-                    };
-                    //btn.Click += Cell_Click;
-                    //btn.MouseRightButtonUp += Cell_RightClick;
-
-                    gameBoard.Children.Add(btn);
+                    AddButton(Appearance.Images.fedes, x, y);
                 }
             }
         }
         public static string[,] Generate(int select_x, int select_y)
         {
+            bool vanUres;
+            bool siker = false;
             Random random = new Random();
-            for (int i = 0; i < akna.GetLength(0); i++)
+            for (int tries = 0; tries < 1000 && !siker; tries++)
             {
-                for (int j = 0; j < akna.GetLength(1); j++)
+                for (int i = 0; i < akna.GetLength(0); i++)
                 {
-                    akna[i, j] = semmi;
-                    visible[i, j] = "false";
+                    for (int j = 0; j < akna.GetLength(1); j++)
+                    {
+                        akna[i, j] = semmi;
+                        visible[i, j] = "false";
+                    }
+                }
+                for (int i = 0; i < aknakszama; i++)
+                {
+                    int x, y;
+                    do
+                    {
+                        x = random.Next(0, meretM);
+                        y = random.Next(0, meretSZ);
+                    } while ((akna[x, y] != semmi) || (x == select_y && y == select_x));
+                    akna[x, y] = minemark;
+                }
+
+                vanUres = false;
+                for (int x = 0; x < akna.GetLength(0); x++)
+                {
+                    for (int y = 0; y < akna.GetLength(1); y++)
+                    {
+                        if (akna[x, y] == semmi)
+                        {
+                            vanUres = true;
+                            break;
+                        }
+                    }
+                    if (vanUres) break;
+                }
+
+                if (akna[select_y, select_x] == semmi)
+                {
+                    siker = true;
+                }
+                else if (!vanUres && akna[select_y, select_x] != minemark)
+                {
+                    siker = true;
                 }
             }
-            for (int i = 0; i < aknakszama; i++)
-            {
-                int x, y;
-                do
-                {
-                    x = random.Next(0, meretM);
-                    y = random.Next(0, meretSZ);
-                } while ((akna[x, y] != semmi) || (x == select_y && y == select_x));
-                akna[x, y] = minemark;
-            }
+
 
 
 
@@ -139,81 +156,154 @@ namespace Minesweeper_WPF
             gameBoard.Children.Clear();
             gameBoard.Rows = meretM;
             gameBoard.Columns = meretSZ;
-            Uri CellImage = Appearance.Images.kerdojel; //ha nem lenne valami hiba miatt kép
+            Uri CellImage = Appearance.Images.error; //ha nem lenne valami hiba miatt kép
             for (int x = 0; x < meretSZ; x++)
             {
                 for (int y = 0; y < meretM; y++)
                 {
                     string Cell = akna[x, y];
-
-                    if (Cell == "1")
+                    if (visible[x, y] == "true")
                     {
-                        CellImage = Appearance.Images._1;
+                        if (Cell == "1")
+                        {
+                            CellImage = Appearance.Images._1;
+                        }
+                        else if (Cell == "2")
+                        {
+                            CellImage = Appearance.Images._2;
+                        }
+                        else if (Cell == "3")
+                        {
+                            CellImage = Appearance.Images._3;
+                        }
+                        else if (Cell == "4")
+                        {
+                            CellImage = Appearance.Images._4;
+                        }
+                        else if (Cell == "5")
+                        {
+                            CellImage = Appearance.Images._5;
+                        }
+                        else if (Cell == "6")
+                        {
+                            CellImage = Appearance.Images._6;
+                        }
+                        else if (Cell == "7")
+                        {
+                            CellImage = Appearance.Images._7;
+                        }
+                        else if (Cell == "8")
+                        {
+                            CellImage = Appearance.Images._8;
+                        }
+                        else if (Cell == Appearance.Characters.semmi)
+                        {
+                            CellImage = Appearance.Images.semmi;
+                        }
+                        else if (Cell == Appearance.Characters.akna)
+                        {
+                            CellImage = Appearance.Images.akna;
+                        }
+                        AddButton(CellImage, x, y);
+                        
+                    }else if (visible[x,y] == "flag")
+                    {
+                        AddButton(Appearance.Images.zaszlozott, x, y);
                     }
-                    else if (Cell == "2")
+                    else if (visible[x, y] == "question")
                     {
-                        CellImage = Appearance.Images._2;
+                        AddButton(Appearance.Images.kerdojel, x, y);
                     }
-                    else if (Cell == "3")
+                    else if (visible[x,y] == "false")
                     {
-                        CellImage = Appearance.Images._3;
+                        AddButton(Appearance.Images.fedes, x, y);
                     }
-                    else if (Cell == "4")
-                    {
-                        CellImage = Appearance.Images._4;
-                    }
-                    else if (Cell == "5")
-                    {
-                        CellImage = Appearance.Images._5;
-                    }
-                    else if (Cell == "6")
-                    {
-                        CellImage = Appearance.Images._6;
-                    }
-                    else if (Cell == "7")
-                    {
-                        CellImage = Appearance.Images._7;
-                    }
-                    else if (Cell == "8")
-                    {
-                        CellImage = Appearance.Images._8;
-                    }
-                    else if (Cell == Appearance.Characters.semmi)
-                    {
-                        CellImage = Appearance.Images.semmi;
-                    }
-                    else if (Cell == Appearance.Characters.zaszlo)
-                    {
-                        CellImage = Appearance.Images.zaszlozott;
-                    }
-                    else if (Cell == Appearance.Characters.akna)
-                    {
-                        CellImage = Appearance.Images.zaszlozott; //akna kép kell ide
-                    }
-
-                    Button btn = new Button
-                    {
-                        Tag = new Point(x, y),
-                        FontWeight = FontWeights.Bold,
-                        FontSize = 15,
-                        Margin = new Thickness(0),
-                        Padding = new Thickness(0),
-                        MinWidth = 24,
-                        MinHeight = 24,
-                    };
-                    Image img = new Image
-                    {
-                        Source = new BitmapImage(CellImage),
-                        Stretch = Stretch.UniformToFill,
-                    };
-
-                    btn.Content = img;
-                    //btn.Click += Cell_Click;
-                    //btn.MouseRightButtonUp += Cell_RightClick;
-
-                    gameBoard.Children.Add(btn);
                 }
             }
+        }
+        private static void Felfedes(int x, int y)
+        {
+            if (x < 0 || x >= meretM || y < 0 || y >= meretSZ) return;
+            if (visible[x, y] == "true" || visible[x, y] == "flag") return; //|| visible[x,y] == "question"
+            visible[x, y] = "true";
+            if (akna[x, y] == semmi)
+            {
+                Felfedes(x - 1, y); //fel
+                Felfedes(x + 1, y); //le
+                Felfedes(x, y - 1); //bal
+                Felfedes(x, y + 1); //jobb
+                Felfedes(x - 1, y - 1); //bal-fel
+                Felfedes(x - 1, y + 1); //jobb-fel
+                Felfedes(x + 1, y - 1); //bal-le
+                Felfedes(x + 1, y + 1); //jobb-le
+            }
+            if (akna[x, y] == minemark)
+            {
+                //gameover = true;
+                //gameover_type = "akna";
+            }
+        }
+        private static void Cell_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                Point pos = (Point)btn.Tag;
+                int x = (int)pos.X;
+                int y = (int)pos.Y;
+
+                Felfedes(x, y);
+                Draw();
+            }
+        }
+        private static void Cell_RightClick(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                Point pos = (Point)btn.Tag;
+                int x = (int)pos.X;
+                int y = (int)pos.Y;
+
+                if (visible[x,y] == "false")
+                {
+                    visible[x, y] = "flag";
+                }
+                else if (visible[x, y] == "flag")
+                {
+                    visible[x, y] = "question";
+                }
+                else if (visible[x, y] == "question")
+                {
+                    visible[x, y] = "false";
+                }
+
+                Draw();
+            }
+        }
+        private static void AddButton(Uri CellImage, int x, int y)
+        {
+            Button btn = new Button
+            {
+                Tag = new Point(x, y),
+                FontWeight = FontWeights.Bold,
+                FontSize = 15,
+                Margin = new Thickness(0),
+                Padding = new Thickness(0),
+                MinWidth = 24,
+                MinHeight = 24,
+            };
+            Image img = new Image
+            {
+                Source = new BitmapImage(CellImage),
+                Stretch = Stretch.UniformToFill,
+            };
+
+            btn.Content = img;
+            btn.Click += Cell_Click;
+            btn.MouseRightButtonUp += Cell_RightClick;
+
+            gameBoard.Children.Add(btn);
         }
     }
 }

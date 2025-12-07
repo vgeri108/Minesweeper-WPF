@@ -24,20 +24,20 @@
         <!-- Menü -->
         <Menu Grid.Row="0" Background="White">
             <MenuItem Header="Játék">
-                <MenuItem Header="Új játék"/>
+                <MenuItem Header="Új játék" x:Name="NewGame" Click="NewGame_Click"/>
                 <Separator/>
-                <MenuItem Header="Statisztika"/>
-                <MenuItem Header="Beállítások"/>
-                <MenuItem Header="Megjelenés módosítása"/>
+                <MenuItem Header="Statisztika" x:Name="Stats" Click="Stats_Click"/>
+                <MenuItem Header="Beállítások" x:Name="Settings" Click="Settings_Click"/>
+                <MenuItem Header="Megjelenés módosítása" x:Name="AppearanceMenu" Click="Appearance_Click"/>
                 <Separator/>
-                <MenuItem Header="Kilépés"/>
+                <MenuItem Header="Kilépés" x:Name="Exit" Click="Exit_Click"/>
             </MenuItem>
             <MenuItem Header="Súgó">
-                <MenuItem Header="Súgó megjelenítése"/>
+                <MenuItem Header="Súgó megjelenítése" x:Name="Help" Click="Help_Click"/>
                 <Separator/>
-                <MenuItem Header="Az aknakereső névjegye"/>
+                <MenuItem Header="Az aknakereső névjegye" x:Name="About" Click="About_Click"/>
                 <Separator/>
-                <MenuItem Header="További játékok az interneten"/>
+                <MenuItem Header="További játékok az interneten" x:Name="MoreGames" Click="MoreGames_Click"/>
             </MenuItem>
         </Menu>
 
