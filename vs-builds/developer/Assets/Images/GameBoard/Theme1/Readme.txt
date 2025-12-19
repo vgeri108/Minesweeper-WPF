@@ -1,4 +1,4 @@
-Ide kellenek a következő képek 256*256 pixeles felbontásban:
+Ide kellenek a következő képek 128*128 pixeles felbontásban:
 	-> 1.png
 	-> 2.png
 	-> 3.png
@@ -11,3 +11,4 @@ Ide kellenek a következő képek 256*256 pixeles felbontásban:
 	-> Flagged.png
 	-> Covered.png
 	-> Question.png
+	-> Mine.png

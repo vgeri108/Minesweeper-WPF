@@ -24,15 +24,15 @@ namespace Minesweeper_WPF
             generator = new BoardManager(GameBoard);
             BoardManager.InitFist();
             BoardManager.InitNew();
-            BoardManager.Generate(1,1);
-            BoardManager.Draw();
+            //BoardManager.Generate(1,1);
+            //BoardManager.Draw();
         }
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
             BoardManager.InitFist();
             BoardManager.InitNew();
-            BoardManager.Generate(0, 0);
-            BoardManager.Draw();
+            //BoardManager.Generate(0, 0);
+            //BoardManager.Draw();
         }
         private void Stats_Click(object sender, RoutedEventArgs e)
         {

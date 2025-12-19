@@ -1,0 +1,14 @@
+ ---===### Aknakereső ###===---
+
+Verzió: Developer 0.0.2
+
+Ez egy teszt verzió!
+A funkciók nagy része nem elérhető és hibás!
+
+Újítások ebben a frissítésben:
+
+ => Játékgenerálás
+ => Egérvezérlés
+ => Új játék gomb
+ => Kilépés
+ => Alap képernyő felülti elemek készen

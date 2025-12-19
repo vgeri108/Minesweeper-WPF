@@ -11,3 +11,4 @@
 	-> Flagged.png
 	-> Covered.png
 	-> Question.png
+	-> Mine.png

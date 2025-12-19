@@ -20,6 +20,8 @@ namespace Minesweeper_WPF
             gameBoard = grid;
         }
         
+        private static bool newGame = true;
+
         private static string[,] akna = Data.akna;
         private static string[,] visible = Data.visible;
         private static int meretM = Data.meretM;
@@ -30,7 +32,7 @@ namespace Minesweeper_WPF
         
         public static void InitNew()
         {
-            
+            newGame = true;
         }
         public static void InitFist()
         {
@@ -67,8 +69,60 @@ namespace Minesweeper_WPF
                     {
                         x = random.Next(0, meretM);
                         y = random.Next(0, meretSZ);
-                    } while ((akna[x, y] != semmi) || (x == select_y && y == select_x));
+                    } while ((akna[y, x] != semmi) || (x == select_x && y == select_y));
                     akna[x, y] = minemark;
+                }
+
+                int count = 0;
+                for (int x = 0; x < akna.GetLength(0); x++)
+                {
+                    for (int y = 0; y < akna.GetLength(1); y++)
+                    {
+                        if (akna[x, y] != minemark)
+                        {
+                            count = 0;
+                            if (x - 1 >= 0) //fel
+                            {
+                                if (akna[x - 1, y] == minemark) count++;
+                            }
+                            if (y - 1 >= 0) //balra
+                            {
+                                if (akna[x, y - 1] == minemark) count++;
+                            }
+                            if ((x - 1 >= 0) && (y - 1 >= 0)) //balra fel
+                            {
+                                if (akna[x - 1, y - 1] == minemark) count++;
+                            }
+                            if (x + 1 < meretM) //le
+                            {
+                                if (akna[x + 1, y] == minemark) count++;
+                            }
+                            if (((x - 1 >= 0) && (y + 1 < meretSZ))) //jobbra fel
+                            {
+                                if (akna[x - 1, y + 1] == minemark) count++;
+                            }
+                            if (y + 1 < meretSZ) //jobbra
+                            {
+                                if (akna[x, y + 1] == minemark) count++;
+                            }
+                            if ((y - 1 >= 0) && (x + 1 < meretM)) //balra le
+                            {
+                                if (akna[x + 1, y - 1] == minemark) count++;
+                            }
+                            if ((y + 1 < meretSZ) && (x + 1 < meretM)) //jobbra le
+                            {
+                                if (akna[x + 1, y + 1] == minemark) count++;
+                            }
+                            if (count == 0)
+                            {
+                                akna[x, y] = semmi;
+                            }
+                            else
+                            {
+                                akna[x, y] = Convert.ToString(count);
+                            }
+                        }
+                    }
                 }
 
                 vanUres = false;
@@ -85,70 +139,16 @@ namespace Minesweeper_WPF
                     if (vanUres) break;
                 }
 
-                if (akna[select_y, select_x] == semmi)
+                if (akna[select_x, select_y] == semmi)
                 {
                     siker = true;
                 }
-                else if (!vanUres && akna[select_y, select_x] != minemark)
+                else if (!vanUres && akna[select_x, select_y] != minemark)
                 {
                     siker = true;
                 }
             }
 
-
-
-
-            int count = 0;
-            for (int x = 0; x < akna.GetLength(0); x++)
-            {
-                for (int y = 0; y < akna.GetLength(1); y++)
-                {
-                    if (akna[x, y] != minemark)
-                    {
-                        count = 0;
-                        if (x - 1 >= 0) //fel
-                        {
-                            if (akna[x - 1, y] == minemark) count++;
-                        }
-                        if (y - 1 >= 0) //balra
-                        {
-                            if (akna[x, y - 1] == minemark) count++;
-                        }
-                        if ((x - 1 >= 0) && (y - 1 >= 0)) //balra fel
-                        {
-                            if (akna[x - 1, y - 1] == minemark) count++;
-                        }
-                        if (x + 1 < meretM) //le
-                        {
-                            if (akna[x + 1, y] == minemark) count++;
-                        }
-                        if (((x - 1 >= 0) && (y + 1 < meretSZ))) //jobbra fel
-                        {
-                            if (akna[x - 1, y + 1] == minemark) count++;
-                        }
-                        if (y + 1 < meretSZ) //jobbra
-                        {
-                            if (akna[x, y + 1] == minemark) count++;
-                        }
-                        if ((y - 1 >= 0) && (x + 1 < meretM)) //balra le
-                        {
-                            if (akna[x + 1, y - 1] == minemark) count++;
-                        }
-                        if ((y + 1 < meretSZ) && (x + 1 < meretM)) //jobbra le
-                        {
-                            if (akna[x + 1, y + 1] == minemark) count++;
-                        }
-                        if (count == 0)
-                        {
-                            akna[x, y] = semmi;
-                        }
-                        else
-                        {
-                            akna[x, y] = Convert.ToString(count);
-                        }
-                    }
-                }
-            }
             return akna;
         }
         public static void Draw()
@@ -251,6 +251,12 @@ namespace Minesweeper_WPF
                 Point pos = (Point)btn.Tag;
                 int x = (int)pos.X;
                 int y = (int)pos.Y;
+
+                if (newGame)
+                {
+                    Generate(x, y);
+                    newGame = false;
+                }
 
                 Felfedes(x, y);
                 Draw();

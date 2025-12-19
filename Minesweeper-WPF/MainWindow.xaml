@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
-        Title="Aknakereső" Height="505" Width="460">
+        Title="Aknakereső" Height="505" Width="460" Icon="/icon.ico">
 
     <Grid>
         <!-- Háttér -->
