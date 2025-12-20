@@ -5,22 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
-        Title="Aknakereső" Height="505" Width="460" Icon="/icon.ico">
+        Title="Aknakereső"
+        Height="505"
+        Width="460"
+        Icon="/icon.ico">
 
     <Grid>
+
         <!-- Háttér -->
         <Grid.Background>
-            <ImageBrush ImageSource="/hatter.png" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="/hatter.png"
+                        Stretch="UniformToFill"/>
         </Grid.Background>
-        <!-- Sorok: menü, pálya, alsó panel -->
+
+        <!-- Sorok: menü + játék -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Menü -->
             <RowDefinition Height="*"/>
-            <!-- Pálya -->
-            <RowDefinition Height="Auto"/>
-            <!-- Alsó panel -->
         </Grid.RowDefinitions>
+
         <!-- Menü -->
         <Menu Grid.Row="0" Background="White">
             <MenuItem Header="Játék">
@@ -40,28 +43,86 @@
                 <MenuItem Header="További játékok az interneten" x:Name="MoreGames" Click="MoreGames_Click"/>
             </MenuItem>
         </Menu>
-        <!-- Pálya külön ViewBoxban (ne adj fix Width/Height-et a UniformGridnek) -->
-        <Viewbox x:Name="BoardView" Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-            <UniformGrid x:Name="GameBoard" Rows="5" Columns="10" />
+
+        <!-- JÁTÉKTÁBLA + ALSÓ PANEL KÖZÖS VIEWBOX-BAN -->
+        <Viewbox Grid.Row="1"
+                 Stretch="Uniform"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="10">
+
+            <!-- Referencia méret -->
+            <Grid Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Játéktábla -->
+                <UniformGrid x:Name="GameBoard"
+                             Rows="5"
+                             Columns="10"
+                             Grid.Row="0"
+                             Margin="0,0,0,10"/>
+
+                <!-- Alsó információs sáv -->
+                <DockPanel Grid.Row="1"
+                           LastChildFill="True">
+
+                    <!-- Bal oldal -->
+                    <StackPanel DockPanel.Dock="Left"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Image Source="/Assets/Images/GUI/Icons/clock.png"
+                               Width="40"
+                               Height="40"
+                               Margin="0,0,8,0"/>
+
+                        <Border Background="#31569C"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Padding="8,4"
+                                MinWidth="80">
+                            <TextBlock x:Name="Timer"
+                                       Text="0"
+                                       Foreground="White"
+                                       FontSize="18"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Jobb oldal -->
+                    <StackPanel DockPanel.Dock="Right"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Border Background="#31569C"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Padding="8,4"
+                                MinWidth="80"
+                                Margin="0,0,8,0">
+                            <TextBlock x:Name="MineCounter"
+                                       Text="10"
+                                       Foreground="White"
+                                       FontSize="18"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Image Source="/Assets/Images/GUI/Icons/flower.png"
+                               Width="40"
+                               Height="40"/>
+                    </StackPanel>
+
+                    <!-- Kitöltő -->
+                    <Grid/>
+                </DockPanel>
+
+            </Grid>
         </Viewbox>
-        <!-- Alsó információs sáv: szélessége kötve a pálya (BoardView) aktuális szélességéhez -->
-        <DockPanel Grid.Row="2" HorizontalAlignment="Center" Width="{Binding ActualWidth, ElementName=BoardView}" Margin="0,10,0,10" LastChildFill="True">
-            <!-- Bal csoport: a bal szélhez rögzítve -->
-            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center">
-                <Image Source="/Assets/Images/GUI/Icons/clock.png" Width="40" Height="40" Margin="0,0,8,0"/>
-                <Border Background="#31569C" BorderBrush="Gray" BorderThickness="1" CornerRadius="6" Padding="8,4" MinWidth="80" VerticalAlignment="Center">
-                    <TextBlock x:Name="TimerDisplay" Text="0" Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
-            </StackPanel>
-            <!-- Jobb csoport: a jobb szélhez rögzítve -->
-            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
-                <Border Background="#31569C" BorderBrush="Gray" BorderThickness="1" CornerRadius="6" Padding="8,4" MinWidth="80" VerticalAlignment="Center" Margin="0,0,8,0">
-                    <TextBlock x:Name="MineCounter" Text="10" Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
-                <Image Source="/Assets/Images/GUI/Icons/flower.png" Width="40" Height="40"/>
-            </StackPanel>
-            <!-- Középső kitöltő: üres Grid, hogy a bal és jobb csoport a széleken maradjon -->
-            <Grid/>
-        </DockPanel>
+
     </Grid>
 </Window>
