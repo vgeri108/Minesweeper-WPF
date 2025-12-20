@@ -8,11 +8,11 @@ namespace Minesweeper_WPF
 {
     class Data
     {
-        public static int meretM = 8;
-        public static int meretSZ = 8;
+        public static int meretM = 10;
+        public static int meretSZ = 10;
         public static int aknakszama = 10;
-        public static string[,] akna = new string[9, 8];
-        public static string[,] visible = new string[9, 8];
+        public static string[,] akna = new string[10, 10];
+        public static string[,] visible = new string[10, 10];
     }
     class Configuration
     {
