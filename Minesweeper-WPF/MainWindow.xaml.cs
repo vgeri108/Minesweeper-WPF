@@ -22,8 +22,11 @@ namespace Minesweeper_WPF
         {
             InitializeComponent();
             generator = new BoardManager(GameBoard);
-            BoardManager.InitFist();
+            Data.ResizeBoard();
+            BoardManager.InitFirst();
             BoardManager.InitNew();
+            NewGame newGame = new NewGame();
+            newGame.Show();
 
             //BoardManager.Generate(1,1);
             //BoardManager.Draw();
@@ -36,7 +39,7 @@ namespace Minesweeper_WPF
         
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
-            BoardManager.InitFist();
+            BoardManager.InitFirst();
             BoardManager.InitNew();
             //BoardManager.Generate(0, 0);
             //BoardManager.Draw();
@@ -47,7 +50,8 @@ namespace Minesweeper_WPF
         }
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            
+            NewGame newGame = new NewGame();
+            newGame.Show();
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)
         {

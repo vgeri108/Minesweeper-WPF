@@ -29,7 +29,7 @@ namespace Minesweeper_WPF
         {
             newGame = true;
         }
-        public static void InitFist()
+        public static void InitFirst()
         {
             for (int y = 0; y < Data.meretM; y++)
                 for (int x = 0; x < Data.meretSZ; x++)
@@ -325,7 +325,7 @@ namespace Minesweeper_WPF
         private static void Flag(int y, int x)
         {
             Data.flagCount++;
-            if (Data.visible[y, x] == "flag")
+            if (Data.akna[y, x] == Appearance.Characters.akna)
             {
                 Data.flagCorrect++;
             }

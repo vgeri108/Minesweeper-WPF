@@ -3,4 +3,9 @@
   <PropertyGroup>
     <_LastSelectedProfileId>C:\Users\Geri\source\repos\Minesweeper-WPF\Minesweeper-WPF\Properties\PublishProfiles\Developer.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="NewGame.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
