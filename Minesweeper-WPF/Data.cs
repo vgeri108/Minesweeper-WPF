@@ -8,8 +8,8 @@ namespace Minesweeper_WPF
 {
     class Data
     {
-        public static int meretM = 9;
-        public static int meretSZ = 9;
+        public static int meretM = 5;
+        public static int meretSZ = 10;
         public static int aknakszama = 10;
 
         public static string[,] akna;
