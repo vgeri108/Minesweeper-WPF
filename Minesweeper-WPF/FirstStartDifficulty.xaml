@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
-        Title="Select Difficulty" Height="450" Width="450" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" WindowStartupLocation="CenterScreen">
-    <Grid Margin="20">
+        Icon="/icon.ico"
+        Title="Nehézségi fok kiválasztása" Height="330" Width="420" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -14,39 +15,40 @@
         </Grid.RowDefinitions>
 
         <!-- Cím -->
-        <TextBlock Text="What level of difficulty do you want to play?"
+        <TextBlock Text="Milyen nehézségi fokon kíván játszani?"
                    FontSize="16" FontWeight="Bold" Margin="0,0,0,20" Foreground="#FF305995"/>
 
         <!-- Gombok stackpanelben -->
         <StackPanel Grid.Row="1" VerticalAlignment="Top">
 
             <Button Name="BeginnerButton" Click="NewBeginner"
-                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" BorderBrush="#FF305995" Foreground="#FF0077B6">
+                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0077B6">
                 <StackPanel>
-                    <TextBlock Text="➜ Beginner" FontWeight="Bold" FontSize="14"/>
-                    <TextBlock Text="     10 mines, 9 x 9 tile grid" FontSize="12"/>
+                    <TextBlock Text="➜ Kezdő" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="     10 akna, 9 x 9-es rács" FontSize="12"/>
                 </StackPanel>
             </Button>
 
             <Button Name="IntermediateButton" Click="NewIntermediate"
-                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" BorderBrush="#FF305995" Foreground="#FF0077B6">
+                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" Foreground="#FF0077B6" BorderBrush="{x:Null}">
                 <StackPanel>
-                    <TextBlock Text="➜ Intermediate" FontWeight="Bold" FontSize="14"/>
-                    <TextBlock Text="      40 mines, 16 x 16 tile grid" FontSize="12"/>
+                    <TextBlock Text="➜ Középhaladó" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="      40 akna, 16 x 16-es rács" FontSize="12"/>
                 </StackPanel>
             </Button>
 
             <Button Name="AdvancedButton" Click="NewAdvanced"
-                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" BorderBrush="#FF305995" Foreground="#FF0077B6">
+                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" Foreground="#FF0077B6" BorderBrush="{x:Null}">
                 <StackPanel>
-                    <TextBlock Text="➜ Advanced" FontWeight="Bold" FontSize="14"/>
-                    <TextBlock Text="     99 mines, 16 x 30 tile grid" FontSize="12"/>
+                    <TextBlock Text="➜ Haladó" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="     99 akna, 16 x 30-es rács" FontSize="12"/>
                 </StackPanel>
             </Button>
         </StackPanel>
 
         <!-- Megjegyzés -->
-        <TextBlock Grid.Row="2" Text="Note: You can change the difficulty level later by clicking Options on the Main Menu"
-                   FontSize="12" TextWrapping="Wrap" Margin="-19,10,-19,-19" Background="#FFE2E2E2" VerticalAlignment="Top" Height="30"/>
+        <TextBlock Grid.Row="2" Text="Megjegyzés: A nehézségi szint később is módosítható a Játék menü Beállítások parancsára kattintva."
+                   FontSize="12" TextWrapping="Wrap" Margin="-9,0,-9,-9" Background="#FFE2E2E2" VerticalAlignment="Top" Height="40"
+                   Padding="5"/>
     </Grid>
 </Window>
