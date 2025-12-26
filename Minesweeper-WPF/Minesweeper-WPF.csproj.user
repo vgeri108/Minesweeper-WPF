@@ -7,7 +7,7 @@
     <Compile Update="FirstStartDifficulty.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="NewGame.xaml.cs">
+    <Compile Update="Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
