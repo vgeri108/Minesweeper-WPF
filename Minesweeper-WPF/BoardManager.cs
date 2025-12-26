@@ -25,11 +25,13 @@ namespace Minesweeper_WPF
         private static string semmi = Appearance.Characters.semmi;
         private static string minemark = Appearance.Characters.akna;
 
-        public static void InitNew()
+        public static void Init()
         {
-            newGame = true;
+            Data.ResizeBoard();
+            newGame = true; // még nincs használva
+            InitGenerate();
         }
-        public static void InitFirst()
+        private static void InitGenerate()
         {
             for (int y = 0; y < Data.meretM; y++)
                 for (int x = 0; x < Data.meretSZ; x++)
