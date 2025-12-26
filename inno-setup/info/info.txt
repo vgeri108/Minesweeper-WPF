@@ -1,13 +1,10 @@
  ---===### Aknakereső ###===---
 
-Verzió: Developer 0.0.3
+Verzió: Developer 0.0.4
 
 Ez egy teszt verzió!
 A funkciók nagy része nem elérhető és hibás!
 
 Újítások ebben a frissítésben:
 
- => Játékindítási menü
- => Beállítások menü
- => Aknaszámláló
- => Egyéb technikai módosítások
+ => Névjegy menü
