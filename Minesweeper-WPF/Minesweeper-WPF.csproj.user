@@ -4,6 +4,9 @@
     <_LastSelectedProfileId>C:\Users\Geri\source\repos\Minesweeper-WPF\Minesweeper-WPF\Properties\PublishProfiles\Developer.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="about.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="FirstStartDifficulty.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

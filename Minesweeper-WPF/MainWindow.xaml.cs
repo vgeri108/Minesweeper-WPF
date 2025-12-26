@@ -61,7 +61,10 @@ namespace Minesweeper_WPF
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            
+            ShowInTaskbar = false;
+            about About = new about();
+            About.ShowDialog();
+            ShowInTaskbar = true;
         }
         private void MoreGames_Click(object sender, RoutedEventArgs e)
         {
