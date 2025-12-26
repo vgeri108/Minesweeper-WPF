@@ -17,13 +17,13 @@
         <Image Grid.Row="0" Margin="20" Source="/Assets/Images/GUI/Icons/windows10.png"/>
         <Separator Grid.Row="1"/>
 
-        <Grid Grid.Row="2" Margin="10">
+        <Grid Grid.Row="2" Margin="10,10,10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Image Source="/icon.ico" VerticalAlignment="Top" Margin="0,5,0,0"/>
-            <TextBlock Grid.Column="2" TextWrapping="Wrap" Margin="20,0,30,0">
+            <TextBlock Grid.Column="2" TextWrapping="Wrap" Margin="20,0,30,0" x:Name="InfoText">
                 Microsoft Windows
                 <LineBreak/>
                 Verzió:6.2 (build: 9200)
@@ -39,6 +39,7 @@
                 Aknakereső - Fejlesztő: Oberon Games és Microsoft Corporation, 
                 a Microsoft Corporation megbízásából.
                 <LineBreak/>
+                <LineBreak/>
                 A termék a Microsoft szoftverlicenc-szerződés hatálya alá esik. A
                 termék használatára jogosult: 
                 <LineBreak/>
@@ -46,6 +47,6 @@
                 User
             </TextBlock>
         </Grid>
-        <Button Grid.Row="3" Content="OK" Height="25" Width="90" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15" Click="OK_click"/>
+        <Button Grid.Row="3" Content="OK" Height="25" Width="90" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15,15,35,15" Click="OK_click"/>
     </Grid>
 </Window>
