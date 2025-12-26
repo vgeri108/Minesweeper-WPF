@@ -8,9 +8,11 @@ namespace Minesweeper_WPF
 {
     class Data
     {
-        public static int meretM = 5;
-        public static int meretSZ = 10;
+        public static int meretM = 9;
+        public static int meretSZ = 9;
         public static int aknakszama = 10;
+
+        public static string Difficulty = "Easy";
 
         public static string[,] akna;
         public static string[,] visible;
@@ -27,9 +29,5 @@ namespace Minesweeper_WPF
     class Configuration
     {
         public static string CurrentTheme = "Screenshot";
-    }
-    class UIinteract
-    {
-        
     }
 }
