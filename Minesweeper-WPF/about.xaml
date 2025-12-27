@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Margin="20" Source="/Assets/Images/GUI/Icons/windows10.png"/>
+        <Image x:Name="Logo" Grid.Row="0" Margin="20" Source="/Assets/Images/GUI/Icons/windows.png"/>
         <Separator Grid.Row="1"/>
 
         <Grid Grid.Row="2" Margin="10,10,10,0">

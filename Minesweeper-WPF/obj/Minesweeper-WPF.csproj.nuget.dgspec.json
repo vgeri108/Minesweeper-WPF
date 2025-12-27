@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Minesweeper-WPF.csproj": {}
+    "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Minesweeper-WPF.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Minesweeper-WPF.csproj": {
+    "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Minesweeper-WPF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Minesweeper-WPF.csproj",
+        "projectUniqueName": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Minesweeper-WPF.csproj",
         "projectName": "Minesweeper-WPF",
-        "projectPath": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Minesweeper-WPF.csproj",
-        "packagesPath": "C:\\Users\\Geri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\obj\\",
+        "projectPath": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Minesweeper-WPF.csproj",
+        "packagesPath": "C:\\Users\\laszl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Geri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\laszl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
