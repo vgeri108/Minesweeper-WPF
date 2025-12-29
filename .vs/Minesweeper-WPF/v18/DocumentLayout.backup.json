@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\laszl\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\about.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\about.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\laszl\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\about.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\about.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\laszl\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\laszl\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\jsonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\jsonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\laszl\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 165,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,40 +38,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "about.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\about.xaml.cs",
-              "RelativeDocumentMoniker": "Minesweeper-WPF\\about.xaml.cs",
-              "ToolTip": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\about.xaml.cs",
-              "RelativeToolTip": "Minesweeper-WPF\\about.xaml.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAADwv00AAAAUAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Data.cs",
+              "DocumentMoniker": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Data.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\Data.cs",
+              "ToolTip": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Data.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\Data.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T10:57:14.613Z",
+              "WhenOpened": "2025-12-28T15:13:58.683Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "about.xaml",
-              "DocumentMoniker": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\about.xaml",
-              "RelativeDocumentMoniker": "Minesweeper-WPF\\about.xaml",
-              "ToolTip": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\about.xaml",
-              "RelativeToolTip": "Minesweeper-WPF\\about.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-26T10:47:50.218Z",
+              "Title": "JsonManager.cs",
+              "DocumentMoniker": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\JsonManager.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\JsonManager.cs",
+              "ToolTip": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\JsonManager.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\JsonManager.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAA2wCkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T14:59:46.541Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Minesweeper-WPF\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\laszl\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\MainWindow.xaml.cs",
               "RelativeToolTip": "Minesweeper-WPF\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAADEAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T09:47:12.405Z"
+              "WhenOpened": "2025-12-29T11:10:10.983Z",
+              "EditorCaption": ""
             }
           ]
         }

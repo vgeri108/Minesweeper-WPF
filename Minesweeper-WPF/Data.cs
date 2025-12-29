@@ -29,5 +29,18 @@ namespace Minesweeper_WPF
     class Configuration
     {
         public static string CurrentTheme = "Screenshot";
+
+        public static bool Animations = true;
+        public static bool Sounds = true;
+        public static bool Tips = true;
+        public static bool AlwaysContinueSavedGame = false;
+        public static bool AlwaysSaveGameOnExit = false;
+        public static bool EnableQuestionMarks = true;
+    }
+    public class Version
+    {
+        public bool FirstStart = true;
+        public static string Game = "Developer 0.0.3";
+        public static string Json = Game;
     }
 }

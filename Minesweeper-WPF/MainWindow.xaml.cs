@@ -23,8 +23,15 @@ namespace Minesweeper_WPF
             InitializeComponent();
             generator = new BoardManager(GameBoard);
             BoardManager.Init();
-            FirstStartDifficulty firstGame = new FirstStartDifficulty();
-            firstGame.ShowDialog();
+            JsonManager.Settings.load();
+            Version Version = new Version();
+            if (Version.FirstStart)
+            {
+                FirstStartDifficulty firstGame = new FirstStartDifficulty();
+                firstGame.ShowDialog();
+                Version.FirstStart = false;
+                JsonManager.Settings.save();
+            }
         }
         
         public void MineCounterUpdate(int count)
