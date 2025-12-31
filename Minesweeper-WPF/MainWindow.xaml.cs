@@ -23,14 +23,13 @@ namespace Minesweeper_WPF
             InitializeComponent();
             generator = new BoardManager(GameBoard);
             BoardManager.Init();
-            JsonManager.Settings.load();
-            Version Version = new Version();
+            JsonManager.Settings.Load();
             if (Version.FirstStart)
             {
                 FirstStartDifficulty firstGame = new FirstStartDifficulty();
                 firstGame.ShowDialog();
                 Version.FirstStart = false;
-                JsonManager.Settings.save();
+                JsonManager.Settings.Save();
             }
         }
         
