@@ -37,7 +37,7 @@ namespace Minesweeper_WPF
 
                 //public Dictionary<string, string> UpdateConfig { get; set; } = new();
             }
-            public static void save()
+            public static void Save()
             {
                 Version Version = new Version();
                 var Settings = new SettingsData
@@ -59,7 +59,7 @@ namespace Minesweeper_WPF
                 string json = JsonSerializer.Serialize(Settings, jsonOptions);
                 File.WriteAllText(configPath, json);
             }
-            public static void load()
+            public static void Load()
             {
                 if (!File.Exists(configPath))
                     return;
@@ -70,6 +70,8 @@ namespace Minesweeper_WPF
                 if (Settings == null)
                     return;
 
+                Version Version = new Version();
+                Version.FirstStart = Settings.FirstProgramStart;
                 Data.meretM = Settings.MeretM;
                 Data.meretSZ = Settings.MeretSZ;
                 Data.aknakszama = Settings.Aknakszama;
