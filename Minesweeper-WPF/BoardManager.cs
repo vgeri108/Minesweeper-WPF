@@ -20,15 +20,23 @@ namespace Minesweeper_WPF
             gameBoard = grid;
         }
 
+
+
         private static bool newGame = true;
 
         private static string semmi = Appearance.Characters.semmi;
         private static string minemark = Appearance.Characters.akna;
 
+        static bool gameover = false;
+        static string gameover_type = "-";
+
+
         public static void Init()
         {
             Data.ResizeBoard();
             newGame = true; // még nincs használva
+            gameover = false;
+            gameover_type = "-";
             InitGenerate();
         }
         private static void InitGenerate()
@@ -164,6 +172,7 @@ namespace Minesweeper_WPF
         }
         public static void Draw()
         {
+            NyeresEllenorzes();
             gameBoard.Children.Clear();
             gameBoard.Rows = Data.meretM;
             gameBoard.Columns = Data.meretSZ;
@@ -173,7 +182,7 @@ namespace Minesweeper_WPF
                 {
                     Uri CellImage = Appearance.Images.error; //ha nem lenne valami hiba miatt kép
                     string Cell = Data.akna[y, x];
-                    if (Data.visible[y, x] == "true")
+                    if (Data.visible[y, x] == "true" || gameover)
                     {
                         if (Cell == "1")
                         {
@@ -216,7 +225,6 @@ namespace Minesweeper_WPF
                             CellImage = Appearance.Images.akna;
                         }
                         AddButton(CellImage, x, y);
-
                     }
                     else if (Data.visible[y, x] == "flag")
                     {
@@ -270,6 +278,11 @@ namespace Minesweeper_WPF
                     newGame = false;
                 }
 
+                if (Data.akna[y, x] == minemark)
+                {
+                    gameover = true;
+                    gameover_type = "akna";
+                }
                 Felfedes(x, y);
                 Draw();
             }
@@ -340,7 +353,7 @@ namespace Minesweeper_WPF
         private static void RemoveFlag(int y, int x)
         {
             Data.flagCount--;
-            if (Data.visible[y, x] == "flag")
+            if (Data.akna[y, x] == Appearance.Characters.akna)
             {
                 Data.flagCorrect--;
             }
@@ -350,5 +363,22 @@ namespace Minesweeper_WPF
                 mw.MineCounterUpdate(Data.aknakszama - Data.flagCount);
             }
         }
+        private static void NyeresEllenorzes()
+        {
+            for (int y = 0; y < Data.akna.GetLength(0); y++)
+            {
+                for (int x = 0; x < Data.akna.GetLength(1); x++)
+                {
+                    if (Data.akna[y, x] != minemark && Data.visible[y, x] != "true")
+                    {
+                        return;
+                    }
+                }
+            }
+
+            gameover = true;
+            gameover_type = "cleared";
+        }
+
     }
 }
