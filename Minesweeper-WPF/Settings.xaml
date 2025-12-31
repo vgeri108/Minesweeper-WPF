@@ -133,22 +133,22 @@
         <!-- EGYÉB BEÁLLÍTÁSOK – NEM CSOPORTOSÍTVA -->
         <StackPanel Grid.Row="2" Margin="15,0,10,0">
 
-            <CheckBox Margin="0,0,0,8" IsChecked="True">
+            <CheckBox x:Name="Animations" Margin="0,0,0,8" IsChecked="True">
                 <TextBlock Text="Animációk megjelenítése"/>
             </CheckBox>
-            <CheckBox Margin="0,0,0,8" IsChecked="True" >
+            <CheckBox x:Name="Sounds" Margin="0,0,0,8" IsChecked="True" >
                 <TextBlock Text="Hangok lejátszása"/>
             </CheckBox>
-            <CheckBox Margin="0,0,0,8" IsChecked="True">
+            <CheckBox x:Name="Tips" Margin="0,0,0,8" IsChecked="True">
                 <TextBlock Text="Tippek megjelenítése"/>
             </CheckBox>
-            <CheckBox Margin="0,0,0,8">
+            <CheckBox x:Name="ContinueSaved" Margin="0,0,0,8">
                 <TextBlock Text="Mindig a mentett játék folytatása"/>
             </CheckBox>
-            <CheckBox Margin="0,0,0,8">
+            <CheckBox x:Name="SaveExit" Margin="0,0,0,8">
                 <TextBlock Text="Kilépéskor mindig mentse a játékot"/>
             </CheckBox>
-            <CheckBox Margin="0,0,0,0" IsChecked="True">
+            <CheckBox x:Name="QuestionMarks" Margin="0,0,0,0" IsChecked="True">
                 <TextBlock Text="Kérdőjelek engedélyezése (kétszer kattintás a jobb egérgombbal)"
                            TextWrapping="Wrap"/>
             </CheckBox>

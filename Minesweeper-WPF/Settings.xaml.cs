@@ -22,6 +22,14 @@ namespace Minesweeper_WPF
         public Settings()
         {
             InitializeComponent();
+
+            Animations.IsChecked = Configuration.Animations;
+            Sounds.IsChecked = Configuration.Sounds;
+            Tips.IsChecked = Configuration.Tips;
+            ContinueSaved.IsChecked = Configuration.AlwaysContinueSavedGame;
+            SaveExit.IsChecked = Configuration.AlwaysSaveGameOnExit;
+            QuestionMarks.IsChecked = Configuration.EnableQuestionMarks;
+
             if (Data.Difficulty == "Easy")
             {
                 Easy.IsChecked = true;
@@ -71,6 +79,15 @@ namespace Minesweeper_WPF
                     Data.aknakszama = 99;
                     Data.Difficulty = "Advanced";
                 }
+
+                Configuration.Animations = (bool)Animations.IsChecked;
+                Configuration.Sounds = (bool)Sounds.IsChecked;
+                Configuration.Tips = (bool)Tips.IsChecked;
+                Configuration.AlwaysContinueSavedGame = (bool)ContinueSaved.IsChecked;
+                Configuration.AlwaysSaveGameOnExit = (bool)SaveExit.IsChecked;
+                Configuration.EnableQuestionMarks = (bool)QuestionMarks.IsChecked;
+
+                JsonManager.Settings.Save();
             }
             else
             {
@@ -82,7 +99,7 @@ namespace Minesweeper_WPF
                     Data.Difficulty = "Custom";
                 } catch (Exception error)
                 {
-                    MessageBox.Show(error.Message, "Hiba",MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(error.Message, "Hiba",MessageBoxButton.OK, MessageBoxImage.Error); //le kell tírtani hogy pontot, vesszűt betűt,stb... ne engedjen beírni
                 }
             }
 
