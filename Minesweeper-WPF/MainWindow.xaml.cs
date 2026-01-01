@@ -100,7 +100,10 @@ namespace Minesweeper_WPF
         }
         private void MoreGames_Click(object sender, RoutedEventArgs e)
         {
-            
+            //DEBUG MIATT VAN ITT
+
+            GameWin gameWin = new GameWin();
+            gameWin.ShowDialog();
         }
     }
 }

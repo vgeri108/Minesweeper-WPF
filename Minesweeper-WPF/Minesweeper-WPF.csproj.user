@@ -10,6 +10,9 @@
     <Compile Update="FirstStartDifficulty.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="GameWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
