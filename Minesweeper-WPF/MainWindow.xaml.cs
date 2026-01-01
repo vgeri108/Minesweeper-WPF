@@ -102,8 +102,8 @@ namespace Minesweeper_WPF
         {
             //DEBUG MIATT VAN ITT
 
-            GameWin gameWin = new GameWin();
-            gameWin.ShowDialog();
+            GameLose gameLose = new GameLose();
+            gameLose.ShowDialog();
         }
     }
 }
