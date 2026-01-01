@@ -23,6 +23,7 @@ namespace Minesweeper_WPF
 
 
         private static bool newGame = true;
+        public static bool replayGame = false;
 
         private static string semmi = Appearance.Characters.semmi;
         private static string minemark = Appearance.Characters.akna;
@@ -34,8 +35,9 @@ namespace Minesweeper_WPF
         public static void Init()
         {
             Time.ResetTimer();
-            Data.ResizeBoard();
-            newGame = true; // még nincs használva
+            if (!replayGame) Data.ResizeBoard();
+            newGame = true; //az időmérő nullázódik ha true és új generálás
+            //replayGame ---- ha true akkor az időmérő nullázódik, de nem lesz új pálya
             gameover = false;
             gameover_type = "-";
             InitGenerate();
@@ -43,8 +45,12 @@ namespace Minesweeper_WPF
         private static void InitGenerate()
         {
             for (int y = 0; y < Data.meretM; y++)
+            {
                 for (int x = 0; x < Data.meretSZ; x++)
+                {
                     Data.visible[y, x] = "false";
+                }
+            }
 
             Data.flagCount = 0;
             Data.flagCorrect = 0;
@@ -258,11 +264,6 @@ namespace Minesweeper_WPF
                 Felfedes(x + 1, y - 1); //bal-le
                 Felfedes(x + 1, y + 1); //jobb-le
             }
-            if (Data.akna[y, x] == minemark)
-            {
-                //gameover = true;
-                //gameover_type = "akna";
-            }
         }
         private static void Cell_Click(object sender, RoutedEventArgs e)
         {
@@ -273,15 +274,28 @@ namespace Minesweeper_WPF
                 int x = (int)pos.X;
                 int y = (int)pos.Y;
 
-                // guard: ensure board arrays exist and indices are inside bounds
                 if (Data.akna == null || Data.visible == null) return;
                 if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
 
                 if (newGame)
                 {
                     Time.StartTimer();
-                    Generate(x, y);
+                    if (!replayGame)
+                    {
+                        Generate(x, y);
+                    }
+                    else
+                    {
+                        for (int _y = 0; _y < Data.meretM; _y++)
+                        {
+                            for (int _x = 0; _x < Data.meretSZ; _x++)
+                            {
+                                Data.visible[_y, _x] = "false";
+                            }
+                        }
+                    }
                     newGame = false;
+                    replayGame = false;
                 }
 
                 if (Data.akna[y, x] == minemark)
@@ -303,11 +317,9 @@ namespace Minesweeper_WPF
                 int x = (int)pos.X;
                 int y = (int)pos.Y;
 
-                // guard: ensure board arrays exist and indices are inside bounds
                 if (Data.akna == null || Data.visible == null) return;
                 if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
 
-                // start timer also on first right-click, but don't mark newGame false so generation still occurs on first left-click
                 if (newGame)
                 {
                     Time.StartTimer();

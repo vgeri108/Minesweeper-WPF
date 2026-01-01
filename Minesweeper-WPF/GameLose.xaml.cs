@@ -47,7 +47,9 @@ namespace Minesweeper_WPF
 
         private void Replay_Click(object sender, RoutedEventArgs e)
         {
-
+            BoardManager.replayGame = true;
+            BoardManager.Init();
+            Close();
         }
     }
 }
