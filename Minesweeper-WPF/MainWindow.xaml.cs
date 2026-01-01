@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Minesweeper_WPF
 {
@@ -18,12 +19,17 @@ namespace Minesweeper_WPF
     public partial class MainWindow : Window
     {
         private BoardManager generator;
+
         public MainWindow()
         {
             InitializeComponent();
             generator = new BoardManager(GameBoard);
-            BoardManager.Init();
+
+            // Load settings first so board size/configuration is applied before Init
             JsonManager.Settings.Load();
+
+            BoardManager.Init();
+
             if (Version.FirstStart)
             {
                 FirstStartDifficulty firstGame = new FirstStartDifficulty();
@@ -31,15 +37,32 @@ namespace Minesweeper_WPF
                 Version.FirstStart = false;
                 JsonManager.Settings.Save();
             }
+
+            // subscribe to Time.Timer to update UI each second
+            Time.Timer.Tick += DataTimer_Tick;
+
+            UpdateTimerText();
         }
-        
+
+        private void DataTimer_Tick(object? sender, System.EventArgs e)
+        {
+            UpdateTimerText();
+        }
+
+        private void UpdateTimerText()
+        {
+            Timer.Text = Time.ElapsedSeconds.ToString();
+        }
+
         public void MineCounterUpdate(int count)
         {
             MineCounter.Text =count.ToString();
         }
-        
+
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
+            Time.ResetTimer();
+            UpdateTimerText();
             BoardManager.Init();
         }
         private void Stats_Click(object sender, RoutedEventArgs e)
@@ -51,6 +74,9 @@ namespace Minesweeper_WPF
             ShowInTaskbar = false;
             Settings settings = new Settings();
             settings.ShowDialog();
+            // after changing settings, reset timer
+            Time.ResetTimer();
+            UpdateTimerText();
             ShowInTaskbar = true;
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)

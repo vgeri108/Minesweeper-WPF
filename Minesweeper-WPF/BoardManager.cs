@@ -33,6 +33,7 @@ namespace Minesweeper_WPF
 
         public static void Init()
         {
+            Time.ResetTimer();
             Data.ResizeBoard();
             newGame = true; // még nincs használva
             gameover = false;
@@ -272,8 +273,13 @@ namespace Minesweeper_WPF
                 int x = (int)pos.X;
                 int y = (int)pos.Y;
 
+                // guard: ensure board arrays exist and indices are inside bounds
+                if (Data.akna == null || Data.visible == null) return;
+                if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
+
                 if (newGame)
                 {
+                    Time.StartTimer();
                     Generate(x, y);
                     newGame = false;
                 }
@@ -282,6 +288,7 @@ namespace Minesweeper_WPF
                 {
                     gameover = true;
                     gameover_type = "akna";
+                    Time.StopTimer();
                 }
                 Felfedes(x, y);
                 Draw();
@@ -295,6 +302,16 @@ namespace Minesweeper_WPF
                 Point pos = (Point)btn.Tag;
                 int x = (int)pos.X;
                 int y = (int)pos.Y;
+
+                // guard: ensure board arrays exist and indices are inside bounds
+                if (Data.akna == null || Data.visible == null) return;
+                if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
+
+                // start timer also on first right-click, but don't mark newGame false so generation still occurs on first left-click
+                if (newGame)
+                {
+                    Time.StartTimer();
+                }
 
                 if (Data.visible[y, x] == "false")
                 {
@@ -378,6 +395,7 @@ namespace Minesweeper_WPF
 
             gameover = true;
             gameover_type = "cleared";
+            Time.StopTimer();
         }
 
     }

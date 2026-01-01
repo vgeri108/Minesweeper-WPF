@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Minesweeper_WPF
 {
@@ -19,6 +20,8 @@ namespace Minesweeper_WPF
 
         public static int flagCount = 0;
         public static int flagCorrect = 0;
+
+       
 
         public static void ResizeBoard()
         {
@@ -42,5 +45,37 @@ namespace Minesweeper_WPF
         public static bool FirstStart = true;
         public static string Game = "Developer 0.0.3";
         public static string Json = Game;
+    }
+    public class Time
+    {
+        // Simple elapsed seconds counter for the game timer
+        public static int ElapsedSeconds = 0;
+
+        // Shared DispatcherTimer stored here per request
+        public static DispatcherTimer Timer;
+
+        static Time()
+        {
+            Timer = new DispatcherTimer();
+            Timer.Interval = TimeSpan.FromSeconds(1);
+            Timer.Tick += (s, e) => { ElapsedSeconds++; };
+        }
+
+        public static void StartTimer()
+        {
+            ElapsedSeconds = 0;
+            Timer.Start();
+        }
+
+        public static void StopTimer()
+        {
+            Timer.Stop();
+        }
+
+        public static void ResetTimer()
+        {
+            Timer.Stop();
+            ElapsedSeconds = 0;
+        }
     }
 }
