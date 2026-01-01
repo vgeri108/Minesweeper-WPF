@@ -434,9 +434,13 @@ namespace Minesweeper_WPF
             {
                 dialog = new GameWin();
             }
+
+            dialog.Owner = mw;
             dialog.ShowInTaskbar = true;
+            dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             dialog.ShowDialog();
             mw.ShowInTaskbar = true;
+            mw.UpdateTimerText();
         }
 
     }

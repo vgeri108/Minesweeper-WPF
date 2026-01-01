@@ -27,13 +27,18 @@ namespace Minesweeper_WPF
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
             BoardManager.Init();
             Close();
+
+            if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
+            {
+                mw.UpdateTimerText();
+            }
         }
 
         private void MoreGames_Click(object sender, RoutedEventArgs e)
