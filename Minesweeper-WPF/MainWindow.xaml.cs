@@ -19,13 +19,14 @@ namespace Minesweeper_WPF
     public partial class MainWindow : Window
     {
         private BoardManager generator;
+        private BoardManager timerEditor;
 
         public MainWindow()
         {
             InitializeComponent();
             generator = new BoardManager(GameBoard);
 
-            // Load settings first so board size/configuration is applied before Init
+
             JsonManager.Settings.Load();
 
             BoardManager.Init();
@@ -40,16 +41,18 @@ namespace Minesweeper_WPF
 
             // subscribe to Time.Timer to update UI each second
             Time.Timer.Tick += DataTimer_Tick;
+            // subscribe to Reset so UI updates immediately when timer is reset
+            Time.Reset += (s, e) => UpdateTimerText();
 
             UpdateTimerText();
         }
 
-        private void DataTimer_Tick(object? sender, System.EventArgs e)
+        public void DataTimer_Tick(object? sender, System.EventArgs e)
         {
             UpdateTimerText();
         }
 
-        private void UpdateTimerText()
+        public void UpdateTimerText()
         {
             Timer.Text = Time.ElapsedSeconds.ToString();
         }
@@ -74,9 +77,9 @@ namespace Minesweeper_WPF
             ShowInTaskbar = false;
             Settings settings = new Settings();
             settings.ShowDialog();
-            // after changing settings, reset timer
             Time.ResetTimer();
             UpdateTimerText();
+            Timer.Text = "0";
             ShowInTaskbar = true;
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)

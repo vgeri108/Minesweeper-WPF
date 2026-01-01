@@ -54,6 +54,9 @@ namespace Minesweeper_WPF
         // Shared DispatcherTimer stored here per request
         public static DispatcherTimer Timer;
 
+        // Raised when timer is reset so UI can update immediately
+        public static event EventHandler? Reset;
+
         static Time()
         {
             Timer = new DispatcherTimer();
@@ -65,6 +68,7 @@ namespace Minesweeper_WPF
         {
             ElapsedSeconds = 0;
             Timer.Start();
+            Reset?.Invoke(null, EventArgs.Empty);
         }
 
         public static void StopTimer()
@@ -76,6 +80,7 @@ namespace Minesweeper_WPF
         {
             Timer.Stop();
             ElapsedSeconds = 0;
+            Reset?.Invoke(null, EventArgs.Empty);
         }
     }
 }

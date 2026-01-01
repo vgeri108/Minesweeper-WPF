@@ -9,8 +9,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -37,12 +35,20 @@ namespace Minesweeper_WPF
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Close();
         }
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
             BoardManager.Init();
             Close();
+
+            // update timer text immediately if main window active
+            if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
+            {
+                mw.UpdateTimerText();
+            }
         }
 
         private void Replay_Click(object sender, RoutedEventArgs e)
@@ -50,6 +56,11 @@ namespace Minesweeper_WPF
             BoardManager.replayGame = true;
             BoardManager.Init();
             Close();
+
+            if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
+            {
+                mw.UpdateTimerText();
+            }
         }
     }
 }
