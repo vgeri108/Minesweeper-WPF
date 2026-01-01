@@ -267,79 +267,90 @@ namespace Minesweeper_WPF
         }
         private static void Cell_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
-            if (btn != null)
+            if (!gameover)
             {
-                Point pos = (Point)btn.Tag;
-                int x = (int)pos.X;
-                int y = (int)pos.Y;
-
-                if (Data.akna == null || Data.visible == null) return;
-                if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
-
-                if (newGame)
+                Button btn = sender as Button;
+                if (btn != null)
                 {
-                    Time.StartTimer();
-                    if (!replayGame)
+                    Point pos = (Point)btn.Tag;
+                    int x = (int)pos.X;
+                    int y = (int)pos.Y;
+
+                    if (Data.akna == null || Data.visible == null) return;
+                    if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
+
+                    if (newGame)
                     {
-                        Generate(x, y);
-                    }
-                    else
-                    {
-                        for (int _y = 0; _y < Data.meretM; _y++)
+                        Time.StartTimer();
+                        if (!replayGame)
                         {
-                            for (int _x = 0; _x < Data.meretSZ; _x++)
+                            Generate(x, y);
+                        }
+                        else
+                        {
+                            for (int _y = 0; _y < Data.meretM; _y++)
                             {
-                                Data.visible[_y, _x] = "false";
+                                for (int _x = 0; _x < Data.meretSZ; _x++)
+                                {
+                                    Data.visible[_y, _x] = "false";
+                                }
                             }
                         }
+                        newGame = false;
+                        replayGame = false;
                     }
-                    newGame = false;
-                    replayGame = false;
-                }
 
-                if (Data.akna[y, x] == minemark)
-                {
-                    gameover = true;
-                    gameover_type = "akna";
-                    Time.StopTimer();
+                    if (Data.akna[y, x] == minemark)
+                    {
+                        gameover = true;
+                        gameover_type = "akna";
+                        Time.StopTimer();
+                    }
+                    Felfedes(x, y);
+                    Draw();
+
+                    if (gameover)
+                    {
+                        ShowGameOverDialog();
+                    }
                 }
-                Felfedes(x, y);
-                Draw();
             }
         }
         private static void Cell_RightClick(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
-            if (btn != null)
+            if (!gameover)
             {
-                Point pos = (Point)btn.Tag;
-                int x = (int)pos.X;
-                int y = (int)pos.Y;
+                Button btn = sender as Button;
+                if (btn != null)
+                {
+                    Point pos = (Point)btn.Tag;
+                    int x = (int)pos.X;
+                    int y = (int)pos.Y;
 
-                if (Data.akna == null || Data.visible == null) return;
-                if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
+                    if (Data.akna == null || Data.visible == null) return;
+                    if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
 
-                if (newGame)
-                {
-                    Time.StartTimer();
-                }
+                    if (newGame)
+                    {
+                        Time.StartTimer();
+                    }
 
-                if (Data.visible[y, x] == "false")
-                {
-                    Data.visible[y, x] = "flag";
-                    Flag(y, x);
+                    if (Data.visible[y, x] == "false")
+                    {
+                        Data.visible[y, x] = "flag";
+                        Flag(y, x);
+                    }
+                    else if (Data.visible[y, x] == "flag")
+                    {
+                        Data.visible[y, x] = "question";
+                        RemoveFlag(y, x);
+                    }
+                    else if (Data.visible[y, x] == "question")
+                    {
+                        Data.visible[y, x] = "false";
+                    }
+                    Draw();
                 }
-                else if (Data.visible[y, x] == "flag")
-                {
-                    Data.visible[y, x] = "question";
-                    RemoveFlag(y, x);
-                }
-                else if (Data.visible[y, x] == "question")
-                {
-                    Data.visible[y, x] = "false";
-                }
-                Draw();
             }
         }
         private static void AddButton(Uri CellImage, int x, int y)
@@ -408,6 +419,24 @@ namespace Minesweeper_WPF
             gameover = true;
             gameover_type = "cleared";
             Time.StopTimer();
+        }
+        private static void ShowGameOverDialog()
+        {
+            if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
+
+            mw.ShowInTaskbar = false;
+            Window dialog;
+            if (gameover_type == "akna")
+            {
+                dialog = new GameLose();
+            }
+            else
+            {
+                dialog = new GameWin();
+            }
+            dialog.ShowInTaskbar = true;
+            dialog.ShowDialog();
+            mw.ShowInTaskbar = true;
         }
 
     }
