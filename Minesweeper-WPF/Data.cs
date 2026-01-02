@@ -39,6 +39,10 @@ namespace Minesweeper_WPF
         public static bool AlwaysContinueSavedGame = false;
         public static bool AlwaysSaveGameOnExit = false;
         public static bool EnableQuestionMarks = true;
+
+        public static int LastMeretM = 9;
+        public static int LastMeretSZ = 9;
+        public static int LastAknakszama = 10;
     }
     public class Version
     {

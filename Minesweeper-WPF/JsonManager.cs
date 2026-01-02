@@ -21,7 +21,7 @@ namespace Minesweeper_WPF
             };
             private class SettingsData
             {
-                public string JsonVersion { get; set; } = "WPF";
+                public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
                 public bool FirstProgramStart { get; set; } = true;
                 public int MeretM { get; set; } = 9;
                 public int MeretSZ { get; set; } = 9;
@@ -35,6 +35,10 @@ namespace Minesweeper_WPF
                 public bool AlwaysSaveGameOnExit { get; set; } = false;
                 public bool EnableQuestionMarks { get; set; } = true;
 
+                public int CustomM { get; set;  } = 9;
+                public int CustomSZ { get; set; } = 9;
+                public int CustomAknakszama { get; set; } = 10;
+
                 //public Dictionary<string, string> UpdateConfig { get; set; } = new();
             }
             public static void Save()
@@ -47,6 +51,7 @@ namespace Minesweeper_WPF
                     MeretM = Data.meretM,
                     MeretSZ = Data.meretSZ,
                     Aknakszama = Data.aknakszama,
+
                     Difficulty = Data.Difficulty,
                     Animations = Configuration.Animations,
                     Sounds = Configuration.Sounds,
@@ -54,6 +59,10 @@ namespace Minesweeper_WPF
                     AlwaysContinueSavedGame = Configuration.AlwaysContinueSavedGame,
                     AlwaysSaveGameOnExit = Configuration.AlwaysSaveGameOnExit,
                     EnableQuestionMarks = Configuration.EnableQuestionMarks,
+
+                    CustomM = Configuration.LastMeretM,
+                    CustomSZ = Configuration.LastMeretSZ,
+                    CustomAknakszama = Configuration.LastAknakszama,
                 };
 
                 string json = JsonSerializer.Serialize(Settings, jsonOptions);
@@ -84,6 +93,9 @@ namespace Minesweeper_WPF
                 Configuration.AlwaysSaveGameOnExit = Settings.AlwaysSaveGameOnExit;
                 Configuration.EnableQuestionMarks = Settings.EnableQuestionMarks;
 
+                Configuration.LastMeretM = Settings.CustomM;
+                Configuration.LastMeretSZ = Settings.CustomSZ;
+                Configuration.LastAknakszama = Settings.CustomAknakszama;
                 //foreach (var kv in config.UpdateConfig)
                 //{
                 //    if (bool.TryParse(kv.Value, out bool value))
