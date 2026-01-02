@@ -22,6 +22,17 @@ namespace Minesweeper_WPF
         public GameLose()
         {
             InitializeComponent();
+
+            int Percent = (int)Math.Round(((Double)Statistics.WinnedGames[Statistics.currentMode] / Statistics.PlayedGames[Statistics.currentMode]) * 100);
+
+            TimeText.Text = $"Idő: {Time.ElapsedSeconds} másodperc";
+            BestTime.Text = $"Legjobb idő: {Statistics.BestTimes[Statistics.currentMode]} másodperc";
+            Date.Text = "Dátum: " + DateTime.Now.ToString("yyyy/MM/dd");
+            PlayedGames.Text = $"Lejátszott játékok: {Statistics.PlayedGames[Statistics.currentMode]}";
+            WinnedGames.Text = $"Megnyert játékok: {Statistics.WinnedGames[Statistics.currentMode]}";
+            PercentageRating.Text = $"Százalékos értékelés: {Percent}%";
+
+            JsonManager.Stats.Save();
         }
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {

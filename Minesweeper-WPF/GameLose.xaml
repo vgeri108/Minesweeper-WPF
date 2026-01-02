@@ -35,22 +35,28 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Idő: 000 másodperc"
+            <TextBlock x:Name="TimeText"
+                       Text="Idő: 000 másodperc"
                        Grid.Row="0" Grid.Column="0"/>
 
-            <TextBlock Text="Legjobb idő: 000 másodperc"
+            <TextBlock x:Name="BestTime"
+                       Text="Legjobb idő: 000 másodperc"
                        Grid.Row="1" Grid.Column="0"/>
 
-            <TextBlock Text="Dátum: 2026.01.01."
+            <TextBlock x:Name="Date"
+                       Text="Dátum: 2026.01.01."
                        Grid.Row="1" Grid.Column="1"/>
 
-            <TextBlock Text="Lejátszott játékok: 000"
+            <TextBlock x:Name="PlayedGames"
+                       Text="Lejátszott játékok: 000"
                        Grid.Row="2" Grid.Column="0"/>
 
-            <TextBlock Text="Megnyert játékok: 000"
+            <TextBlock x:Name="WinnedGames"
+                       Text="Megnyert játékok: 000"
                        Grid.Row="3" Grid.Column="0"/>
 
-            <TextBlock Text="Százalékos értékelés: 000%"
+            <TextBlock x:Name="PercentageRating"
+                       Text="Százalékos értékelés: 000%"
                        Grid.Row="3" Grid.Column="1"/>
         </Grid>
 
