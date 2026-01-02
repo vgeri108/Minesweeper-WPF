@@ -11,14 +11,15 @@ namespace Minesweeper_WPF
 {
     internal class JsonManager
     {
+        private static string configPath = "config.json";
+        private static string statsPath = "stats.json";
+        private static readonly JsonSerializerOptions jsonOptions = new()
+        {
+            WriteIndented = true,
+            TypeInfoResolver = new DefaultJsonTypeInfoResolver()
+        };
         public class Settings
         {
-            private static string configPath = "config.json";
-            private static readonly JsonSerializerOptions jsonOptions = new()
-            {
-                WriteIndented = true,
-                TypeInfoResolver = new DefaultJsonTypeInfoResolver()
-            };
             private class SettingsData
             {
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
@@ -35,7 +36,7 @@ namespace Minesweeper_WPF
                 public bool AlwaysSaveGameOnExit { get; set; } = false;
                 public bool EnableQuestionMarks { get; set; } = true;
 
-                public int CustomM { get; set;  } = 9;
+                public int CustomM { get; set; } = 9;
                 public int CustomSZ { get; set; } = 9;
                 public int CustomAknakszama { get; set; } = 10;
 
@@ -43,7 +44,6 @@ namespace Minesweeper_WPF
             }
             public static void Save()
             {
-                Version Version = new Version();
                 var Settings = new SettingsData
                 {
                     JsonVersion = Version.Json,
@@ -60,9 +60,9 @@ namespace Minesweeper_WPF
                     AlwaysSaveGameOnExit = Configuration.AlwaysSaveGameOnExit,
                     EnableQuestionMarks = Configuration.EnableQuestionMarks,
 
-                    CustomM = Configuration.LastMeretM,
-                    CustomSZ = Configuration.LastMeretSZ,
-                    CustomAknakszama = Configuration.LastAknakszama,
+                    CustomM = Data.LastMeretM,
+                    CustomSZ = Data.LastMeretSZ,
+                    CustomAknakszama = Data.LastAknakszama,
                 };
 
                 string json = JsonSerializer.Serialize(Settings, jsonOptions);
@@ -79,7 +79,6 @@ namespace Minesweeper_WPF
                 if (Settings == null)
                     return;
 
-                Version Version = new Version();
                 Version.FirstStart = Settings.FirstProgramStart;
                 Data.meretM = Settings.MeretM;
                 Data.meretSZ = Settings.MeretSZ;
@@ -93,14 +92,56 @@ namespace Minesweeper_WPF
                 Configuration.AlwaysSaveGameOnExit = Settings.AlwaysSaveGameOnExit;
                 Configuration.EnableQuestionMarks = Settings.EnableQuestionMarks;
 
-                Configuration.LastMeretM = Settings.CustomM;
-                Configuration.LastMeretSZ = Settings.CustomSZ;
-                Configuration.LastAknakszama = Settings.CustomAknakszama;
-                //foreach (var kv in config.UpdateConfig)
-                //{
-                //    if (bool.TryParse(kv.Value, out bool value))
-                //        Program.UpdateConfig[kv.Key] = value;
-                //}
+                Data.LastMeretM = Settings.CustomM;
+                Data.LastMeretSZ = Settings.CustomSZ;
+                Data.LastAknakszama = Settings.CustomAknakszama;
+            }
+        }
+        public class Stats
+        {
+            private class StatsData
+            {
+                public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
+                public Dictionary<string, string> PlayedGames { get; set; } = new();
+                public Dictionary<string, string> WinnedGames { get; set; } = new();
+                public Dictionary<string, string> BestTimes { get; set; } = new();
+            }
+            public static void Save()
+            {
+                var Stats = new StatsData
+                {
+                    JsonVersion = Version.Json,
+                    PlayedGames = Statistics.PlayedGames.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
+                    WinnedGames = Statistics.WinnedGames.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
+                    BestTimes = Statistics.BestTimes.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
+                };
+
+                string json = JsonSerializer.Serialize(Stats, jsonOptions);
+                File.WriteAllText(statsPath, json);
+            }
+            public static void Load()
+            {
+                if (!File.Exists(statsPath))
+                    return;
+
+                string json = File.ReadAllText(statsPath);
+                var Stats = JsonSerializer.Deserialize<StatsData>(json, jsonOptions);
+
+                if (Stats == null)
+                    return;
+
+                foreach (var kv in Stats.PlayedGames)
+                {
+                    Statistics.PlayedGames[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.WinnedGames)
+                {
+                    Statistics.WinnedGames[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.BestTimes)
+                {
+                    Statistics.BestTimes[kv.Key] = Convert.ToInt32(kv.Value);
+                }
             }
         }
     }

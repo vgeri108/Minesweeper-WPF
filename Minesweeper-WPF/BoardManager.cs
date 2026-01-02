@@ -281,6 +281,7 @@ namespace Minesweeper_WPF
 
                     if (newGame)
                     {
+                        Statistics.PlayedGames[Statistics.currentMode]++;
                         Time.StartTimer();
                         if (!replayGame)
                         {
@@ -332,6 +333,7 @@ namespace Minesweeper_WPF
 
                     if (newGame)
                     {
+                        Statistics.PlayedGames[Statistics.currentMode]++;
                         Time.StartTimer();
                     }
 

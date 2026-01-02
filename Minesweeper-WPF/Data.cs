@@ -21,12 +21,21 @@ namespace Minesweeper_WPF
         public static int flagCount = 0;
         public static int flagCorrect = 0;
 
-       
+        public static int LastMeretM = 9;
+        public static int LastMeretSZ = 9;
+        public static int LastAknakszama = 10;
 
         public static void ResizeBoard()
         {
             akna = new string[meretM, meretSZ];
             visible = new string[meretM, meretSZ];
+            Statistics.currentMode = $"{meretM}_{meretSZ}_{aknakszama}";
+            if (!Statistics.PlayedGames.ContainsKey(Statistics.currentMode))
+            {
+                Statistics.PlayedGames.Add(Statistics.currentMode, 0);
+                Statistics.WinnedGames.Add(Statistics.currentMode, 0);
+                Statistics.BestTimes.Add(Statistics.currentMode, 999);
+            }
         }
     }
     class Configuration
@@ -39,10 +48,6 @@ namespace Minesweeper_WPF
         public static bool AlwaysContinueSavedGame = false;
         public static bool AlwaysSaveGameOnExit = false;
         public static bool EnableQuestionMarks = true;
-
-        public static int LastMeretM = 9;
-        public static int LastMeretSZ = 9;
-        public static int LastAknakszama = 10;
     }
     public class Version
     {
@@ -50,15 +55,17 @@ namespace Minesweeper_WPF
         public static string Game = "Developer 0.0.3";
         public static string Json = Game;
     }
+    public class Statistics
+    {
+        public static string currentMode = "9_9_10";
+        public static Dictionary<string, int> PlayedGames = new Dictionary<String, int>();
+        public static Dictionary<string, int> WinnedGames = new Dictionary<string, int>();
+        public static Dictionary<string, int> BestTimes = new Dictionary<string, int>();
+    }
     public class Time
     {
-        // Simple elapsed seconds counter for the game timer
         public static int ElapsedSeconds = 0;
-
-        // Shared DispatcherTimer stored here per request
         public static DispatcherTimer Timer;
-
-        // Raised when timer is reset so UI can update immediately
         public static event EventHandler? Reset;
 
         static Time()

@@ -29,9 +29,9 @@ namespace Minesweeper_WPF
             ContinueSaved.IsChecked = Configuration.AlwaysContinueSavedGame;
             SaveExit.IsChecked = Configuration.AlwaysSaveGameOnExit;
             QuestionMarks.IsChecked = Configuration.EnableQuestionMarks;
-            tbHeight.Text = Configuration.LastMeretM.ToString();
-            tbWidth.Text = Configuration.LastMeretSZ.ToString();
-            tbMines.Text = Configuration.LastAknakszama.ToString();
+            tbHeight.Text = Data.LastMeretM.ToString();
+            tbWidth.Text = Data.LastMeretSZ.ToString();
+            tbMines.Text = Data.LastAknakszama.ToString();
 
             if (Data.Difficulty == "Easy")
             {
@@ -47,9 +47,6 @@ namespace Minesweeper_WPF
             }else if (Data.Difficulty == "Custom")
             {
                 rbCustom.IsChecked = true;
-                tbHeight.Text = Configuration.LastMeretM.ToString();
-                tbWidth.Text = Configuration.LastMeretSZ.ToString();
-                tbMines.Text = Configuration.LastAknakszama.ToString();
             }
         }
 
@@ -85,9 +82,9 @@ namespace Minesweeper_WPF
 
                 try
                 {
-                    Configuration.LastMeretM = int.Parse(tbHeight.Text);
-                    Configuration.LastMeretSZ = int.Parse(tbWidth.Text);
-                    Configuration.LastAknakszama = int.Parse(tbMines.Text);
+                    Data.LastMeretM = int.Parse(tbHeight.Text);
+                    Data.LastMeretSZ = int.Parse(tbWidth.Text);
+                    Data.LastAknakszama = int.Parse(tbMines.Text);
                 }
                 catch (Exception error)
                 {
@@ -100,27 +97,25 @@ namespace Minesweeper_WPF
                 Configuration.AlwaysContinueSavedGame = (bool)ContinueSaved.IsChecked;
                 Configuration.AlwaysSaveGameOnExit = (bool)SaveExit.IsChecked;
                 Configuration.EnableQuestionMarks = (bool)QuestionMarks.IsChecked;
-
-                JsonManager.Settings.Save();
             }
             else
             {
                 try
                 {
-                    Configuration.LastMeretM = int.Parse(tbHeight.Text);
-                    Configuration.LastMeretSZ = int.Parse(tbWidth.Text);
-                    Configuration.LastAknakszama = int.Parse(tbMines.Text);
+                    Data.Difficulty = "Custom";
+                    Data.LastMeretM = int.Parse(tbHeight.Text);
+                    Data.LastMeretSZ = int.Parse(tbWidth.Text);
+                    Data.LastAknakszama = int.Parse(tbMines.Text);
 
                     Data.meretM = int.Parse(tbHeight.Text);
                     Data.meretSZ = int.Parse(tbWidth.Text);
                     Data.aknakszama = int.Parse(tbMines.Text);
-                    Data.Difficulty = "Custom";
                 } catch (Exception error)
                 {
                     MessageBox.Show(error.Message, "Hiba",MessageBoxButton.OK, MessageBoxImage.Error); //le kell tírtani hogy pontot, vesszűt betűt,stb... ne engedjen beírni
                 }
             }
-
+            JsonManager.Settings.Save();
             BoardManager.Init();
             Close();
         }

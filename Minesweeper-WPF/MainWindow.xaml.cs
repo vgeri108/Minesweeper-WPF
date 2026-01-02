@@ -28,6 +28,7 @@ namespace Minesweeper_WPF
 
 
             JsonManager.Settings.Load();
+            JsonManager.Stats.Load();
 
             BoardManager.Init();
 
