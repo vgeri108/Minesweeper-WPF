@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 165,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -55,18 +55,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Settings.xaml",
-              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Settings.xaml",
-              "RelativeDocumentMoniker": "Minesweeper-WPF\\Settings.xaml",
-              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Settings.xaml",
-              "RelativeToolTip": "Minesweeper-WPF\\Settings.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-02T16:47:42.618Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -133,6 +121,31 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BoardManager.cs",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\BoardManager.cs",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\BoardManager.cs",
+              "ViewState": "AgIAADEBAAAAAAAAAAAuwE8BAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T15:55:48.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Settings.xaml",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Settings.xaml",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\Settings.xaml",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Settings.xaml",
+              "RelativeToolTip": "Minesweeper-WPF\\Settings.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-02T16:47:42.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Data.cs",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Data.cs",
@@ -142,19 +155,6 @@
               "ViewState": "AgIAADgAAAAAAAAAAAAwwCQAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-01T17:15:33.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BoardManager.cs",
-              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs",
-              "RelativeDocumentMoniker": "Minesweeper-WPF\\BoardManager.cs",
-              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs*",
-              "RelativeToolTip": "Minesweeper-WPF\\BoardManager.cs*",
-              "ViewState": "AgIAADEBAAAAAAAAAAAuwE8BAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-02T15:55:48.628Z",
               "EditorCaption": ""
             }
           ]

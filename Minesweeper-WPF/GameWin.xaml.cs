@@ -30,7 +30,7 @@ namespace Minesweeper_WPF
 
             TimeText.Text = $"Idő: {Time.ElapsedSeconds} másodperc";
             BestTime.Text = $"Legjobb idő: {Statistics.BestTimes[Statistics.currentMode]} másodperc";
-            Date.Text = DateTime.Now.ToString();
+            Date.Text = "Dátum: " + DateTime.Now.ToString("yyyy/MM/dd");
             PlayedGames.Text = $"Lejátszott játékok: {Statistics.PlayedGames[Statistics.currentMode]}";
             WinnedGames.Text = $"Megnyert játékok: {Statistics.WinnedGames[Statistics.currentMode]}";
             PercentageRating.Text = $"Százalékos értékelés: {Percent}%";
