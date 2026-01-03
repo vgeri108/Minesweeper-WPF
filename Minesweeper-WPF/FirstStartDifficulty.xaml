@@ -16,31 +16,31 @@
 
         <!-- Cím -->
         <TextBlock Text="Milyen nehézségi fokon kíván játszani?"
-                   FontSize="16" FontWeight="Bold" Margin="0,0,0,20" Foreground="#FF305995"/>
+                   FontSize="16" Margin="0,0,0,20" Foreground="#FF0077B6"/>
 
         <!-- Gombok stackpanelben -->
         <StackPanel Grid.Row="1" VerticalAlignment="Top">
 
             <Button Name="BeginnerButton" Click="NewBeginner"
-                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0077B6">
+                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF305995">
                 <StackPanel>
-                    <TextBlock Text="➜ Kezdő" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="➜ Kezdő" FontSize="14"/>
                     <TextBlock Text="     10 akna, 9 x 9-es rács" FontSize="12"/>
                 </StackPanel>
             </Button>
 
             <Button Name="IntermediateButton" Click="NewIntermediate"
-                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" Foreground="#FF0077B6" BorderBrush="{x:Null}">
+                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" Foreground="#FF305995" BorderBrush="{x:Null}">
                 <StackPanel>
-                    <TextBlock Text="➜ Középhaladó" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="➜ Középhaladó" FontSize="14"/>
                     <TextBlock Text="      40 akna, 16 x 16-es rács" FontSize="12"/>
                 </StackPanel>
             </Button>
 
             <Button Name="AdvancedButton" Click="NewAdvanced"
-                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" Foreground="#FF0077B6" BorderBrush="{x:Null}">
+                    HorizontalContentAlignment="Left" Padding="10" Background="{x:Null}" Foreground="#FF305995" BorderBrush="{x:Null}">
                 <StackPanel>
-                    <TextBlock Text="➜ Haladó" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="➜ Haladó" FontSize="14"/>
                     <TextBlock Text="     99 akna, 16 x 30-es rács" FontSize="12"/>
                 </StackPanel>
             </Button>
