@@ -61,18 +61,40 @@ namespace Minesweeper_WPF
 
         public void MineCounterUpdate(int count)
         {
-            MineCounter.Text =count.ToString();
+            MineCounter.Text = count.ToString();
         }
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
-            Time.ResetTimer();
-            UpdateTimerText();
-            BoardManager.Init();
+            static bool AllCellsAreHidden()
+            {
+                foreach (string item in Data.visible)
+                {
+                    if (item != "false") return false;
+                }
+                return true;
+            }
+
+            if (AllCellsAreHidden())
+            {
+                Time.ResetTimer();
+                UpdateTimerText();
+                BoardManager.Init();
+            }
+            else
+            {
+                Time.StopTimer();
+                ShowInTaskbar = false;
+                NewGame_MenuDialog newGame_MenuDialog = new NewGame_MenuDialog();
+                newGame_MenuDialog.ShowDialog();
+                ShowInTaskbar = true;
+                Time.Timer.Start();
+                UpdateTimerText();
+            }
         }
         private void Stats_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
@@ -86,7 +108,7 @@ namespace Minesweeper_WPF
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
@@ -94,7 +116,7 @@ namespace Minesweeper_WPF
         }
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
