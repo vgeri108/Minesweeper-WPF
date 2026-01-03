@@ -6,13 +6,14 @@ Ez a játék az [Aknakereső-konzol](https://github.com/vgeri108/minesweeper) fe
 
 ## Fejlesztés alatt áll
 
-A játék még erősen fejlesztés alatt áll! Jelen állapotában még nem is játék.
+A játék még fejlesztés alatt áll, de már játszahtó.
 
 Hátralévő feladatok:
-- Felfedetlen területek letakarása
-- Egér kezelése
-- Menü készítése
-- És még sok más...
+- Játékmentések
+- Kilépés és új játék kezdésre rákérdező menü
+- Statisztika menü
+- Kérdőjelek letiltása
+- Egyéb beállítások
 
 ## Képernyőképek
 
