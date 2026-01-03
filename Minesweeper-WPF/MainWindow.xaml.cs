@@ -49,6 +49,15 @@ namespace Minesweeper_WPF
             UpdateTimerText();
         }
 
+        private static bool AllCellsAreHidden()
+        {
+            foreach (string item in Data.visible)
+            {
+                if (item != "false") return false;
+            }
+            return true;
+        }
+
         public void DataTimer_Tick(object? sender, System.EventArgs e)
         {
             UpdateTimerText();
@@ -66,15 +75,6 @@ namespace Minesweeper_WPF
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
-            static bool AllCellsAreHidden()
-            {
-                foreach (string item in Data.visible)
-                {
-                    if (item != "false") return false;
-                }
-                return true;
-            }
-
             if (AllCellsAreHidden())
             {
                 Time.ResetTimer();
@@ -94,7 +94,8 @@ namespace Minesweeper_WPF
         }
         private void Stats_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
+            saveGame_CloseDialog.ShowDialog();
         }
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
@@ -132,6 +133,19 @@ namespace Minesweeper_WPF
                 FileName = "https://github.com/vgeri108",
                 UseShellExecute = true
             });
+        }
+        private void CloseClicked(object sender, RoutedEventArgs e)
+        {
+            if (AllCellsAreHidden())
+            {
+                Close();
+            }else
+            {
+                ShowInTaskbar = false;
+                SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
+                saveGame_CloseDialog.ShowDialog();
+                Close();
+            }
         }
     }
 }

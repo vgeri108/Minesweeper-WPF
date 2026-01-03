@@ -19,6 +19,9 @@
     <Compile Update="NewGame_MenuDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="SaveGame_CloseDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
