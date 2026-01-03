@@ -1,4 +1,5 @@
 ﻿using Minesweeper_WPF;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -104,7 +105,11 @@ namespace Minesweeper_WPF
         }
         private void MoreGames_Click(object sender, RoutedEventArgs e)
         {
-            
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/vgeri108",
+                UseShellExecute = true
+            });
         }
     }
 }
