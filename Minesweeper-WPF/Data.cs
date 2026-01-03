@@ -93,5 +93,12 @@ namespace Minesweeper_WPF
             ElapsedSeconds = 0;
             Reset?.Invoke(null, EventArgs.Empty);
         }
+        public static void UpdateTimerText()
+        {
+            if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
+            {
+                mw.UpdateTimerText();
+            }
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace Minesweeper_WPF
         {
             BoardManager.Init();
             Close();
+            Time.UpdateTimerText();
         }
 
         private void Replay_Click(object sender, RoutedEventArgs e)

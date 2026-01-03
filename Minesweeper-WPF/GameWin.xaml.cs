@@ -47,11 +47,7 @@ namespace Minesweeper_WPF
         {
             BoardManager.Init();
             Close();
-
-            if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
-            {
-                mw.UpdateTimerText();
-            }
+            Time.UpdateTimerText();
         }
 
         private void MoreGames_Click(object sender, RoutedEventArgs e)
