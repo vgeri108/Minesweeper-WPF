@@ -2,13 +2,15 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Aknakereső"
-#define MyAppVersion "0.0.4"
+#define MyAppVersion "Alpha 0.1"
 #define MyAppPublisher "Naquadah Fusion"
 #define MyAppURL "https://github.com/vgeri108/Minesweeper-WPF"
 #define MyAppExeName "Minesweeper-WPF.exe"
 #define MyAppAssocName MyAppName + " Játék"
 #define MyAppAssocExt ".mine"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
+#define User "Geri"
+#define Version "Alpha"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -34,12 +36,12 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-InfoBeforeFile=C:\Users\Geri\source\repos\Minesweeper-WPF\inno-setup\info\info.txt
+InfoBeforeFile=C:\Users\{#User}\source\repos\Minesweeper-WPF\inno-setup\info\info.txt
 ; Remove the following line to run in administrative install mode (install for all users).
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
 OutputBaseFilename=minesweeper_setup
-SetupIconFile=C:\Users\Geri\source\repos\Minesweeper-WPF\inno-setup\images\icon.ico
+SetupIconFile=C:\Users\{#User}\source\repos\Minesweeper-WPF\inno-setup\images\icon.ico
 SolidCompression=yes
 WizardStyle=modern
 
@@ -50,13 +52,13 @@ Name: "hungarian"; MessagesFile: "compiler:Languages\Hungarian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Geri\source\repos\Minesweeper-WPF\vs-builds\developer\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Geri\source\repos\Minesweeper-WPF\vs-builds\developer\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Geri\source\repos\Minesweeper-WPF\vs-builds\developer\Minesweeper-WPF.deps.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Geri\source\repos\Minesweeper-WPF\vs-builds\developer\Minesweeper-WPF.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Geri\source\repos\Minesweeper-WPF\vs-builds\developer\Minesweeper-WPF.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Geri\source\repos\Minesweeper-WPF\vs-builds\developer\Minesweeper-WPF.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Geri\source\repos\Minesweeper-WPF\vs-builds\developer\Assets\*"; DestDir: "{app}/Assets"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.deps.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Assets\*"; DestDir: "{app}/Assets"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]

@@ -1,10 +1,18 @@
  ---===### Aknakereső ###===---
 
-Verzió: Developer 0.0.4
+Verzió: Alpha 0.1
 
-Ez egy teszt verzió!
-A funkciók nagy része nem elérhető és hibás!
+Ez ez első már valóban játszható verzió.
+Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
+
+Ha hibát talál kérem jelentse:
+https://github.com/vgeri108/Minesweeper-WPF/issues
+
 
 Újítások ebben a frissítésben:
 
+ => Első indítás menüje
  => Névjegy menü
+ => Beállítások
+ => Nyerés és vesztés
+ => Statisztikák (Egyelőre még csak nyeréskor/vesztéskor)

@@ -52,7 +52,7 @@ namespace Minesweeper_WPF
     public class Version
     {
         public static bool FirstStart = true;
-        public static string Game = "Developer 0.0.3";
+        public static string Game = "Alpha 0.1";
         public static string Json = Game;
     }
     public class Statistics
