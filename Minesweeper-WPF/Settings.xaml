@@ -89,7 +89,7 @@
 
                         <!-- Magasság -->
                         <TextBlock Grid.Row="0" Grid.Column="0"
-                                 Text="Magasság (9–14):"
+                                 Text="Magasság (9–24):"
                                  Margin="0,0,5,5"
                                  IsEnabled="{Binding IsChecked, ElementName=rbCustom}"/>
 
@@ -98,7 +98,9 @@
                                  Height="20"
                                  x:Name="tbHeight"
                                  IsEnabled="{Binding IsChecked, ElementName=rbCustom}"
-                                 Margin="0,0,0,5" Text="9"/>
+                                 Margin="0,0,0,5" Text="9"
+                                 TextChanged="tbHeight_TextChanged"
+                                 LostFocus="tbHeight_LostFocus"/>
 
                         <!-- Szélesség -->
                         <TextBlock Grid.Row="1" Grid.Column="0"
@@ -110,7 +112,9 @@
                                  Height="20"
                                  x:Name="tbWidth"
                                  IsEnabled="{Binding IsChecked, ElementName=rbCustom}"
-                                 Margin="0,0,0,5" Text="9"/>
+                                 Margin="0,0,0,5" Text="9"
+                                 TextChanged="tbWidth_TextChanged"
+                                 LostFocus="tbWidth_LostFocus"/>
 
                         <!-- Aknák -->
                         <TextBlock Grid.Row="2" Grid.Column="0"
@@ -121,7 +125,9 @@
                                  Width="50"
                                  Height="20"
                                  x:Name="tbMines"
-                                 IsEnabled="{Binding IsChecked, ElementName=rbCustom}" Text="10"/>
+                                 IsEnabled="{Binding IsChecked, ElementName=rbCustom}" Text="10"
+                                 TextChanged="tbMines_TextChanged"
+                                 LostFocus="tbMines_LostFocus"/>
 
                     </Grid>
 
