@@ -13,6 +13,7 @@ namespace Minesweeper_WPF
     {
         private static string configPath = "config.json";
         private static string statsPath = "stats.json";
+        private static string gamesPath = "LastSave.mine";
         private static readonly JsonSerializerOptions jsonOptions = new()
         {
             WriteIndented = true,
@@ -39,8 +40,6 @@ namespace Minesweeper_WPF
                 public int CustomM { get; set; } = 9;
                 public int CustomSZ { get; set; } = 9;
                 public int CustomAknakszama { get; set; } = 10;
-
-                //public Dictionary<string, string> UpdateConfig { get; set; } = new();
             }
             public static void Save()
             {
@@ -141,6 +140,89 @@ namespace Minesweeper_WPF
                 foreach (var kv in Stats.BestTimes)
                 {
                     Statistics.BestTimes[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+            }
+        }
+        public class Game
+        {
+            private class GamesData
+            {
+                public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
+                public int meretM { get; set; } = 9;
+                public int meretSZ { get; set; } = 9;
+                public int aknakszama { get; set; } = 10;
+                public string Difficulty { get; set; } = "Easy";
+                public int ElapsedSeconds { get; set; } = 1;
+                public Dictionary<string, string> Akna { get; set; } = new();
+                public Dictionary<string, string> Visible { get; set; } = new();
+            }
+            public static void Save()
+            {
+                var Games = new GamesData
+                {
+                    JsonVersion = Version.Json,
+                    meretM = Data.meretM,
+                    meretSZ = Data.meretSZ,
+                    aknakszama = Data.aknakszama,
+                    Difficulty = Data.Difficulty,
+                    ElapsedSeconds = Time.ElapsedSeconds
+                };
+
+                for (int x = 0; x < Data.akna.GetLength(0); x++)
+                {
+                    for (int y = 0; y < Data.akna.GetLength(1); y++)
+                    {
+                        Games.Akna[$"{y},{x}"] = Data.akna[y, x];
+                        Games.Visible[$"{y},{x}"] = Data.visible[y, x];
+                    }
+                }
+
+                string json = JsonSerializer.Serialize(Games, jsonOptions);
+                File.WriteAllText(gamesPath, json);
+            }
+            public static void Load()
+            {
+                if (!File.Exists(gamesPath))
+                    return;
+
+                string json = File.ReadAllText(gamesPath);
+                var Games = JsonSerializer.Deserialize<GamesData>(json, jsonOptions);
+
+                if (Games == null)
+                    return;
+
+                Data.meretM = Games.meretM;
+                Data.meretSZ = Games.meretSZ;
+                Data.aknakszama = Games.aknakszama;
+                Data.Difficulty = Games.Difficulty;
+                Time.ElapsedSeconds = Games.ElapsedSeconds;
+
+                foreach (var kv in Games.Akna)
+                {
+                    var p = kv.Key.Split(',');
+                    int x = int.Parse(p[0]);
+                    int y = int.Parse(p[1]);
+                    Data.akna[x, y] = kv.Value;
+                }
+
+                foreach (var kv in Games.Visible)
+                {
+                    var p = kv.Key.Split(',');
+                    int x = int.Parse(p[0]);
+                    int y = int.Parse(p[1]);
+                    Data.visible[x, y] = kv.Value;
+                }
+
+                for (int x = 0; x < Games.meretM; x++)
+                {
+                    for (int y = 0; y < Games.meretSZ; y++)
+                    {
+                        if (Data.akna[x, y] == null)
+                            Data.akna[x, y] = Appearance.Characters.semmi;
+
+                        if (Data.visible[x, y] == null)
+                            Data.visible[x, y] = "false";
+                    }
                 }
             }
         }
