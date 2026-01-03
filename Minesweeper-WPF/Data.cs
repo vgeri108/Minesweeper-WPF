@@ -19,7 +19,6 @@ namespace Minesweeper_WPF
         public static string[,] visible;
 
         public static int flagCount = 0;
-        public static int flagCorrect = 0;
 
         public static int LastMeretM = 9;
         public static int LastMeretSZ = 9;

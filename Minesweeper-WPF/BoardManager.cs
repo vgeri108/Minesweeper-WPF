@@ -53,7 +53,6 @@ namespace Minesweeper_WPF
             }
 
             Data.flagCount = 0;
-            Data.flagCorrect = 0;
 
             gameBoard.Children.Clear();
             gameBoard.Rows = Data.meretM;
@@ -382,10 +381,6 @@ namespace Minesweeper_WPF
         private static void Flag(int y, int x)
         {
             Data.flagCount++;
-            if (Data.akna[y, x] == Appearance.Characters.akna)
-            {
-                Data.flagCorrect++;
-            }
 
             if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
             {
@@ -395,10 +390,6 @@ namespace Minesweeper_WPF
         private static void RemoveFlag(int y, int x)
         {
             Data.flagCount--;
-            if (Data.akna[y, x] == Appearance.Characters.akna)
-            {
-                Data.flagCorrect--;
-            }
 
             if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
             {
