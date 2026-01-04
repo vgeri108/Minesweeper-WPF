@@ -69,7 +69,7 @@ namespace Minesweeper_WPF
             UpdateTimerText();
         }
 
-        private static bool AllCellsAreHidden()
+        public static bool AllCellsAreHidden()
         {
             foreach (string item in Data.visible)
             {
