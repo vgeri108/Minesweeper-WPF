@@ -24,6 +24,7 @@ namespace Minesweeper_WPF
             private class SettingsData
             {
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
+                public string SerializationTime { get; set; } = DateTime.Now.ToString();
                 public bool FirstProgramStart { get; set; } = true;
                 public int MeretM { get; set; } = 9;
                 public int MeretSZ { get; set; } = 9;
@@ -52,6 +53,7 @@ namespace Minesweeper_WPF
                 var Settings = new SettingsData
                 {
                     JsonVersion = Version.Json,
+                    SerializationTime = DateTime.Now.ToString(),
                     FirstProgramStart = Version.FirstStart,
                     MeretM = Data.meretM,
                     MeretSZ = Data.meretSZ,
@@ -166,6 +168,7 @@ namespace Minesweeper_WPF
             private class GamesData
             {
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
+                public string SerializationTime { get; set; } = DateTime.Now.ToString();
                 public int meretM { get; set; } = 9;
                 public int meretSZ { get; set; } = 9;
                 public int aknakszama { get; set; } = 10;
@@ -179,6 +182,7 @@ namespace Minesweeper_WPF
                 var Games = new GamesData
                 {
                     JsonVersion = Version.Json,
+                    SerializationTime = DateTime.Now.ToString(),
                     meretM = Data.meretM,
                     meretSZ = Data.meretSZ,
                     aknakszama = Data.aknakszama,
