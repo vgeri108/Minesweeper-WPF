@@ -154,10 +154,12 @@ namespace Minesweeper_WPF
             {
                 if (!Configuration.AlwaysSaveGameOnExit)
                 {
+                    Time.StopTimer();
                     ShowInTaskbar = false;
                     SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
                     saveGame_CloseDialog.ShowDialog();
                     if (saveGame_CloseDialog.IsCanceled) e.Cancel = true;
+                    Time.StartTimer(Time.ElapsedSeconds);
                 }
                 else
                 {
