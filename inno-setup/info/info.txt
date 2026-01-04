@@ -1,18 +1,20 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 0.1
+Verzió: Alpha 1.0
 
-Ez ez első már valóban játszható verzió.
+Ez a második már valóban játszható verzió.
 Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
 
 Ha hibát talál kérem jelentse:
 https://github.com/vgeri108/Minesweeper-WPF/issues
 
+=== Frissítések ===
+Játékbeli újítások:
+ => Párbeszédablakok a fő ablak közepén jelennek meg
+ => Új játék kezdésekor párbeszédablak
+ => Bezárás párbeszédablak: játék mentése
+ => Megnyitás párbeszédablak: játék betöltése
+ => Beállítás mezői lekorlátozva
+ => Beállíások módosítása közben szünetel a stopper
 
-Újítások ebben a frissítésben:
-
- => Első indítás menüje
- => Névjegy menü
- => Beállítások
- => Nyerés és vesztés
- => Statisztikák (Egyelőre még csak nyeréskor/vesztéskor)
+Az egyéb apróbb módosításók GitHubon megtekinthetőek.

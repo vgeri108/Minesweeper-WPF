@@ -9,11 +9,8 @@ Ez a játék az [Aknakereső-konzol](https://github.com/vgeri108/minesweeper) fe
 A játék még fejlesztés alatt áll, de már játszahtó.
 
 Hátralévő feladatok:
-- Játékmentések
-- Kilépés és új játék kezdésre rákérdező menü
-- Statisztika menü
 - Kérdőjelek letiltása
-- Egyéb beállítások
+- Egyéb beállítások és [hibajavítások](https://github.com/vgeri108/Minesweeper-WPF/issues)
 
 ## Képernyőképek
 
