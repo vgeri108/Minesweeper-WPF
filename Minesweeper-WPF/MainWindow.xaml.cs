@@ -94,8 +94,7 @@ namespace Minesweeper_WPF
         }
         private void Stats_Click(object sender, RoutedEventArgs e)
         {
-            SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
-            saveGame_CloseDialog.ShowDialog();
+
         }
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
@@ -134,17 +133,14 @@ namespace Minesweeper_WPF
                 UseShellExecute = true
             });
         }
-        private void CloseClicked(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (AllCellsAreHidden())
-            {
-                Close();
-            }else
+            if (!AllCellsAreHidden())
             {
                 ShowInTaskbar = false;
                 SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
                 saveGame_CloseDialog.ShowDialog();
-                Close();
+                if (saveGame_CloseDialog.IsCanceled) e.Cancel = true;
             }
         }
     }

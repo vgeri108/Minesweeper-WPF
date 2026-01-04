@@ -8,7 +8,8 @@
         Title="Aknakereső"
         Height="505"
         Width="460"
-        Icon="/icon.ico">
+        Icon="/icon.ico"
+        Closing="Window_Closing">
 
     <Grid>
 

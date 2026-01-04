@@ -19,6 +19,7 @@ namespace Minesweeper_WPF
     /// </summary>
     public partial class SaveGame_CloseDialog : Window
     {
+        public bool IsCanceled { get; set; }
         public SaveGame_CloseDialog()
         {
             InitializeComponent();
@@ -26,12 +27,20 @@ namespace Minesweeper_WPF
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            IsCanceled = false;
             JsonManager.Game.Save();
             Close();
         }
 
         private void DontSave_Click(object sender, RoutedEventArgs e)
         {
+            IsCanceled = false;
+            Close();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            IsCanceled = true;
             Close();
         }
     }
