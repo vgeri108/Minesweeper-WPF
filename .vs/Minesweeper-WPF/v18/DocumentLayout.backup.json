@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 165,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -122,6 +122,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BoardManager.cs",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\BoardManager.cs",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\BoardManager.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAwC8AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-04T13:05:10.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\MainWindow.xaml.cs",
@@ -131,19 +144,6 @@
               "ViewState": "AgIAAG8AAAAAAAAAAAAmwIQAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-03T17:00:43.268Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BoardManager.cs",
-              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs",
-              "RelativeDocumentMoniker": "Minesweeper-WPF\\BoardManager.cs",
-              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs*",
-              "RelativeToolTip": "Minesweeper-WPF\\BoardManager.cs*",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAwC8AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T13:05:10.469Z",
               "EditorCaption": ""
             }
           ]

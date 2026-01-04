@@ -145,7 +145,7 @@ namespace Minesweeper_WPF
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            Close();
         }
         private void Help_Click(object sender, RoutedEventArgs e)
         {
