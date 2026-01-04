@@ -34,10 +34,17 @@ namespace Minesweeper_WPF
 
             if (File.Exists("LastSave.mine"))
             {
-                ShowInTaskbar = false;
-                LoadGame_OpenDialog loadGame_OpenDialog = new LoadGame_OpenDialog();
-                loadGame_OpenDialog.ShowDialog();
-                ShowInTaskbar = true;
+                if (!Configuration.AlwaysContinueSavedGame)
+                {
+                    ShowInTaskbar = false;
+                    LoadGame_OpenDialog loadGame_OpenDialog = new LoadGame_OpenDialog();
+                    loadGame_OpenDialog.ShowDialog();
+                    ShowInTaskbar = true;
+                }
+                else
+                {
+                    JsonManager.Game.Load();
+                }
             }
 
             
@@ -145,10 +152,17 @@ namespace Minesweeper_WPF
         {
             if (!AllCellsAreHidden())
             {
-                ShowInTaskbar = false;
-                SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
-                saveGame_CloseDialog.ShowDialog();
-                if (saveGame_CloseDialog.IsCanceled) e.Cancel = true;
+                if (!Configuration.AlwaysSaveGameOnExit)
+                {
+                    ShowInTaskbar = false;
+                    SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
+                    saveGame_CloseDialog.ShowDialog();
+                    if (saveGame_CloseDialog.IsCanceled) e.Cancel = true;
+                }
+                else
+                {
+                    JsonManager.Game.Save();
+                }
             }
         }
     }

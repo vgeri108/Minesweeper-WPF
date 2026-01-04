@@ -23,6 +23,7 @@ namespace Minesweeper_WPF
         public LoadGame_OpenDialog()
         {
             InitializeComponent();
+            AlwaysContinue.IsChecked = Configuration.AlwaysContinueSavedGame;
         }
 
         private void Continue_Click(object sender, RoutedEventArgs e)
@@ -41,6 +42,17 @@ namespace Minesweeper_WPF
             catch (Exception ex) { }
             
             Close();
+        }
+
+        private void AlwaysContinue_Checked(object sender, RoutedEventArgs e)
+        {
+            Configuration.AlwaysContinueSavedGame = true;
+            JsonManager.Settings.Save();
+        }
+        private void AlwaysContinue_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Configuration.AlwaysContinueSavedGame = false;
+            JsonManager.Settings.Save();
         }
     }
 }
