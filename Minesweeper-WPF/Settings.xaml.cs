@@ -19,6 +19,7 @@ namespace Minesweeper_WPF
     /// </summary>
     public partial class Settings : Window
     {
+        public bool IsCanceled { get; private set; } = true;
         public Settings()
         {
             InitializeComponent();
@@ -56,6 +57,7 @@ namespace Minesweeper_WPF
         }
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            IsCanceled = false;
             if (rbCustom.IsChecked == false)
             {
                 if (Easy.IsChecked == true)

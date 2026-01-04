@@ -25,6 +25,7 @@ namespace Minesweeper_WPF
         public MainWindow()
         {
             InitializeComponent();
+            Show();
             generator = new BoardManager(GameBoard);
 
 
@@ -114,13 +115,20 @@ namespace Minesweeper_WPF
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             bool loadedGame = BoardManager.LoadedGame;
+            Time.StopTimer();
             BoardManager.LoadedGame = false;
             ShowInTaskbar = false;
             Settings settings = new Settings();
             settings.ShowDialog();
-            Time.ResetTimer();
-            UpdateTimerText();
-            Timer.Text = "0";
+            if (settings.IsCanceled)
+            {
+                Time.StartTimer(Time.ElapsedSeconds);
+            }
+            else
+            { 
+                Time.ResetTimer();
+                UpdateTimerText();
+            }
             ShowInTaskbar = true;
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)
