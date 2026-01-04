@@ -113,6 +113,8 @@ namespace Minesweeper_WPF
         }
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
+            bool loadedGame = BoardManager.LoadedGame;
+            BoardManager.LoadedGame = false;
             ShowInTaskbar = false;
             Settings settings = new Settings();
             settings.ShowDialog();

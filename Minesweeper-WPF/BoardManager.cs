@@ -299,7 +299,7 @@ namespace Minesweeper_WPF
                         {
                             Time.StartTimer();
                         }
-
+                        LoadedGame = false;
                         if (!replayGame)
                         {
                             Generate(x, y);
@@ -352,9 +352,9 @@ namespace Minesweeper_WPF
                     {
                         Statistics.PlayedGames[Statistics.currentMode]++;
                         JsonManager.Stats.Save();
-                        Time.StartTimer();
+                        if (!LoadedGame) Time.StartTimer();
                     }
-
+                    LoadedGame = false;
                     if (Data.visible[y, x] == "false")
                     {
                         Data.visible[y, x] = "flag";
