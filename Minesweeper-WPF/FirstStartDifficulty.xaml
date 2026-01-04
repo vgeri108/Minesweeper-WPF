@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
         Icon="/icon.ico"
-        Title="Nehézségi fok kiválasztása" Height="330" Width="420" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterOwner"
+        Title="Nehézségi fok kiválasztása" Height="330" Width="420" ResizeMode="NoResize">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

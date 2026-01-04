@@ -8,6 +8,7 @@
         Icon="/icon.ico"
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
         Title="Ön vesztett" Height="250" Width="500">
 
     <Grid Margin="13,5,13,15">

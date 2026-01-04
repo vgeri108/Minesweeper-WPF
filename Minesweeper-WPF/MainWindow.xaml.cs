@@ -25,13 +25,13 @@ namespace Minesweeper_WPF
         public MainWindow()
         {
             InitializeComponent();
-            Show();
             generator = new BoardManager(GameBoard);
 
 
             JsonManager.Settings.Load();
             JsonManager.Stats.Load();
             BoardManager.Init();
+            Show();
 
             if (File.Exists("LastSave.mine"))
             {
@@ -39,6 +39,8 @@ namespace Minesweeper_WPF
                 {
                     ShowInTaskbar = false;
                     LoadGame_OpenDialog loadGame_OpenDialog = new LoadGame_OpenDialog();
+                    if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
+                    loadGame_OpenDialog.Owner = mw;
                     loadGame_OpenDialog.ShowDialog();
                     ShowInTaskbar = true;
                 }
@@ -52,6 +54,8 @@ namespace Minesweeper_WPF
             if (Version.FirstStart)
             {
                 FirstStartDifficulty firstGame = new FirstStartDifficulty();
+                if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
+                firstGame.Owner = mw;
                 firstGame.ShowDialog();
                 Version.FirstStart = false;
                 JsonManager.Settings.Save();
@@ -102,6 +106,8 @@ namespace Minesweeper_WPF
                 Time.StopTimer();
                 ShowInTaskbar = false;
                 NewGame_MenuDialog newGame_MenuDialog = new NewGame_MenuDialog();
+                if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
+                newGame_MenuDialog.Owner = mw;
                 newGame_MenuDialog.ShowDialog();
                 ShowInTaskbar = true;
                 Time.Timer.Start();
@@ -119,6 +125,8 @@ namespace Minesweeper_WPF
             BoardManager.LoadedGame = false;
             ShowInTaskbar = false;
             Settings settings = new Settings();
+            if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
+            settings.Owner = mw;
             settings.ShowDialog();
             if (settings.IsCanceled)
             {
@@ -147,6 +155,8 @@ namespace Minesweeper_WPF
         {
             ShowInTaskbar = false;
             about About = new about();
+            if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
+            About.Owner = mw;
             About.ShowDialog();
             ShowInTaskbar = true;
         }
@@ -167,6 +177,8 @@ namespace Minesweeper_WPF
                     Time.StopTimer();
                     ShowInTaskbar = false;
                     SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
+                    if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
+                    saveGame_CloseDialog.Owner = mw;
                     saveGame_CloseDialog.ShowDialog();
                     if (saveGame_CloseDialog.IsCanceled) e.Cancel = true;
                     Time.StartTimer(Time.ElapsedSeconds);

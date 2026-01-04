@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Icon="/icon.ico"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
         Title="Új játék" Height="260" Width="400">
     <Grid Margin="10">
         <Grid.RowDefinitions>

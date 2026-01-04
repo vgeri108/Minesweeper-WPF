@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
         Title="Aknakereső - névjegy" Height="450" Width="500" Icon="/icon.ico" ResizeMode="NoResize" Background="#FFF0F0F0">
     <Grid>
         <Grid.RowDefinitions>

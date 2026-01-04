@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Icon="/icon.ico"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
         Title="Kilépés a játékból" Height="130" Width="410">
     <Grid Margin="0">
         <Grid.RowDefinitions>
