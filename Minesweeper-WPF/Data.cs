@@ -74,9 +74,9 @@ namespace Minesweeper_WPF
             Timer.Tick += (s, e) => { ElapsedSeconds++; };
         }
 
-        public static void StartTimer()
+        public static void StartTimer(int Elapsed = 0)
         {
-            ElapsedSeconds = 0;
+            ElapsedSeconds = Elapsed;
             Timer.Start();
             Reset?.Invoke(null, EventArgs.Empty);
         }

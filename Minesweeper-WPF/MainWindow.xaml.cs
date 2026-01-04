@@ -1,5 +1,6 @@
 ﻿using Minesweeper_WPF;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +21,6 @@ namespace Minesweeper_WPF
     public partial class MainWindow : Window
     {
         private BoardManager generator;
-        private BoardManager timerEditor;
 
         public MainWindow()
         {
@@ -30,9 +30,17 @@ namespace Minesweeper_WPF
 
             JsonManager.Settings.Load();
             JsonManager.Stats.Load();
-
             BoardManager.Init();
 
+            if (File.Exists("LastSave.mine"))
+            {
+                ShowInTaskbar = false;
+                LoadGame_OpenDialog loadGame_OpenDialog = new LoadGame_OpenDialog();
+                loadGame_OpenDialog.ShowDialog();
+                ShowInTaskbar = true;
+            }
+
+            
             if (Version.FirstStart)
             {
                 FirstStartDifficulty firstGame = new FirstStartDifficulty();

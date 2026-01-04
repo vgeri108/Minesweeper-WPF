@@ -197,6 +197,9 @@ namespace Minesweeper_WPF
                 Data.Difficulty = Games.Difficulty;
                 Time.ElapsedSeconds = Games.ElapsedSeconds;
 
+                BoardManager.LoadedGame = true;
+                Data.ResizeBoard();
+
                 foreach (var kv in Games.Akna)
                 {
                     var p = kv.Key.Split(',');
@@ -224,6 +227,8 @@ namespace Minesweeper_WPF
                             Data.visible[x, y] = "false";
                     }
                 }
+
+                BoardManager.Init();
             }
         }
     }

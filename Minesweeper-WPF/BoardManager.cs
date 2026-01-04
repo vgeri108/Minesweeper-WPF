@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -24,6 +25,7 @@ namespace Minesweeper_WPF
 
         private static bool newGame = true;
         public static bool replayGame = false;
+        public static bool LoadedGame = false;
 
         private static string semmi = Appearance.Characters.semmi;
         private static string minemark = Appearance.Characters.akna;
@@ -34,13 +36,24 @@ namespace Minesweeper_WPF
 
         public static void Init()
         {
-            Time.ResetTimer();
-            if (!replayGame) Data.ResizeBoard();
-            newGame = true; //az időmérő nullázódik ha true és új generálás
-            //replayGame ---- ha true akkor az időmérő nullázódik, de nem lesz új pálya
-            gameover = false;
-            gameover_type = "-";
-            InitGenerate();
+            if (!LoadedGame)
+            {
+                Time.ResetTimer();
+                if (!replayGame) Data.ResizeBoard();
+                newGame = true; //az időmérő nullázódik ha true és új generálás
+                                //replayGame ---- ha true akkor az időmérő nullázódik, de nem lesz új pálya
+                gameover = false;
+                gameover_type = "-";
+                InitGenerate();
+            }
+            else
+            {
+                newGame = false;
+                Draw();
+                int LoadedTime = Time.ElapsedSeconds;
+                Time.StopTimer();
+                Time.StartTimer(LoadedTime);
+            }
         }
         private static void InitGenerate()
         {
@@ -282,7 +295,11 @@ namespace Minesweeper_WPF
                     {
                         Statistics.PlayedGames[Statistics.currentMode]++;
                         JsonManager.Stats.Save();
-                        Time.StartTimer();
+                        if (!LoadedGame)
+                        {
+                            Time.StartTimer();
+                        }
+
                         if (!replayGame)
                         {
                             Generate(x, y);

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Minesweeper-WPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34ac9e2e68e644c45f1f1ad62b65a9ee31a64226")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4b3f852b2f03b69a0477ba98a0c57ebe5edebc6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Minesweeper-WPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Minesweeper-WPF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
