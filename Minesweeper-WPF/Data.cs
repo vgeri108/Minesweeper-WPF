@@ -24,6 +24,12 @@ namespace Minesweeper_WPF
         public static int LastMeretSZ = 9;
         public static int LastAknakszama = 10;
 
+        public static bool ApplyOnNextGame = false; //ha true akkor az alábbi beállítások fogják felülírni a feljebbi értékeket
+        public static int NextMeretM = 9;
+        public static int NextMeretSZ = 9;
+        public static int NextAknakszama = 10;
+        public static string NextDifficulty = "Easy";
+
         public static void ResizeBoard()
         {
             akna = new string[meretM, meretSZ];

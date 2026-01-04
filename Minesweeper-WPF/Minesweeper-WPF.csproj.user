@@ -22,6 +22,9 @@
     <Compile Update="NewGame_MenuDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="NewGame_SettingsDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SaveGame_CloseDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

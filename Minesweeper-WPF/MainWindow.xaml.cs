@@ -128,7 +128,7 @@ namespace Minesweeper_WPF
             if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
             settings.Owner = mw;
             settings.ShowDialog();
-            if (settings.IsCanceled)
+            if (settings.IsCanceled || settings.ContinueTimer)
             {
                 Time.StartTimer(Time.ElapsedSeconds);
             }

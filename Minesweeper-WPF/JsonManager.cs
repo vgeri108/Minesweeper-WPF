@@ -40,6 +40,12 @@ namespace Minesweeper_WPF
                 public int CustomM { get; set; } = 9;
                 public int CustomSZ { get; set; } = 9;
                 public int CustomAknakszama { get; set; } = 10;
+
+                public bool ApplyOnNextGame { get; set; } = false;
+                public int NextMeretM { get; set; } = 9;
+                public int NextMeretSZ { get; set; } = 9;
+                public int NextAknakszama { get; set; } = 10;
+                public string NextDifficulty { get; set; } = "Easy";
             }
             public static void Save()
             {
@@ -62,6 +68,12 @@ namespace Minesweeper_WPF
                     CustomM = Data.LastMeretM,
                     CustomSZ = Data.LastMeretSZ,
                     CustomAknakszama = Data.LastAknakszama,
+
+                    ApplyOnNextGame = Data.ApplyOnNextGame,
+                    NextMeretM = Data.NextMeretM,
+                    NextMeretSZ = Data.NextMeretSZ,
+                    NextAknakszama = Data.NextAknakszama,
+                    NextDifficulty = Data.NextDifficulty,
                 };
 
                 string json = JsonSerializer.Serialize(Settings, jsonOptions);
@@ -94,6 +106,12 @@ namespace Minesweeper_WPF
                 Data.LastMeretM = Settings.CustomM;
                 Data.LastMeretSZ = Settings.CustomSZ;
                 Data.LastAknakszama = Settings.CustomAknakszama;
+
+                Data.ApplyOnNextGame = Settings.ApplyOnNextGame;
+                Data.NextMeretM = Settings.NextMeretM;
+                Data.NextMeretSZ = Settings.NextMeretSZ;
+                Data.NextAknakszama = Settings.NextAknakszama;
+                Data.NextDifficulty = Settings.NextDifficulty;
             }
         }
         public class Stats

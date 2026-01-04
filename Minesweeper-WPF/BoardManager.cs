@@ -38,6 +38,16 @@ namespace Minesweeper_WPF
         {
             if (!LoadedGame)
             {
+                if (Data.ApplyOnNextGame)
+                {
+                    Data.ApplyOnNextGame = false;
+                    Data.meretM = Data.NextMeretM;
+                    Data.meretSZ = Data.NextMeretSZ;
+                    Data.aknakszama = Data.NextAknakszama;
+                    Data.Difficulty = Data.NextDifficulty;
+                    JsonManager.Settings.Save();
+                }
+                
                 Time.ResetTimer();
                 if (!replayGame) Data.ResizeBoard();
                 newGame = true; //az időmérő nullázódik ha true és új generálás

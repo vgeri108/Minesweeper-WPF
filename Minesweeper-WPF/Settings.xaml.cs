@@ -20,6 +20,8 @@ namespace Minesweeper_WPF
     public partial class Settings : Window
     {
         public bool IsCanceled { get; private set; } = true;
+        public bool NeedNewGame { get; private set; } = false;
+        public bool ContinueTimer { get; private set; } = false;
         public Settings()
         {
             InitializeComponent();
@@ -62,24 +64,27 @@ namespace Minesweeper_WPF
             {
                 if (Easy.IsChecked == true)
                 {
-                    Data.meretM = 9;
-                    Data.meretSZ = 9;
-                    Data.aknakszama = 10;
-                    Data.Difficulty = "Easy";
+                    Data.NextMeretM = 9;
+                    Data.NextMeretSZ = 9;
+                    Data.NextAknakszama = 10;
+                    Data.NextDifficulty = "Easy";
+                    if (Data.Difficulty != "Easy") NeedNewGame = true;
                 }
                 if (Intermediate.IsChecked == true)
                 {
-                    Data.meretM = 16;
-                    Data.meretSZ = 16;
-                    Data.aknakszama = 40;
-                    Data.Difficulty = "Intermediate";
+                    Data.NextMeretM = 16;
+                    Data.NextMeretSZ = 16;
+                    Data.NextAknakszama = 40;
+                    Data.NextDifficulty = "Intermediate";
+                    if (Data.Difficulty != "Intermediate") NeedNewGame = true;
                 }
                 if (Advanced.IsChecked == true)
                 {
-                    Data.meretM = 16;
-                    Data.meretSZ = 30;
-                    Data.aknakszama = 99;
-                    Data.Difficulty = "Advanced";
+                    Data.NextMeretM = 16;
+                    Data.NextMeretSZ = 30;
+                    Data.NextAknakszama = 99;
+                    Data.NextDifficulty = "Advanced";
+                    if (Data.Difficulty != "Advanced") NeedNewGame = true;
                 }
 
                 try
@@ -104,22 +109,58 @@ namespace Minesweeper_WPF
             {
                 try
                 {
-                    Data.Difficulty = "Custom";
+                    if (Data.Difficulty != "Custom") NeedNewGame = true;
+                    Data.NextDifficulty = "Custom";
                     Data.LastMeretM = int.Parse(tbHeight.Text);
                     Data.LastMeretSZ = int.Parse(tbWidth.Text);
                     Data.LastAknakszama = int.Parse(tbMines.Text);
 
-                    Data.meretM = int.Parse(tbHeight.Text);
-                    Data.meretSZ = int.Parse(tbWidth.Text);
-                    Data.aknakszama = int.Parse(tbMines.Text);
+                    if (Data.meretM != Data.LastMeretM || Data.meretSZ != Data.LastMeretSZ || Data.aknakszama != Data.LastAknakszama) NeedNewGame = true;
+
+                    Data.NextMeretM = int.Parse(tbHeight.Text);
+                    Data.NextMeretSZ = int.Parse(tbWidth.Text);
+                    Data.NextAknakszama = int.Parse(tbMines.Text);
                 } catch (Exception error)
                 {
                     MessageBox.Show(error.Message, "Hiba",MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            JsonManager.Settings.Save();
-            BoardManager.Init();
-            Close();
+
+            if (NeedNewGame && !MainWindow.AllCellsAreHidden())
+            {
+                NewGame_SettingsDialog newGame_SettingsDialog = new NewGame_SettingsDialog();
+                if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
+                newGame_SettingsDialog.Owner = mw;
+                newGame_SettingsDialog.ShowDialog();
+
+                if (newGame_SettingsDialog.Selected == "Cancel")
+                {
+                    ContinueTimer = true;
+                }
+                if (newGame_SettingsDialog.Selected == "OnNextGame")
+                {
+                    Data.ApplyOnNextGame = true;
+                    JsonManager.Settings.Save();
+                    ContinueTimer = true;
+                    Close();
+                }
+                if (newGame_SettingsDialog.Selected == "StartNew")
+                {
+                    Data.meretM = Data.NextMeretM;
+                    Data.meretSZ = Data.NextMeretSZ;
+                    Data.aknakszama = Data.NextAknakszama;
+                    Data.Difficulty = Data.NextDifficulty;
+                    JsonManager.Settings.Save();
+                    BoardManager.Init();
+                    Close();
+                }
+            }
+            else
+            {
+                Data.ApplyOnNextGame = true;
+                BoardManager.Init();
+                Close();
+            }
         }
         private void tbHeight_TextChanged(object sender, TextChangedEventArgs e)
         {
