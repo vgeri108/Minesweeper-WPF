@@ -392,8 +392,6 @@ namespace Minesweeper_WPF
                 FontSize = 15,
                 Margin = new Thickness(0),
                 Padding = new Thickness(0),
-                MinWidth = 24,
-                MinHeight = 24,
             };
             Image img = new Image
             {
