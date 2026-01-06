@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Aknakereső"
-#define MyAppVersion "Alpha 1.0"
+#define MyAppVersion "Alpha 1.1"
 #define MyAppPublisher "Naquadah Fusion"
 #define MyAppURL "https://github.com/vgeri108/Minesweeper-WPF"
 #define MyAppExeName "Minesweeper-WPF.exe"
@@ -60,6 +60,13 @@ Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Mine
 Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Assets\*"; DestDir: "{app}/Assets"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+
+[Registry]
+
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

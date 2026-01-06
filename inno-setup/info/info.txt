@@ -1,8 +1,7 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.0
+Verzió: Alpha 1.1
 
-Ez a második már valóban játszható verzió.
 Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
 
 Ha hibát talál kérem jelentse:
@@ -10,11 +9,6 @@ https://github.com/vgeri108/Minesweeper-WPF/issues
 
 === Frissítések ===
 Játékbeli újítások:
- => Párbeszédablakok a fő ablak közepén jelennek meg
- => Új játék kezdésekor párbeszédablak
- => Bezárás párbeszédablak: játék mentése
- => Megnyitás párbeszédablak: játék betöltése
- => Beállítás mezői lekorlátozva
- => Beállíások módosítása közben szünetel a stopper
-
-Az egyéb apróbb módosításók GitHubon megtekinthetőek.
+ => Új alkalmazásikon az asztalon és a fájlkezelőben
+ => A haladó nehézségű pálya nem csúszik egybe (Issue #2)
+ => A beállítások szerkesztve párbeszédablak gomb alja látszódik az ablakban (Issue #11)

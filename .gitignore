@@ -364,3 +364,4 @@ FodyWeavers.xsd
 *.cache
 *.cache
 *.cache
+/vs-builds
