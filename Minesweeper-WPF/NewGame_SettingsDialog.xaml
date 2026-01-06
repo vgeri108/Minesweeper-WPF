@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         Icon="/icon.ico"
-        Title="A játék beállításai megváltoztak" Height="250" Width="400">
+        Title="A játék beállításai megváltoztak" Height="260" Width="400">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
