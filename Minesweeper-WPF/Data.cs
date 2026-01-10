@@ -53,12 +53,14 @@ namespace Minesweeper_WPF
         public static bool AlwaysContinueSavedGame = false;
         public static bool AlwaysSaveGameOnExit = false;
         public static bool EnableQuestionMarks = true;
+        public static bool AutomaticUpdateSearch = true;
     }
     public class Version
     {
         public static bool FirstStart = true;
-        public static string Game = "Alpha 1.1";
+        public static string Game = "Alpha 1.1.1";
         public static string Json = Game;
+        public static string GithubTag = "vA1.0";
     }
     public class Statistics
     {

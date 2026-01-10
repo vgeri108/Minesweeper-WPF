@@ -1,3 +1,9 @@
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus massa nisi, in venenatis mi luctus eget. Mauris aliquam quam et elit porta, vel rhoncus magna dignissim. Nunc volutpat metus sed sapien vulputate consectetur. Duis imperdiet, turpis vitae condimentum placerat, ligula orci pretium tellus, sed mattis elit urna vel metus. Nullam vitae fermentum velit. Mauris non mollis lorem, eu dictum velit. Etiam blandit ligula magna, nec iaculis sapien auctor vitae. Integer auctor varius erat, non faucibus nulla viverra non. Donec est justo, cursus nec elementum et, rhoncus at libero. Aliquam sodales dui lorem, in blandit metus efficitur ut. Maecenas eget lacus eget quam pharetra efficitur ac at augue. Donec elementum nisi augue, quis scelerisque orci tristique in. Donec dapibus ex non lobortis porta. Cras in fringilla dui. Quisque sit amet erat et velit consequat lacinia. Donec dolor urna, varius at auctor id, volutpat vel risus.
+Alpha 1.1.1 verzió
 
-Aliquam urna velit, gravida sagittis egestas quis, cursus id lectus. Sed in iaculis massa, ac tincidunt lacus. Aenean tincidunt, augue ac lobortis auctor, risus nisi semper felis, quis placerat libero arcu vel magna. Quisque quis nisi fringilla, tincidunt mauris id, sagittis massa. Nullam at nisl sit amet sem convallis congue. Donec in iaculis nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed condimentum semper tortor eget scelerisque. Duis nec magna porttitor, varius tortor sit amet, efficitur velit. Duis porta dui sit amet faucibus ullamcorper. 
+Új ebben a frissítésben:
+
+	- Frissítések keresése
+	- Frissítések letöltése
+	- Frissítések megnézése
+	- Frissítési folyamatjelző
+	- Frissítések kezelése GitHub tagonként

@@ -60,6 +60,16 @@ namespace Minesweeper_WPF
                 Version.FirstStart = false;
                 JsonManager.Settings.Save();
             }
+            if (Configuration.AutomaticUpdateSearch)
+            {
+                if (Update.IsNewAvailable())
+                {
+                    NewInUpdate newInUpdate = new NewInUpdate();
+                    ShowInTaskbar = false;
+                    newInUpdate.Owner = this;
+                    newInUpdate.ShowDialog();
+                }
+            }
 
             // subscribe to Time.Timer to update UI each second
             Time.Timer.Tick += DataTimer_Tick;

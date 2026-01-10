@@ -37,6 +37,7 @@ namespace Minesweeper_WPF
                 public bool AlwaysContinueSavedGame { get; set; } = false;
                 public bool AlwaysSaveGameOnExit { get; set; } = false;
                 public bool EnableQuestionMarks { get; set; } = true;
+                public bool AutomaticUpdateSearch { get; set; } = true;
 
                 public int CustomM { get; set; } = 9;
                 public int CustomSZ { get; set; } = 9;
@@ -66,6 +67,7 @@ namespace Minesweeper_WPF
                     AlwaysContinueSavedGame = Configuration.AlwaysContinueSavedGame,
                     AlwaysSaveGameOnExit = Configuration.AlwaysSaveGameOnExit,
                     EnableQuestionMarks = Configuration.EnableQuestionMarks,
+                    AutomaticUpdateSearch = Configuration.AutomaticUpdateSearch,
 
                     CustomM = Data.LastMeretM,
                     CustomSZ = Data.LastMeretSZ,
@@ -104,6 +106,7 @@ namespace Minesweeper_WPF
                 Configuration.AlwaysContinueSavedGame = Settings.AlwaysContinueSavedGame;
                 Configuration.AlwaysSaveGameOnExit = Settings.AlwaysSaveGameOnExit;
                 Configuration.EnableQuestionMarks = Settings.EnableQuestionMarks;
+                Configuration.AutomaticUpdateSearch = Settings.AutomaticUpdateSearch;
 
                 Data.LastMeretM = Settings.CustomM;
                 Data.LastMeretSZ = Settings.CustomSZ;

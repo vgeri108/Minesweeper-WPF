@@ -9,6 +9,26 @@
     {
       "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\downloadprogress.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\downloadprogress.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\newinupdate.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\newinupdate.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\newinupdate.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\newinupdate.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\versiontags.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\versiontags.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 165,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,13 +58,61 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NewInUpdate.xaml",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\NewInUpdate.xaml",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\NewInUpdate.xaml",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\NewInUpdate.xaml",
+              "RelativeToolTip": "Minesweeper-WPF\\NewInUpdate.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-07T17:51:48.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NewInUpdate.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\NewInUpdate.xaml.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\NewInUpdate.xaml.cs",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\NewInUpdate.xaml.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\NewInUpdate.xaml.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowDUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T18:06:40.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Update.cs",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Update.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\Update.cs",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Update.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\Update.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAUwHQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T17:16:22.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VersionTags.txt",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\VersionTags.txt",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\VersionTags.txt",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\VersionTags.txt",
+              "RelativeToolTip": "Minesweeper-WPF\\VersionTags.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-01-07T17:26:41.323Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Data.cs",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Data.cs",
               "RelativeDocumentMoniker": "Minesweeper-WPF\\Data.cs",
               "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Data.cs",
               "RelativeToolTip": "Minesweeper-WPF\\Data.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAgwDsAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAgwDwAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-04T17:36:11.331Z",
               "EditorCaption": ""
@@ -57,9 +125,22 @@
               "RelativeDocumentMoniker": "Minesweeper-WPF\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\MainWindow.xaml.cs",
               "RelativeToolTip": "Minesweeper-WPF\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAAwJMAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAmwEcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-03T17:00:43.268Z"
+              "WhenOpened": "2026-01-03T17:00:43.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DownloadProgress.xaml",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\DownloadProgress.xaml",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\DownloadProgress.xaml",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\DownloadProgress.xaml",
+              "RelativeToolTip": "Minesweeper-WPF\\DownloadProgress.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-10T10:46:09.697Z",
+              "EditorCaption": ""
             }
           ]
         }
