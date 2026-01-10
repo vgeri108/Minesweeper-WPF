@@ -365,3 +365,4 @@ FodyWeavers.xsd
 *.cache
 *.cache
 /vs-builds
+/\!Jegyzet
