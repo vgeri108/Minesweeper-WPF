@@ -1,6 +1,6 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.1
+Verzió: Alpha 1.1.1
 
 Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
 
@@ -9,6 +9,9 @@ https://github.com/vgeri108/Minesweeper-WPF/issues
 
 === Frissítések ===
 Játékbeli újítások:
- => Új alkalmazásikon az asztalon és a fájlkezelőben
- => A haladó nehézségű pálya nem csúszik egybe (Issue #2)
- => A beállítások szerkesztve párbeszédablak gomb alja látszódik az ablakban (Issue #11)
+ => Frissítések keresése
+ => Frissítések keresése
+ => Frissítések letöltése
+ => Frissítések megnézése
+ => Frissítési folyamatjelző
+ => Frissítések kezelése GitHub tagonként
