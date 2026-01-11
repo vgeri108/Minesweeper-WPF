@@ -47,7 +47,7 @@ namespace Minesweeper_WPF
 
                         if (Tags.IndexOf(Version.GithubTag) != 0)
                         {
-                            for (int i = Tags.IndexOf(Version.GithubTag) + 1; i < Tags.Count; i++)
+                            for (int i = Tags.IndexOf(Version.GithubTag); i >= 0; i--)
                             {
                                 bool IsTagValid = true;
                                 try
@@ -58,9 +58,9 @@ namespace Minesweeper_WPF
 
                                 if (IsTagValid)
                                 {
-                                    NewTags.Add(Tags[i]);
+                                    NewTags.Insert(0, Tags[i]);
                                     string GH_TagDescription = client.GetStringAsync($"https://raw.githubusercontent.com/vgeri108/Minesweeper-WPF/refs/tags/{Tags[i]}/Minesweeper-WPF/Version.txt").Result;
-                                    TagDescriptions.Add(GH_TagDescription);
+                                    TagDescriptions.Insert(0,GH_TagDescription);
                                 }
                             }
                             return true;
