@@ -45,7 +45,7 @@ namespace Minesweeper_WPF
                         string GH_TagList = client.GetStringAsync("https://raw.githubusercontent.com/vgeri108/Minesweeper-WPF/refs/heads/main/Minesweeper-WPF/VersionTags.txt").Result;
                         List<string> Tags = new List<string>(GH_TagList.Split('\n'));
 
-                        if (Tags.IndexOf(Version.GithubTag) != Tags.Count)
+                        if (Tags.IndexOf(Version.GithubTag) != 0)
                         {
                             for (int i = Tags.IndexOf(Version.GithubTag) + 1; i < Tags.Count; i++)
                             {
