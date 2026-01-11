@@ -1,9 +1,6 @@
-Alpha 1.1.1 verzió
+Alpha 1.1.2 verzió
 
 Új ebben a frissítésben:
 
-	- Frissítések keresése
-	- Frissítések letöltése
-	- Frissítések megnézése
-	- Frissítési folyamatjelző
-	- Frissítések kezelése GitHub tagonként
+ => "Legfrissebb" szó elírás javítva
+ => GitHub tag módosítva (Issue #12 javítva)
