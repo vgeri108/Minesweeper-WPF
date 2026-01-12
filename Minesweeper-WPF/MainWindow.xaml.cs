@@ -31,7 +31,6 @@ namespace Minesweeper_WPF
             JsonManager.Settings.Load();
             JsonManager.Stats.Load();
             BoardManager.Init();
-            Show();
 
             if (File.Exists("LastSave.mine"))
             {
@@ -64,13 +63,14 @@ namespace Minesweeper_WPF
             {
                 if (Update.IsNewAvailable())
                 {
+                    Show();
                     NewInUpdate newInUpdate = new NewInUpdate();
                     ShowInTaskbar = false;
                     newInUpdate.Owner = this;
                     newInUpdate.ShowDialog();
                 }
             }
-
+            Show();
             // subscribe to Time.Timer to update UI each second
             Time.Timer.Tick += DataTimer_Tick;
             // subscribe to Reset so UI updates immediately when timer is reset

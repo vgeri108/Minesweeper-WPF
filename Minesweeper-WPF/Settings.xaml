@@ -139,9 +139,9 @@
         <!-- EGYÉB BEÁLLÍTÁSOK – NEM CSOPORTOSÍTVA -->
         <StackPanel Grid.Row="2" Margin="15,0,10,0">
 
-            <CheckBox x:Name="Animations" Margin="0,0,0,8" IsChecked="True">
+            <!--<CheckBox x:Name="Animations" Margin="0,0,0,8" IsChecked="True">
                 <TextBlock Text="Animációk megjelenítése"/>
-            </CheckBox>
+            </CheckBox>-->
             <CheckBox x:Name="Sounds" Margin="0,0,0,8" IsChecked="True" >
                 <TextBlock Text="Hangok lejátszása"/>
             </CheckBox>
@@ -154,9 +154,12 @@
             <CheckBox x:Name="SaveExit" Margin="0,0,0,8">
                 <TextBlock Text="Kilépéskor mindig mentse a játékot"/>
             </CheckBox>
-            <CheckBox x:Name="QuestionMarks" Margin="0,0,0,0" IsChecked="True">
+            <CheckBox x:Name="QuestionMarks" Margin="0,0,0,8" IsChecked="True">
                 <TextBlock Text="Kérdőjelek engedélyezése (kétszer kattintás a jobb egérgombbal)"
                            TextWrapping="Wrap"/>
+            </CheckBox>
+            <CheckBox x:Name="UpdateCheck" Margin="0,0,0,0" IsChecked="True">
+                 <TextBlock Text="Frissítések keresése indításkor"/>
             </CheckBox>
 
         </StackPanel>

@@ -23,7 +23,7 @@ namespace Minesweeper_WPF
             {
                 using (var ping = new Ping())
                 {
-                    PingReply reply = ping.Send("8.8.8.8", 500);
+                    PingReply reply = ping.Send("8.8.8.8", 250);
                     return reply.Status == IPStatus.Success;
                 }
             }
