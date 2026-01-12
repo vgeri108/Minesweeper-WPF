@@ -14,6 +14,7 @@
     <None Remove="Assets\Images\GameBoard\Screenshot\Covered.png" />
     <None Remove="hatter.png" />
     <None Remove="icon.ico" />
+    <None Remove="update.ico" />
     <Content Include="Assets\**\*.*">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>
@@ -30,6 +31,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="update.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

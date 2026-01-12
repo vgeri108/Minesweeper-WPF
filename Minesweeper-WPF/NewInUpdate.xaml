@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Icon="/icon.ico"
+        Icon="/update.ico"
         Title="Új frissítés érhető el" Height="300" Width="600">
     <Grid Background="#FFF0F0F0">
         <Grid.ColumnDefinitions>

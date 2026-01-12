@@ -8,6 +8,7 @@
         ResizeMode="NoResize"
         Topmost="True"
         WindowStartupLocation="CenterScreen"
+        Icon="/update.ico"
         Title="" Height="130" Width="380">
     <StackPanel Margin="20">
         <TextBlock Text="Telepítő letöltése..."
