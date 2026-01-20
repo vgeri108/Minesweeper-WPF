@@ -127,6 +127,12 @@ namespace Minesweeper_WPF
                 public Dictionary<string, string> PlayedGames { get; set; } = new();
                 public Dictionary<string, string> WinnedGames { get; set; } = new();
                 public Dictionary<string, string> BestTimes { get; set; } = new();
+                public Dictionary<string, int> WinStreak { get; set; } = new();
+                public Dictionary<string, int> LongestWinStreak { get; set; } = new();
+                public Dictionary<string, int> LoseStreak { get; set; } = new();
+                public Dictionary<string, int> LongestLoseStreak { get; set; } = new();
+                public Dictionary<string, int> CurrentStreak { get; set; } = new();
+                public Dictionary<string, bool> IsLastGameWinned { get; set; } = new();
             }
             public static void Save()
             {
@@ -136,6 +142,12 @@ namespace Minesweeper_WPF
                     PlayedGames = Statistics.PlayedGames.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
                     WinnedGames = Statistics.WinnedGames.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
                     BestTimes = Statistics.BestTimes.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
+                    WinStreak = Statistics.WinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    LongestWinStreak = Statistics.LongestWinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    LoseStreak = Statistics.LoseStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    LongestLoseStreak = Statistics.LongestLoseStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    CurrentStreak = Statistics.CurrentStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    IsLastGameWinned = Statistics.IsLastGameWinned.ToDictionary(kv => kv.Key, kv => kv.Value),
                 };
 
                 string json = JsonSerializer.Serialize(Stats, jsonOptions);
@@ -163,6 +175,30 @@ namespace Minesweeper_WPF
                 foreach (var kv in Stats.BestTimes)
                 {
                     Statistics.BestTimes[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.WinStreak)
+                {
+                    Statistics.WinStreak[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.LongestWinStreak)
+                {
+                    Statistics.LongestWinStreak[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.LoseStreak)
+                {
+                    Statistics.LoseStreak[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.LongestLoseStreak)
+                {
+                    Statistics.LongestLoseStreak[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.CurrentStreak)
+                {
+                    Statistics.CurrentStreak[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.IsLastGameWinned)
+                {
+                    Statistics.IsLastGameWinned[kv.Key] = Convert.ToBoolean(kv.Value);
                 }
             }
         }

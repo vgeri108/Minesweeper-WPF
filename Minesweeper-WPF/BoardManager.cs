@@ -47,7 +47,7 @@ namespace Minesweeper_WPF
                     Data.Difficulty = Data.NextDifficulty;
                     JsonManager.Settings.Save();
                 }
-                
+
                 Time.ResetTimer();
                 if (!replayGame) Data.ResizeBoard();
                 newGame = true; //az időmérő nullázódik ha true és új generálás
@@ -455,6 +455,43 @@ namespace Minesweeper_WPF
                 dialog = new GameWin();
             }
 
+            if (!Statistics.IsLastGameWinned.ContainsKey(Statistics.currentMode))
+            {
+                Statistics.IsLastGameWinned.Add(Statistics.currentMode, false);
+                Statistics.WinStreak.Add(Statistics.currentMode, 0);
+                Statistics.LongestWinStreak.Add(Statistics.currentMode, 0);
+                Statistics.LoseStreak.Add(Statistics.currentMode, 0);
+                Statistics.LongestLoseStreak.Add(Statistics.currentMode, 0);
+                Statistics.CurrentStreak.Add(Statistics.currentMode, 0);
+
+            }
+
+            if (Statistics.IsLastGameWinned[Statistics.currentMode] && gameover_type != "akna")
+            {
+                Statistics.WinStreak[Statistics.currentMode]++;
+                Statistics.CurrentStreak[Statistics.currentMode]++;
+            }
+            else if (!Statistics.IsLastGameWinned[Statistics.currentMode] && gameover_type != "akna")
+            {
+                Statistics.CurrentStreak[Statistics.currentMode] = 1;
+                Statistics.LoseStreak[Statistics.currentMode] = 0;
+                Statistics.WinStreak[Statistics.currentMode]++;
+            }
+            else if (Statistics.IsLastGameWinned[Statistics.currentMode] && gameover_type == "akna")
+            {
+                Statistics.CurrentStreak[Statistics.currentMode] = 1;
+                Statistics.WinStreak[Statistics.currentMode] = 0;
+                Statistics.LoseStreak[Statistics.currentMode]++;
+            }
+            else if (!Statistics.IsLastGameWinned[Statistics.currentMode] && gameover_type == "akna")
+            {
+                Statistics.LoseStreak[Statistics.currentMode]++;
+                Statistics.CurrentStreak[Statistics.currentMode]++;
+            }
+
+            if (Statistics.WinStreak[Statistics.currentMode] > Statistics.LongestWinStreak[Statistics.currentMode]) Statistics.LongestWinStreak = Statistics.WinStreak;
+            if (Statistics.LoseStreak[Statistics.currentMode] > Statistics.LongestLoseStreak[Statistics.currentMode]) Statistics.LongestLoseStreak = Statistics.LoseStreak;
+            
             dialog.Owner = mw;
             dialog.ShowInTaskbar = true;
             dialog.ShowDialog();

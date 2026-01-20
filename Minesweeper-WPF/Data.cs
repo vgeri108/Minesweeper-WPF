@@ -65,9 +65,15 @@ namespace Minesweeper_WPF
     public class Statistics
     {
         public static string currentMode = "9_9_10";
-        public static Dictionary<string, int> PlayedGames = new Dictionary<String, int>();
+        public static Dictionary<string, int> PlayedGames = new Dictionary<string, int>();
         public static Dictionary<string, int> WinnedGames = new Dictionary<string, int>();
         public static Dictionary<string, int> BestTimes = new Dictionary<string, int>();
+        public static Dictionary<string, int> WinStreak = new Dictionary<string, int>();
+        public static Dictionary<string, int> LongestWinStreak = new Dictionary<string, int>();
+        public static Dictionary<string, int> LoseStreak = new Dictionary<string, int>();
+        public static Dictionary<string, int> LongestLoseStreak = new Dictionary<string, int>();
+        public static Dictionary<string, int> CurrentStreak = new Dictionary<string, int>();
+        public static Dictionary<string, bool> IsLastGameWinned = new Dictionary<string, bool>();
     }
     public class Time
     {
