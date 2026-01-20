@@ -52,7 +52,6 @@ namespace Minesweeper_WPF
             if (Version.FirstStart)
             {
                 FirstStartDifficulty firstGame = new FirstStartDifficulty();
-                firstGame.Owner = this;
                 firstGame.ShowDialog();
                 Version.FirstStart = false;
                 JsonManager.Settings.Save();
