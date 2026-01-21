@@ -455,16 +455,7 @@ namespace Minesweeper_WPF
                 dialog = new GameWin();
             }
 
-            if (!Statistics.IsLastGameWinned.ContainsKey(Statistics.currentMode))
-            {
-                Statistics.IsLastGameWinned.Add(Statistics.currentMode, false);
-                Statistics.WinStreak.Add(Statistics.currentMode, 0);
-                Statistics.LongestWinStreak.Add(Statistics.currentMode, 0);
-                Statistics.LoseStreak.Add(Statistics.currentMode, 0);
-                Statistics.LongestLoseStreak.Add(Statistics.currentMode, 0);
-                Statistics.CurrentStreak.Add(Statistics.currentMode, 0);
-
-            }
+            Statistics.GenerateStatsIfNotExists();
 
             if (Statistics.IsLastGameWinned[Statistics.currentMode] && gameover_type != "akna")
             {

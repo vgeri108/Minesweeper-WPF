@@ -37,6 +37,7 @@ namespace Minesweeper_WPF
             Statistics.currentMode = $"{meretM}_{meretSZ}_{aknakszama}";
             if (!Statistics.PlayedGames.ContainsKey(Statistics.currentMode))
             {
+                Statistics.Modes.Add(Statistics.currentMode);
                 Statistics.PlayedGames.Add(Statistics.currentMode, 0);
                 Statistics.WinnedGames.Add(Statistics.currentMode, 0);
                 Statistics.BestTimes.Add(Statistics.currentMode, 999);
@@ -65,6 +66,7 @@ namespace Minesweeper_WPF
     public class Statistics
     {
         public static string currentMode = "9_9_10";
+        public static List<string> Modes = new List<string>();
         public static Dictionary<string, int> PlayedGames = new Dictionary<string, int>();
         public static Dictionary<string, int> WinnedGames = new Dictionary<string, int>();
         public static Dictionary<string, int> BestTimes = new Dictionary<string, int>();
@@ -74,6 +76,21 @@ namespace Minesweeper_WPF
         public static Dictionary<string, int> LongestLoseStreak = new Dictionary<string, int>();
         public static Dictionary<string, int> CurrentStreak = new Dictionary<string, int>();
         public static Dictionary<string, bool> IsLastGameWinned = new Dictionary<string, bool>();
+
+        public static void GenerateStatsIfNotExists()
+        {
+            if (!Statistics.IsLastGameWinned.ContainsKey(Statistics.currentMode))
+            {
+                Statistics.IsLastGameWinned.Add(Statistics.currentMode, false);
+                Statistics.WinStreak.Add(Statistics.currentMode, 0);
+                Statistics.LongestWinStreak.Add(Statistics.currentMode, 0);
+                Statistics.LoseStreak.Add(Statistics.currentMode, 0);
+                Statistics.LongestLoseStreak.Add(Statistics.currentMode, 0);
+                Statistics.CurrentStreak.Add(Statistics.currentMode, 0);
+                JsonManager.Stats.Save();
+            }
+        }
+
     }
     public class Time
     {

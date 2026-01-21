@@ -19,21 +19,33 @@ namespace Minesweeper_WPF
     /// </summary>
     public partial class Stats : Window
     {
+        private static string SelectedDifficulty = "9_9_10";
         public Stats()
         {
             InitializeComponent();
+
+            Statistics.GenerateStatsIfNotExists();
+
+            foreach (string item in Statistics.Modes)
+            {
+                Difficulties.Items.Add(item);
+            }
+
             Title = $"Aknakereső statisztikája - {Environment.UserName}";
-            PlayedGames.Text = "Lejátszott játékok: " + Statistics.PlayedGames[Statistics.currentMode].ToString();
-            WinnedGames.Text = "Megnyert játékok: " + Statistics.WinnedGames[Statistics.currentMode].ToString();
-            WinPercentage.Text = "Nyerési arány: " + Math.Round(((Double)Statistics.WinnedGames[Statistics.currentMode] / Statistics.PlayedGames[Statistics.currentMode]) * 100).ToString() + "%";
-            LongestWinStreak.Text = "Leghosszabb győzelemsorozat: " + Statistics.LongestWinStreak[Statistics.currentMode].ToString();
-            LongestLoseStreak.Text = "Leghosszabb vereségsorozat: " + Statistics.LongestLoseStreak[Statistics.currentMode].ToString();
-            CurrentStreak.Text = "Jelenlegi sorozat: " + Statistics.CurrentStreak[Statistics.currentMode].ToString();
+            PlayedGames.Text = "Lejátszott játékok: " + Statistics.PlayedGames[SelectedDifficulty].ToString();
+            WinnedGames.Text = "Megnyert játékok: " + Statistics.WinnedGames[SelectedDifficulty].ToString();
+            WinPercentage.Text = "Nyerési arány: " + Math.Round(((Double)Statistics.WinnedGames[SelectedDifficulty] / Statistics.PlayedGames[SelectedDifficulty]) * 100).ToString() + "%";
+            LongestWinStreak.Text = "Leghosszabb győzelemsorozat: " + Statistics.LongestWinStreak[SelectedDifficulty].ToString();
+            LongestLoseStreak.Text = "Leghosszabb vereségsorozat: " + Statistics.LongestLoseStreak[SelectedDifficulty].ToString();
+            CurrentStreak.Text = "Jelenlegi sorozat: " + Statistics.CurrentStreak[SelectedDifficulty].ToString();
         }
 
         private void Difficulties_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (Difficulties.SelectedItem == null)
+                return;
 
+            SelectedDifficulty = Difficulties.SelectedItem.ToString();
         }
     }
 }
