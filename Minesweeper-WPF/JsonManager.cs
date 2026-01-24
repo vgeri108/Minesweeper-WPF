@@ -129,6 +129,7 @@ namespace Minesweeper_WPF
                 public Dictionary<string, string> PlayedGames { get; set; } = new();
                 public Dictionary<string, string> WinnedGames { get; set; } = new();
                 public Dictionary<string, string> BestTimes { get; set; } = new();
+                public string SerializationTime { get; set; } = DateTime.Now.ToString();
                 public Dictionary<string, int> WinStreak { get; set; } = new();
                 public Dictionary<string, int> LongestWinStreak { get; set; } = new();
                 public Dictionary<string, int> LoseStreak { get; set; } = new();
@@ -144,6 +145,7 @@ namespace Minesweeper_WPF
                     PlayedGames = Statistics.PlayedGames.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
                     WinnedGames = Statistics.WinnedGames.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
                     BestTimes = Statistics.BestTimes.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
+                    SerializationTime = DateTime.Now.ToString(),
                     WinStreak = Statistics.WinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
                     LongestWinStreak = Statistics.LongestWinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
                     LoseStreak = Statistics.LoseStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
