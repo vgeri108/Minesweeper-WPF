@@ -13,6 +13,8 @@ namespace Minesweeper_WPF
     {
         private static string configPath = "config.json";
         private static string statsPath = "stats.json";
+        private static string configPath = "Config.json";
+        private static string statsPath = "Stats.json";
         private static string gamesPath = "LastSave.mine";
         private static readonly JsonSerializerOptions jsonOptions = new()
         {
