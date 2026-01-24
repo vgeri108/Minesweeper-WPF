@@ -11,8 +11,6 @@ namespace Minesweeper_WPF
 {
     internal class JsonManager
     {
-        private static string configPath = "config.json";
-        private static string statsPath = "stats.json";
         private static string configPath = "Config.json";
         private static string statsPath = "Stats.json";
         private static string gamesPath = "LastSave.mine";
@@ -32,6 +30,7 @@ namespace Minesweeper_WPF
                 public int MeretSZ { get; set; } = 9;
                 public int Aknakszama { get; set; } = 10;
                 public string Difficulty { get; set; } = "Easy";
+                public string LastMode { get; set; } = "9_9_10";
 
                 public bool Animations { get; set; } = true;
                 public bool Sounds { get; set; } = true;
@@ -61,8 +60,9 @@ namespace Minesweeper_WPF
                     MeretM = Data.meretM,
                     MeretSZ = Data.meretSZ,
                     Aknakszama = Data.aknakszama,
-
                     Difficulty = Data.Difficulty,
+                    LastMode = Statistics.currentMode,
+
                     Animations = Configuration.Animations,
                     Sounds = Configuration.Sounds,
                     Tips = Configuration.Tips,
@@ -101,6 +101,7 @@ namespace Minesweeper_WPF
                 Data.meretSZ = Settings.MeretSZ;
                 Data.aknakszama = Settings.Aknakszama;
                 Data.Difficulty = Settings.Difficulty;
+                Statistics.currentMode = Settings.LastMode;
 
                 Configuration.Animations = Settings.Animations;
                 Configuration.Sounds = Settings.Sounds;
@@ -126,10 +127,11 @@ namespace Minesweeper_WPF
             private class StatsData
             {
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
-                public Dictionary<string, string> PlayedGames { get; set; } = new();
-                public Dictionary<string, string> WinnedGames { get; set; } = new();
-                public Dictionary<string, string> BestTimes { get; set; } = new();
                 public string SerializationTime { get; set; } = DateTime.Now.ToString();
+                public List<string> Modes { get; set; } = Statistics.Modes;
+                public Dictionary<string, int> PlayedGames { get; set; } = new();
+                public Dictionary<string, int> WinnedGames { get; set; } = new();
+                public Dictionary<string, int> BestTimes { get; set; } = new();
                 public Dictionary<string, int> WinStreak { get; set; } = new();
                 public Dictionary<string, int> LongestWinStreak { get; set; } = new();
                 public Dictionary<string, int> LoseStreak { get; set; } = new();
@@ -142,10 +144,11 @@ namespace Minesweeper_WPF
                 var Stats = new StatsData
                 {
                     JsonVersion = Version.Json,
-                    PlayedGames = Statistics.PlayedGames.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
-                    WinnedGames = Statistics.WinnedGames.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
-                    BestTimes = Statistics.BestTimes.ToDictionary(kv => kv.Key, kv => kv.Value.ToString()),
                     SerializationTime = DateTime.Now.ToString(),
+                    Modes = Statistics.Modes,
+                    PlayedGames = Statistics.PlayedGames.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    WinnedGames = Statistics.WinnedGames.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    BestTimes = Statistics.BestTimes.ToDictionary(kv => kv.Key, kv => kv.Value),
                     WinStreak = Statistics.WinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
                     LongestWinStreak = Statistics.LongestWinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
                     LoseStreak = Statistics.LoseStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
@@ -167,6 +170,8 @@ namespace Minesweeper_WPF
 
                 if (Stats == null)
                     return;
+
+                Statistics.Modes = Stats.Modes;
 
                 foreach (var kv in Stats.PlayedGames)
                 {

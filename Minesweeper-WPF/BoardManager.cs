@@ -304,6 +304,7 @@ namespace Minesweeper_WPF
                     if (newGame)
                     {
                         Statistics.PlayedGames[Statistics.currentMode]++;
+                        Statistics.GenerateStatsIfNotExists();
                         JsonManager.Stats.Save();
                         if (!LoadedGame)
                         {
@@ -361,6 +362,7 @@ namespace Minesweeper_WPF
                     if (newGame)
                     {
                         Statistics.PlayedGames[Statistics.currentMode]++;
+                        Statistics.GenerateStatsIfNotExists();
                         JsonManager.Stats.Save();
                         if (!LoadedGame) Time.StartTimer();
                     }

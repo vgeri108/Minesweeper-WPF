@@ -55,6 +55,8 @@ namespace Minesweeper_WPF
                 firstGame.ShowDialog();
                 Version.FirstStart = false;
                 JsonManager.Settings.Save();
+                Statistics.GenerateStatsIfNotExists();
+                JsonManager.Stats.Save();
             }
             if (Configuration.AutomaticUpdateSearch)
             {

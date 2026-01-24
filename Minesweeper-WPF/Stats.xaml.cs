@@ -19,17 +19,57 @@ namespace Minesweeper_WPF
     /// </summary>
     public partial class Stats : Window
     {
-        private static string SelectedDifficulty = "9_9_10";
+        private static string SelectedDifficulty = Statistics.currentMode;
         public Stats()
         {
             InitializeComponent();
 
             Statistics.GenerateStatsIfNotExists();
+            JsonManager.Stats.Save();
 
             foreach (string item in Statistics.Modes)
             {
-                Difficulties.Items.Add(item);
+                if (item == "9_9_10")
+                {
+                    Difficulties.Items.Add("Kezdő");
+                    if (item == Statistics.currentMode) Difficulties.SelectedItem = "Kezdő";
+                }
+                else if (item == "16_16_40")
+                {
+                    Difficulties.Items.Add("Középhaladó");
+                    if (item == Statistics.currentMode) Difficulties.SelectedItem = "Középhaladó";
+                }
+                else if (item == "16_30_99")
+                {
+                    Difficulties.Items.Add("Haladó");
+                    if (item == Statistics.currentMode) Difficulties.SelectedItem = "Haladó";
+                }
+                else
+                {
+                    Difficulties.Items.Add(item);
+                    if (item == Statistics.currentMode) Difficulties.SelectedItem = item;
+                }
             }
+        }
+
+        private void Difficulties_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Difficulties.SelectedItem == null)
+                return;
+
+            if (Difficulties.SelectedItem.ToString() == "Kezdő")
+            {
+                SelectedDifficulty = "9_9_10";
+            }
+            else if (Difficulties.SelectedItem.ToString() == "Középhaladó")
+            {
+                SelectedDifficulty = "16_16_40";
+            }
+            else if (Difficulties.SelectedItem.ToString() == "Haladó")
+            {
+                SelectedDifficulty = "16_30_99";
+            }
+            else SelectedDifficulty = Difficulties.SelectedItem.ToString();
 
             Title = $"Aknakereső statisztikája - {Environment.UserName}";
             PlayedGames.Text = "Lejátszott játékok: " + Statistics.PlayedGames[SelectedDifficulty].ToString();
@@ -38,14 +78,7 @@ namespace Minesweeper_WPF
             LongestWinStreak.Text = "Leghosszabb győzelemsorozat: " + Statistics.LongestWinStreak[SelectedDifficulty].ToString();
             LongestLoseStreak.Text = "Leghosszabb vereségsorozat: " + Statistics.LongestLoseStreak[SelectedDifficulty].ToString();
             CurrentStreak.Text = "Jelenlegi sorozat: " + Statistics.CurrentStreak[SelectedDifficulty].ToString();
-        }
 
-        private void Difficulties_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (Difficulties.SelectedItem == null)
-                return;
-
-            SelectedDifficulty = Difficulties.SelectedItem.ToString();
         }
     }
 }
