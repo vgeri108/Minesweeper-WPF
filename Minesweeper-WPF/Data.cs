@@ -79,16 +79,13 @@ namespace Minesweeper_WPF
 
         public static void GenerateStatsIfNotExists()
         {
-            if (!Statistics.IsLastGameWinned.ContainsKey(Statistics.currentMode))
-            {
-                Statistics.IsLastGameWinned.Add(Statistics.currentMode, false);
-                Statistics.WinStreak.Add(Statistics.currentMode, 0);
-                Statistics.LongestWinStreak.Add(Statistics.currentMode, 0);
-                Statistics.LoseStreak.Add(Statistics.currentMode, 0);
-                Statistics.LongestLoseStreak.Add(Statistics.currentMode, 0);
-                Statistics.CurrentStreak.Add(Statistics.currentMode, 0);
-                JsonManager.Stats.Save();
-            }
+            if (!Statistics.IsLastGameWinned.ContainsKey(Statistics.currentMode)) Statistics.IsLastGameWinned.Add(Statistics.currentMode, false);
+            if (!Statistics.WinStreak.ContainsKey(Statistics.currentMode)) Statistics.WinStreak.Add(Statistics.currentMode, 0);
+            if (!Statistics.LongestWinStreak.ContainsKey(Statistics.currentMode)) Statistics.LongestWinStreak.Add(Statistics.currentMode, 0);
+            if (!Statistics.LoseStreak.ContainsKey(Statistics.currentMode)) Statistics.LoseStreak.Add(Statistics.currentMode, 0);
+            if (!Statistics.LongestLoseStreak.ContainsKey(Statistics.currentMode)) Statistics.LongestLoseStreak.Add(currentMode, 0);
+            if (!Statistics.CurrentStreak.ContainsKey(Statistics.currentMode)) Statistics.CurrentStreak.Add(currentMode, 0);
+            JsonManager.Stats.Save();
         }
 
     }
