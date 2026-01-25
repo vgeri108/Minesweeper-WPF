@@ -31,7 +31,7 @@
                       Header="Legjobb idők" Margin="15,0,15,0"
                       VerticalAlignment="Top"
                       Height="80">
-                <Grid>
+                <Grid x:Name="BestTimes">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />

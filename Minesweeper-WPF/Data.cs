@@ -69,6 +69,7 @@ namespace Minesweeper_WPF
         public static List<string> Modes = new List<string>();
         public static Dictionary<string, int> PlayedGames = new Dictionary<string, int>();
         public static Dictionary<string, int> WinnedGames = new Dictionary<string, int>();
+        public static Dictionary<string, Dictionary<string, int>> Times = new Dictionary<string, Dictionary<string, int>>();
         public static Dictionary<string, int> BestTimes = new Dictionary<string, int>();
         public static Dictionary<string, int> WinStreak = new Dictionary<string, int>();
         public static Dictionary<string, int> LongestWinStreak = new Dictionary<string, int>();
@@ -79,6 +80,7 @@ namespace Minesweeper_WPF
 
         public static void GenerateStatsIfNotExists()
         {
+            if (!Statistics.Times.ContainsKey(Statistics.currentMode)) Statistics.Times.Add(Statistics.currentMode, new Dictionary<string, int>());
             if (!Statistics.IsLastGameWinned.ContainsKey(Statistics.currentMode)) Statistics.IsLastGameWinned.Add(Statistics.currentMode, false);
             if (!Statistics.WinStreak.ContainsKey(Statistics.currentMode)) Statistics.WinStreak.Add(Statistics.currentMode, 0);
             if (!Statistics.LongestWinStreak.ContainsKey(Statistics.currentMode)) Statistics.LongestWinStreak.Add(Statistics.currentMode, 0);

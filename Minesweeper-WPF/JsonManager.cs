@@ -131,6 +131,7 @@ namespace Minesweeper_WPF
                 public List<string> Modes { get; set; } = Statistics.Modes;
                 public Dictionary<string, int> PlayedGames { get; set; } = new();
                 public Dictionary<string, int> WinnedGames { get; set; } = new();
+                public Dictionary<string, Dictionary<string, int>> Times { get; set; } = new();
                 public Dictionary<string, int> BestTimes { get; set; } = new();
                 public Dictionary<string, int> WinStreak { get; set; } = new();
                 public Dictionary<string, int> LongestWinStreak { get; set; } = new();
@@ -148,6 +149,7 @@ namespace Minesweeper_WPF
                     Modes = Statistics.Modes,
                     PlayedGames = Statistics.PlayedGames.ToDictionary(kv => kv.Key, kv => kv.Value),
                     WinnedGames = Statistics.WinnedGames.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    Times = Statistics.Times.ToDictionary(kv => kv.Key, kv => kv.Value),
                     BestTimes = Statistics.BestTimes.ToDictionary(kv => kv.Key, kv => kv.Value),
                     WinStreak = Statistics.WinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
                     LongestWinStreak = Statistics.LongestWinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
@@ -180,6 +182,13 @@ namespace Minesweeper_WPF
                 foreach (var kv in Stats.WinnedGames)
                 {
                     Statistics.WinnedGames[kv.Key] = Convert.ToInt32(kv.Value);
+                }
+                foreach (var kv in Stats.Times)
+                {
+                    if (kv.Value == null)
+                        Statistics.Times[kv.Key] = new Dictionary<string, int>();
+                    else
+                        Statistics.Times[kv.Key] = new Dictionary<string, int>(kv.Value);
                 }
                 foreach (var kv in Stats.BestTimes)
                 {

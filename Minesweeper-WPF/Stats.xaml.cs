@@ -79,6 +79,28 @@ namespace Minesweeper_WPF
             LongestLoseStreak.Text = "Leghosszabb vereségsorozat: " + Statistics.LongestLoseStreak[SelectedDifficulty].ToString();
             CurrentStreak.Text = "Jelenlegi sorozat: " + Statistics.CurrentStreak[SelectedDifficulty].ToString();
 
+            BestTimes.Children.Clear();
+
+            if (Statistics.Times.TryGetValue(SelectedDifficulty, out var Dict) && Dict != null)
+            {
+                foreach (var item in Dict)
+                {
+                    TextBlock TimeText = new TextBlock
+                    {
+                        Text = item.Value.ToString(),
+                    };
+                    Grid.SetColumn(TimeText, 0);
+
+                    TextBlock DateText = new TextBlock
+                    {
+                        Text = item.Key,
+                    };
+                    Grid.SetColumn(DateText, 1);
+
+                    BestTimes.Children.Add(TimeText);
+                    BestTimes.Children.Add(DateText);
+                }
+            }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
