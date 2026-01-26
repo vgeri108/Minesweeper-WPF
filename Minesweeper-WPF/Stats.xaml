@@ -37,8 +37,12 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock x:Name="NoStatTime" Text="999" TextWrapping="Wrap"/>
-                    <TextBlock x:Name="NoStatDate" Text="2026.01.09." TextWrapping="Wrap" Grid.Column="1"/>
+                    <StackPanel x:Name="Times">
+                        <TextBlock x:Name="NoStatTime" Text="999" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel x:Name="Dates" Grid.Column="1">
+                        <TextBlock x:Name="NoStatDate" Text="2026.01.09." TextWrapping="Wrap"/>
+                    </StackPanel>
 
                 </Grid>
             </GroupBox>

@@ -484,7 +484,8 @@ namespace Minesweeper_WPF
 
             if (Statistics.WinStreak[Statistics.currentMode] > Statistics.LongestWinStreak[Statistics.currentMode]) Statistics.LongestWinStreak = Statistics.WinStreak;
             if (Statistics.LoseStreak[Statistics.currentMode] > Statistics.LongestLoseStreak[Statistics.currentMode]) Statistics.LongestLoseStreak = Statistics.LoseStreak;
-            Statistics.Times[Statistics.currentMode].Add(DateTime.Now.ToString() ,Time.ElapsedSeconds);
+            Statistics.Times[Statistics.currentMode].Add(Time.ElapsedSeconds);
+            Statistics.Dates[Statistics.currentMode].Add(DateTime.Now.ToString("yyyy/MM/dd"));
             JsonManager.Stats.Save();
             dialog.Owner = mw;
             dialog.ShowInTaskbar = true;

@@ -131,7 +131,8 @@ namespace Minesweeper_WPF
                 public List<string> Modes { get; set; } = Statistics.Modes;
                 public Dictionary<string, int> PlayedGames { get; set; } = new();
                 public Dictionary<string, int> WinnedGames { get; set; } = new();
-                public Dictionary<string, Dictionary<string, int>> Times { get; set; } = new();
+                public Dictionary<string, List<string>> Times { get; set; } = new();
+                public Dictionary<string, List<string>> Dates { get; set; } = new();
                 public Dictionary<string, int> BestTimes { get; set; } = new();
                 public Dictionary<string, int> WinStreak { get; set; } = new();
                 public Dictionary<string, int> LongestWinStreak { get; set; } = new();
@@ -149,7 +150,14 @@ namespace Minesweeper_WPF
                     Modes = Statistics.Modes,
                     PlayedGames = Statistics.PlayedGames.ToDictionary(kv => kv.Key, kv => kv.Value),
                     WinnedGames = Statistics.WinnedGames.ToDictionary(kv => kv.Key, kv => kv.Value),
-                    Times = Statistics.Times.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    Times = Statistics.Times.ToDictionary(
+                        kv => kv.Key,
+                        kv => kv.Value.Select(i => i.ToString()).ToList()
+                    ),
+                    Dates = Statistics.Dates.ToDictionary(
+                        kv => kv.Key,
+                        kv => kv.Value.Select(i => i.ToString()).ToList()
+                    ),
                     BestTimes = Statistics.BestTimes.ToDictionary(kv => kv.Key, kv => kv.Value),
                     WinStreak = Statistics.WinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
                     LongestWinStreak = Statistics.LongestWinStreak.ToDictionary(kv => kv.Key, kv => kv.Value),
@@ -186,9 +194,17 @@ namespace Minesweeper_WPF
                 foreach (var kv in Stats.Times)
                 {
                     if (kv.Value == null)
-                        Statistics.Times[kv.Key] = new Dictionary<string, int>();
+                        Statistics.Times[kv.Key] = new List<int>();
                     else
-                        Statistics.Times[kv.Key] = new Dictionary<string, int>(kv.Value);
+                        Statistics.Times[kv.Key] = kv.Value.Select(s =>
+                        {
+                            int v;
+                            return int.TryParse(s, out v) ? v : 0;
+                        }).ToList();
+                }
+                foreach (var kv in Stats.Dates)
+                {
+                    Statistics.Dates[kv.Key] = kv.Value != null ? kv.Value.ToList() : new List<string>();
                 }
                 foreach (var kv in Stats.BestTimes)
                 {
