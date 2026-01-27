@@ -92,6 +92,41 @@ namespace Minesweeper_WPF
             JsonManager.Stats.Save();
         }
 
+        public static void SortTimes()
+        {
+            for (int i = 0; i < Times.Count - 1; i++)
+            {
+                for (int j = 0; j < Times.Count - 1 - i; j++)
+                {
+                    if (Times[currentMode][j] > Times[currentMode][j + 1])
+                    {
+                        int tmp = Times[currentMode][j];
+                        Times[currentMode][j] = Times[currentMode][j + 1];
+                        Times[currentMode][j + 1] = tmp;
+
+                        string tmpText = Dates[currentMode][j];
+                        Dates[currentMode][j] = Dates[currentMode][j + 1];
+                        Dates[currentMode][j + 1] = tmpText;
+                    }
+                }
+            }
+            TimeListSizeTo5();
+        }
+
+        private static void TimeListSizeTo5()
+        {
+            List<int> Times5 = new List<int>();
+            List<string> Dates5 = new List<string>();
+            int Max = Times[currentMode].Count < 5 ? Times.Count : 5;
+            for (int i = 0; i < Max; i++)
+            {
+                Times5.Add(Times[currentMode][i]);
+                Dates5.Add(Dates[currentMode][i]);
+            }
+            Times[currentMode] = Times5;
+            Dates[currentMode] = Dates5;
+            JsonManager.Stats.Save();
+        }
     }
     public class Time
     {

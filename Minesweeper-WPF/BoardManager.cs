@@ -454,8 +454,24 @@ namespace Minesweeper_WPF
             }
             else
             {
-                Statistics.Times[Statistics.currentMode].Add(Time.ElapsedSeconds);
-                Statistics.Dates[Statistics.currentMode].Add(DateTime.Now.ToString("yyyy/MM/dd"));
+                Statistics.Times[Statistics.currentMode].Sort();
+                if (Statistics.Times[Statistics.currentMode].Count < 5)
+                {
+                    for (int i = 5; i < 5; i++)
+                    {
+                        if (Time.ElapsedSeconds < Statistics.Times[Statistics.currentMode][i])
+                        {
+                            Statistics.Times[Statistics.currentMode][i] = Time.ElapsedSeconds;
+                        }
+                    }
+
+                    if (Statistics.Times[Statistics.currentMode][1] < 5)
+
+
+
+                    Statistics.Times[Statistics.currentMode].Add(Time.ElapsedSeconds);
+                    Statistics.Dates[Statistics.currentMode].Add(DateTime.Now.ToString("yyyy/MM/dd"));
+                }
                 dialog = new GameWin();
             }
 
@@ -486,7 +502,7 @@ namespace Minesweeper_WPF
 
             if (Statistics.WinStreak[Statistics.currentMode] > Statistics.LongestWinStreak[Statistics.currentMode]) Statistics.LongestWinStreak = Statistics.WinStreak;
             if (Statistics.LoseStreak[Statistics.currentMode] > Statistics.LongestLoseStreak[Statistics.currentMode]) Statistics.LongestLoseStreak = Statistics.LoseStreak;
-            
+
             JsonManager.Stats.Save();
             dialog.Owner = mw;
             dialog.ShowInTaskbar = true;

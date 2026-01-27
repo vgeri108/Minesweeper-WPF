@@ -82,6 +82,8 @@ namespace Minesweeper_WPF
             Times.Children.Clear();
             Dates.Children.Clear();
 
+            Statistics.SortTimes();
+
             foreach (int time in Statistics.Times[SelectedDifficulty])
             {
                 TextBlock TimeText = new TextBlock
