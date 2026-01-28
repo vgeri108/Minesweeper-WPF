@@ -106,5 +106,12 @@ namespace Minesweeper_WPF
         {
             Close();
         }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            ResetStats resetStats = new ResetStats(Difficulties.SelectedItem.ToString(), SelectedDifficulty);
+            resetStats.Owner = this;
+            resetStats.ShowDialog();
+        }
     }
 }
