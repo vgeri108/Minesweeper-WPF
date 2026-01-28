@@ -10,7 +10,8 @@ A játék még fejlesztés alatt áll, de már játszahtó.
 
 Hátralévő feladatok:
 - Dupla klikkelés a számokrá kiássa a szomszédos mezőket
-- Kérdőjelek letiltása s beállításokban
+- Kérdőjelek letiltása a beállításokban
+- Több alkalmazás beállítás
 - Egyéb beállítások és [hibajavítások](https://github.com/vgeri108/Minesweeper-WPF/issues)
 
 ## Képernyőképek
