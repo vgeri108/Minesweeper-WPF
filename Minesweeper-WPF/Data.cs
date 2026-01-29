@@ -81,14 +81,14 @@ namespace Minesweeper_WPF
 
         public static void GenerateStatsIfNotExists()
         {
-            if (!Statistics.Times.ContainsKey(Statistics.currentMode)) Statistics.Times.Add(Statistics.currentMode, new List<int>());
-            if (!Statistics.Dates.ContainsKey(Statistics.currentMode)) Statistics.Dates.Add(Statistics.currentMode, new List<string>());
-            if (!Statistics.IsLastGameWinned.ContainsKey(Statistics.currentMode)) Statistics.IsLastGameWinned.Add(Statistics.currentMode, false);
-            if (!Statistics.WinStreak.ContainsKey(Statistics.currentMode)) Statistics.WinStreak.Add(Statistics.currentMode, 0);
-            if (!Statistics.LongestWinStreak.ContainsKey(Statistics.currentMode)) Statistics.LongestWinStreak.Add(Statistics.currentMode, 0);
-            if (!Statistics.LoseStreak.ContainsKey(Statistics.currentMode)) Statistics.LoseStreak.Add(Statistics.currentMode, 0);
-            if (!Statistics.LongestLoseStreak.ContainsKey(Statistics.currentMode)) Statistics.LongestLoseStreak.Add(currentMode, 0);
-            if (!Statistics.CurrentStreak.ContainsKey(Statistics.currentMode)) Statistics.CurrentStreak.Add(currentMode, 0);
+            if (!Times.ContainsKey(currentMode)) Times.Add(currentMode, new List<int>());
+            if (!Dates.ContainsKey(currentMode)) Dates.Add(currentMode, new List<string>());
+            if (!IsLastGameWinned.ContainsKey(currentMode)) IsLastGameWinned.Add(currentMode, false);
+            if (!WinStreak.ContainsKey(currentMode)) WinStreak.Add(currentMode, 0);
+            if (!LongestWinStreak.ContainsKey(currentMode)) LongestWinStreak.Add(currentMode, 0);
+            if (!LoseStreak.ContainsKey(currentMode)) LoseStreak.Add(currentMode, 0);
+            if (!LongestLoseStreak.ContainsKey(currentMode)) LongestLoseStreak.Add(currentMode, 0);
+            if (!CurrentStreak.ContainsKey(currentMode)) CurrentStreak.Add(currentMode, 0);
             JsonManager.Stats.Save();
         }
 
