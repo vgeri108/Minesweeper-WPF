@@ -84,8 +84,8 @@ namespace Minesweeper_WPF
             if (!Modes.Contains(currentMode)) Modes.Add(currentMode);
             if (!PlayedGames.ContainsKey(currentMode)) PlayedGames.Add(currentMode, 0);
             if (!WinnedGames.ContainsKey(currentMode)) WinnedGames.Add(currentMode, 0);
-            if (!Times.ContainsKey(currentMode)) Times.Add(currentMode, new List<int>());
-            if (!Dates.ContainsKey(currentMode)) Dates.Add(currentMode, new List<string>());
+            if (!Times.ContainsKey(currentMode)) Times.Add(currentMode, new List<int>(){-1});
+            if (!Dates.ContainsKey(currentMode)) Dates.Add(currentMode, new List<string>(){"Nincs adat."});
             if (!BestTimes.ContainsKey(currentMode)) BestTimes.Add(currentMode, 0);
             if (!IsLastGameWinned.ContainsKey(currentMode)) IsLastGameWinned.Add(currentMode, false);
             if (!WinStreak.ContainsKey(currentMode)) WinStreak.Add(currentMode, 0);
@@ -102,6 +102,7 @@ namespace Minesweeper_WPF
             {
                 for (int j = 0; j < Times.Count - 1 - i; j++)
                 {
+                    if (Times[currentMode].Count == 1) return;
                     if (Times[currentMode][j] > Times[currentMode][j + 1])
                     {
                         int tmp = Times[currentMode][j];
@@ -115,11 +116,12 @@ namespace Minesweeper_WPF
                 }
             }
             TimeListSizeTo5();
+            JsonManager.Stats.Save();
         }
 
         private static void TimeListSizeTo5()
         {
-            if (Times[currentMode].Count == 0) return;
+            if (!Times.ContainsKey(currentMode)) return;
             
             List<int> Times5 = new List<int>();
             List<string> Dates5 = new List<string>();

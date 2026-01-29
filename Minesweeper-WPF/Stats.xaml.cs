@@ -23,9 +23,13 @@ namespace Minesweeper_WPF
         public Stats()
         {
             InitializeComponent();
-
+            FillList();
+        }
+        private void FillList()
+        {
             Statistics.GenerateStatsIfNotExists();
             JsonManager.Stats.Save();
+            Difficulties.Items.Clear();
 
             foreach (string item in Statistics.Modes)
             {
@@ -86,6 +90,7 @@ namespace Minesweeper_WPF
 
             foreach (int time in Statistics.Times[SelectedDifficulty])
             {
+                if (time == -1) return;
                 TextBlock TimeText = new TextBlock
                 {
                     Text = time.ToString(),
@@ -94,6 +99,7 @@ namespace Minesweeper_WPF
             }
             foreach (string date in Statistics.Dates[SelectedDifficulty])
             {
+                if (date == "Nincs adat.") return;
                 TextBlock DateText = new TextBlock
                 {
                     Text = date,
@@ -109,9 +115,12 @@ namespace Minesweeper_WPF
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
+            ShowInTaskbar = false;
             ResetStats resetStats = new ResetStats(Difficulties.SelectedItem.ToString(), SelectedDifficulty);
             resetStats.Owner = this;
             resetStats.ShowDialog();
+            ShowInTaskbar = true;
+            FillList();
         }
     }
 }

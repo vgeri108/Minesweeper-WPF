@@ -456,6 +456,8 @@ namespace Minesweeper_WPF
             {
                 Statistics.Times[Statistics.currentMode].Add(Time.ElapsedSeconds);
                 Statistics.Dates[Statistics.currentMode].Add(DateTime.Now.ToString("yyyy/MM/dd"));
+                if (Statistics.Times[Statistics.currentMode].Contains(-1)) Statistics.Times[Statistics.currentMode].Remove(-1);
+                if (Statistics.Dates[Statistics.currentMode].Contains("Nincs adat.")) Statistics.Dates[Statistics.currentMode].Remove("Nincs adat.");
                 dialog = new GameWin();
             }
 
