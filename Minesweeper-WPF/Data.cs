@@ -81,8 +81,12 @@ namespace Minesweeper_WPF
 
         public static void GenerateStatsIfNotExists()
         {
+            if (!Modes.Contains(currentMode)) Modes.Add(currentMode);
+            if (!PlayedGames.ContainsKey(currentMode)) PlayedGames.Add(currentMode, 0);
+            if (!WinnedGames.ContainsKey(currentMode)) WinnedGames.Add(currentMode, 0);
             if (!Times.ContainsKey(currentMode)) Times.Add(currentMode, new List<int>());
             if (!Dates.ContainsKey(currentMode)) Dates.Add(currentMode, new List<string>());
+            if (!BestTimes.ContainsKey(currentMode)) BestTimes.Add(currentMode, 0);
             if (!IsLastGameWinned.ContainsKey(currentMode)) IsLastGameWinned.Add(currentMode, false);
             if (!WinStreak.ContainsKey(currentMode)) WinStreak.Add(currentMode, 0);
             if (!LongestWinStreak.ContainsKey(currentMode)) LongestWinStreak.Add(currentMode, 0);
@@ -115,6 +119,8 @@ namespace Minesweeper_WPF
 
         private static void TimeListSizeTo5()
         {
+            if (Times[currentMode].Count == 0) return;
+            
             List<int> Times5 = new List<int>();
             List<string> Dates5 = new List<string>();
             int Max = Times[currentMode].Count < 5 ? Times.Count : 5;

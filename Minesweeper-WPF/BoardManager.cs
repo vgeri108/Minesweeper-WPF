@@ -303,8 +303,8 @@ namespace Minesweeper_WPF
 
                     if (newGame)
                     {
-                        Statistics.PlayedGames[Statistics.currentMode]++;
                         Statistics.GenerateStatsIfNotExists();
+                        Statistics.PlayedGames[Statistics.currentMode]++;
                         JsonManager.Stats.Save();
                         if (!LoadedGame)
                         {
