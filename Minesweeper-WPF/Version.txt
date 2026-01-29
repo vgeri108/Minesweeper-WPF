@@ -1,5 +1,22 @@
-Alpha 1.2 verzió
+ ---===### Aknakereső ###===---
 
-Új ebben a frissítésben:
+Verzió: Alpha 1.3: Statisztikák
 
- => GitHub tag indexelés véglegesen javítva (Issue #12 closed)
+=== Frissítések ===
+Új funkciók:
+ => Statisztikák ablak
+     => Nehézségenkénti bontás
+     => Lejátszott és megnyert játékok aránya
+     => Nyerési és vesztési sorozat nyilvántartás
+     => 5 legjobb idő kiírása
+     => Statisztikák visszaállítása
+
+Kisebb változtatások:
+ => Animációk beállítás átmenetileg törölve
+ => Frissítések keresésének engedélyezése a menüben
+ => Kevesebb ping idő a frissítésekhez
+ => Külön ikon a frissítésekhez
+
+Apró technikai változtatások:
+ => Nagybetűvel vannak írva a .json fájlok nevei
+ => Json időbélyeg

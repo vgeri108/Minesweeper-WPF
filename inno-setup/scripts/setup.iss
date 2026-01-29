@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Aknakereső"
-#define MyAppVersion "Alpha 1.2"
+#define MyAppVersion "Alpha 1.3"
 #define MyAppPublisher "Naquadah Fusion"
 #define MyAppURL "https://github.com/vgeri108/Minesweeper-WPF"
 #define MyAppExeName "Minesweeper-WPF.exe"
@@ -54,10 +54,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.deps.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Minesweeper-WPF.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\*"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\{#User}\source\repos\Minesweeper-WPF\vs-builds\{#Version}\Assets\*"; DestDir: "{app}/Assets"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

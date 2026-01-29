@@ -16,5 +16,5 @@ C:\Users\Geri\source\repos\Minesweeper-WPF\Minesweeper-WPF\App.xaml
 198-1831388575
 about.xaml;DownloadProgress.xaml;FirstStartDifficulty.xaml;GameLose.xaml;GameWin.xaml;LoadGame_OpenDialog.xaml;MainWindow.xaml;NewGame_MenuDialog.xaml;NewGame_SettingsDialog.xaml;NewInUpdate.xaml;ResetStats.xaml;SaveGame_CloseDialog.xaml;Settings.xaml;Stats.xaml;
 
-True
+False
 
