@@ -47,7 +47,7 @@ namespace Minesweeper_WPF
 
                         if (Tags.IndexOf(Version.GithubTag) != 0)
                         {
-                            for (int i = Tags.IndexOf(Version.GithubTag); i >= 0; i--)
+                            for (int i = Tags.IndexOf(Version.GithubTag) -1; i >= 0; i--)
                             {
                                 bool IsTagValid = true;
                                 try
