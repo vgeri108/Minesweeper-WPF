@@ -30,6 +30,8 @@ namespace Minesweeper_WPF
 
             JsonManager.Settings.Load();
             JsonManager.Stats.Load();
+            JsonManager.Style.Load();
+            JsonManager.Theme.Load();
             BoardManager.Init();
 
             if (File.Exists("LastSave.mine"))
@@ -57,6 +59,8 @@ namespace Minesweeper_WPF
                 JsonManager.Settings.Save();
                 Statistics.GenerateStatsIfNotExists();
                 JsonManager.Stats.Save();
+                JsonManager.Style.Save();
+                JsonManager.Theme.Save();
             }
             if (Configuration.AutomaticUpdateSearch)
             {

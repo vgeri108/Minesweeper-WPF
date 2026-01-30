@@ -6,6 +6,8 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using static Minesweeper_WPF.Appearance;
 
 namespace Minesweeper_WPF
 {
@@ -14,6 +16,8 @@ namespace Minesweeper_WPF
         private static string configPath = "Config.json";
         private static string statsPath = "Stats.json";
         private static string gamesPath = "LastSave.mine";
+        private static string stylePath = "Styles.json";
+        private static string themesPath = "ThemeConfig.json";
         private static readonly JsonSerializerOptions jsonOptions = new()
         {
             WriteIndented = true,
@@ -324,6 +328,82 @@ namespace Minesweeper_WPF
                 }
 
                 BoardManager.Init();
+            }
+        }
+        public class Style
+        {
+            private class StyleData
+            {
+                public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
+                public string SerializationTime { get; set; } = DateTime.Now.ToString();
+            }
+            public static void Save()
+            {
+                var Styles = new StyleData
+                {
+                    JsonVersion = Version.Json,
+                    SerializationTime = DateTime.Now.ToString(),
+
+                    
+                };
+
+                string json = JsonSerializer.Serialize(Styles, jsonOptions);
+                File.WriteAllText(stylePath, json);
+            }
+            public static void Load()
+            {
+                if (!File.Exists(stylePath))
+                    return;
+
+                string json = File.ReadAllText(stylePath);
+                var Styles = JsonSerializer.Deserialize<StyleData>(json, jsonOptions);
+
+                if (Styles == null)
+                    return;
+
+
+            }
+        }
+        public class Theme
+        {
+            private class ThemeData
+            {
+                public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
+                public string SerializationTime { get; set; } = DateTime.Now.ToString();
+                public Dictionary<string, string> ImageNames { get; set; } = new();
+            }
+            public static void Save()
+            {
+                var Themes = new ThemeData
+                {
+                    JsonVersion = Version.Json,
+                    SerializationTime = DateTime.Now.ToString(),
+
+                    ImageNames = Appearance.Images.ImageNames.ToDictionary(kv => kv.Key, kv => kv.Value),
+                };
+
+                string json = JsonSerializer.Serialize(Themes, jsonOptions);
+                File.WriteAllText($"Assets/Images/GameBoard/{Configuration.CurrentTheme}/{themesPath}", json);
+            }
+            public static void Load()
+            {
+                string path = $"Assets/Images/GameBoard/{Configuration.CurrentTheme}/{themesPath}";
+                if (!File.Exists(path))
+                    return;
+
+                string json = File.ReadAllText(path);
+                var Themes = JsonSerializer.Deserialize<ThemeData>(json, jsonOptions);
+
+                if (Themes == null)
+                    return;
+
+                foreach (var kv in Themes.ImageNames)
+                {
+                    if (Appearance.Images.ImageNames.ContainsKey(kv.Key))
+                        Appearance.Images.ImageNames[kv.Key] = kv.Value;
+                    else
+                        Appearance.Images.ImageNames.Add(kv.Key, kv.Value);
+                }
             }
         }
     }
