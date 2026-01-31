@@ -30,6 +30,8 @@ namespace Minesweeper_WPF
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
                 public string SerializationTime { get; set; } = DateTime.Now.ToString();
                 public bool FirstProgramStart { get; set; } = true;
+                public string Theme { get; set; }
+
                 public int MeretM { get; set; } = 9;
                 public int MeretSZ { get; set; } = 9;
                 public int Aknakszama { get; set; } = 10;
@@ -61,6 +63,8 @@ namespace Minesweeper_WPF
                     JsonVersion = Version.Json,
                     SerializationTime = DateTime.Now.ToString(),
                     FirstProgramStart = Version.FirstStart,
+                    Theme = Configuration.CurrentTheme,
+
                     MeretM = Data.meretM,
                     MeretSZ = Data.meretSZ,
                     Aknakszama = Data.aknakszama,
@@ -101,6 +105,8 @@ namespace Minesweeper_WPF
                     return;
 
                 Version.FirstStart = Settings.FirstProgramStart;
+                Configuration.CurrentTheme = Settings.Theme;
+
                 Data.meretM = Settings.MeretM;
                 Data.meretSZ = Settings.MeretSZ;
                 Data.aknakszama = Settings.Aknakszama;
@@ -382,12 +388,16 @@ namespace Minesweeper_WPF
                     ImageNames = Appearance.Images.ImageNames.ToDictionary(kv => kv.Key, kv => kv.Value),
                 };
 
-                string json = JsonSerializer.Serialize(Themes, jsonOptions);
-                File.WriteAllText($"Assets/Images/GameBoard/{Configuration.CurrentTheme}/{themesPath}", json);
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                string dir = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme);
+                Directory.CreateDirectory(dir);
+                string filePath = Path.Combine(dir, themesPath);
+                File.WriteAllText(filePath, JsonSerializer.Serialize(Themes, jsonOptions));
             }
             public static void Load()
             {
-                string path = $"Assets/Images/GameBoard/{Configuration.CurrentTheme}/{themesPath}";
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                string path = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, themesPath);
                 if (!File.Exists(path))
                     return;
 

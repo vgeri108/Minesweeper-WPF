@@ -15,8 +15,8 @@
 
         <!-- Háttér -->
         <Grid.Background>
-            <ImageBrush ImageSource="/hatter.png"
-                        Stretch="UniformToFill"/>
+            <ImageBrush Stretch="UniformToFill"
+                        x:Name="BackgroundImage"/>
         </Grid.Background>
 
         <!-- Sorok: menü + játék -->
@@ -74,7 +74,7 @@
                     <StackPanel DockPanel.Dock="Left"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
-                        <Image Source="/Assets/Images/GUI/Icons/clock.png"
+                        <Image x:Name="ClockImage"
                                Width="40"
                                Height="40"
                                Margin="0,0,8,0"/>
@@ -113,7 +113,7 @@
                                        VerticalAlignment="Center"/>
                         </Border>
 
-                        <Image Source="/Assets/Images/GUI/Icons/flower.png"
+                        <Image x:Name="FlowerImage"
                                Width="40"
                                Height="40"/>
                     </StackPanel>

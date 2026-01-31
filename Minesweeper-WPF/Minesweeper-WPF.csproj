@@ -11,11 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Images\GameBoard\Screenshot\Covered.png" />
-    <None Remove="hatter.png" />
-    <None Remove="icon.ico" />
-    <None Remove="update.ico" />
-    <Content Include="Assets\**\*.*">
+    <Content Include="Assets\Themes\**\*.*">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>
   </ItemGroup>
@@ -27,9 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Images\GameBoard\Screenshot\Covered.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

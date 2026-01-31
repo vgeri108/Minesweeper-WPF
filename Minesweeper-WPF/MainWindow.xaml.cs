@@ -25,6 +25,11 @@ namespace Minesweeper_WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            ClockImage.Source = new BitmapImage(Appearance.Images.Clock);
+            FlowerImage.Source = new BitmapImage(Appearance.Images.Flower);
+            BackgroundImage.ImageSource = new BitmapImage(Appearance.Images.Hatter);
+
             generator = new BoardManager(GameBoard);
 
 

@@ -46,7 +46,7 @@ namespace Minesweeper_WPF
     }
     class Configuration
     {
-        public static string CurrentTheme = "Screenshot";
+        public static string CurrentTheme = "Default";
 
         public static bool Animations = true;
         public static bool Sounds = true;
