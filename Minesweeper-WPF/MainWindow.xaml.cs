@@ -161,7 +161,11 @@ namespace Minesweeper_WPF
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)
         {
-
+            ThemeSelect themeSelect = new ThemeSelect();
+            themeSelect.Owner = this;
+            ShowInTaskbar = false;
+            themeSelect.ShowDialog();
+            ShowInTaskbar= true;
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {

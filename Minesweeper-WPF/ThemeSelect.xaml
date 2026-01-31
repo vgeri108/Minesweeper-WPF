@@ -1,0 +1,83 @@
+﻿<Window x:Class="Minesweeper_WPF.ThemeSelect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minesweeper_WPF"
+        mc:Ignorable="d"
+        Icon="/icon.ico"
+        WindowStartupLocation="CenterOwner"
+        Title="Megjelenés módosítása" Height="500" Width="500">
+    <Grid Background="#FFF0F0F0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Téma kiválasztása"/>
+        <WrapPanel x:Name="ThemeList"
+                   Background="White"
+                   Grid.Row="1"/>
+
+        <Grid Grid.Row="2" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Board" Grid.Column="0" Padding="8" Height="80">
+                <Viewbox Stretch="Uniform">
+                    <StackPanel>
+                        <Image x:Name="SelectedBoardIcon" Source="/Assets/Themes/Default/Images/GUI/SelectedImage.png" Width="45"/>
+                        <TextBlock Text="Tábla" HorizontalAlignment="Center" TextDecorations="Underline" Foreground="Blue"/>
+                        <TextBlock x:Name="BoardSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
+                    </StackPanel>
+                </Viewbox>
+            </Button>
+
+            <Button x:Name="Mines" Grid.Column="1" Padding="8" Height="80">
+                <Viewbox Stretch="Uniform">
+                    <StackPanel>
+                        <Image x:Name="SelectedMineIcon" Source="/icon.ico" Width="45"/>
+                        <TextBlock Text="Aknák" HorizontalAlignment="Center" TextDecorations="Underline" Foreground="Blue"/>
+                        <TextBlock x:Name="MinesSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
+                    </StackPanel>
+                </Viewbox>
+            </Button>
+
+            <Button x:Name="Numbers" Grid.Column="2" Padding="8" Height="80">
+                <Viewbox Stretch="Uniform">
+                    <StackPanel>
+                        <Image x:Name="SelectedNumberIcon" Source="/Assets/Themes/Default/Images/1.png" Width="45"/>
+                        <TextBlock Text="Számok" HorizontalAlignment="Center" TextDecorations="Underline" Foreground="Blue"/>
+                        <TextBlock x:Name="NumbersSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
+                    </StackPanel>
+                </Viewbox>
+            </Button>
+
+            <Button x:Name="Background" Grid.Column="3" Padding="8" Height="80">
+                <Viewbox Stretch="Uniform">
+                    <StackPanel>
+                        <Image x:Name="SelectedBackgroundIcon" Source="/Assets/Themes/Default/Images/GUI/hatter.png" Width="45"/>
+                        <TextBlock Text="Háttér" HorizontalAlignment="Center" TextDecorations="Underline" Foreground="Blue"/>
+                        <TextBlock x:Name="BackgroundSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
+                    </StackPanel>
+                </Viewbox>
+            </Button>
+
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" Margin="10">
+            <Button x:Name="Canel" Content="Mégse" Height="20" Width="120" Margin="0,0,5,0"/>
+            <Button x:Name="Save" Content="Mentés" Height="20" Width="120" Margin="5,0,0,0"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

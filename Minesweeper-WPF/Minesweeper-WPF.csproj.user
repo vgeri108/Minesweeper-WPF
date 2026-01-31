@@ -43,5 +43,8 @@
     <Compile Update="Stats.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ThemeSelect.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
