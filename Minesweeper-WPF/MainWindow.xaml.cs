@@ -26,17 +26,17 @@ namespace Minesweeper_WPF
         {
             InitializeComponent();
 
-            ClockImage.Source = new BitmapImage(Appearance.Images.Clock);
-            FlowerImage.Source = new BitmapImage(Appearance.Images.Flower);
-            BackgroundImage.ImageSource = new BitmapImage(Appearance.Images.Hatter);
-
             generator = new BoardManager(GameBoard);
-
-
+            
             JsonManager.Settings.Load();
             JsonManager.Stats.Load();
             JsonManager.Style.Load();
             JsonManager.Theme.Load();
+
+            ClockImage.Source = new BitmapImage(Appearance.Images.Clock);
+            FlowerImage.Source = new BitmapImage(Appearance.Images.Flower);
+            BackgroundImage.ImageSource = new BitmapImage(Appearance.Images.Hatter);
+
             BoardManager.Init();
 
             if (File.Exists("LastSave.mine"))
