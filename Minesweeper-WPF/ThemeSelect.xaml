@@ -8,23 +8,56 @@
         Icon="/icon.ico"
         WindowStartupLocation="CenterOwner"
         Title="Megjelenés módosítása" Height="500" Width="500">
+
+    <Window.Resources>
+        <Style x:Key="MenuButtons" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HoverBlueText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="TextDecorations" Value="Underline"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}"
+                     Value="True">
+                    <Setter Property="Foreground" Value="DarkBlue"/>
+                    <Setter Property="TextDecorations" Value="{x:Null}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid Background="#FFF0F0F0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition />
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Téma kiválasztása"/>
+        <TextBlock Text="Téma kiválasztása"
+               Margin="10,0,10,5"
+               Grid.Row="0"
+               FontWeight="Bold"
+               FontSize="16"/>
+
         <WrapPanel x:Name="ThemeList"
-                   Background="White"
-                   Grid.Row="1"/>
+               Background="White"
+               Grid.Row="1"
+               Margin="10,0,10,0"
+               VerticalAlignment="Top"/>
 
         <Grid Grid.Row="2" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -32,52 +65,51 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="Board" Grid.Column="0" Padding="8" Height="80">
+            <Button x:Name="Board" Grid.Column="0" Padding="8" Height="80" Style="{StaticResource MenuButtons}">
                 <Viewbox Stretch="Uniform">
                     <StackPanel>
                         <Image x:Name="SelectedBoardIcon" Source="/Assets/Themes/Default/Images/GUI/SelectedImage.png" Width="45"/>
-                        <TextBlock Text="Tábla" HorizontalAlignment="Center" TextDecorations="Underline" Foreground="Blue"/>
+                        <TextBlock Text="Tábla" HorizontalAlignment="Center" Style="{StaticResource HoverBlueText}"/>
                         <TextBlock x:Name="BoardSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
                     </StackPanel>
                 </Viewbox>
             </Button>
 
-            <Button x:Name="Mines" Grid.Column="1" Padding="8" Height="80">
+            <Button x:Name="Mines" Grid.Column="1" Padding="8" Height="80" Style="{StaticResource MenuButtons}">
                 <Viewbox Stretch="Uniform">
                     <StackPanel>
                         <Image x:Name="SelectedMineIcon" Source="/icon.ico" Width="45"/>
-                        <TextBlock Text="Aknák" HorizontalAlignment="Center" TextDecorations="Underline" Foreground="Blue"/>
+                        <TextBlock Text="Aknák" HorizontalAlignment="Center" Style="{StaticResource HoverBlueText}"/>
                         <TextBlock x:Name="MinesSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
                     </StackPanel>
                 </Viewbox>
             </Button>
 
-            <Button x:Name="Numbers" Grid.Column="2" Padding="8" Height="80">
+            <Button x:Name="Numbers" Grid.Column="2" Padding="8" Height="80" Style="{StaticResource MenuButtons}">
                 <Viewbox Stretch="Uniform">
                     <StackPanel>
                         <Image x:Name="SelectedNumberIcon" Source="/Assets/Themes/Default/Images/1.png" Width="45"/>
-                        <TextBlock Text="Számok" HorizontalAlignment="Center" TextDecorations="Underline" Foreground="Blue"/>
+                        <TextBlock Text="Számok" HorizontalAlignment="Center" Style="{StaticResource HoverBlueText}"/>
                         <TextBlock x:Name="NumbersSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
                     </StackPanel>
                 </Viewbox>
             </Button>
 
-            <Button x:Name="Background" Grid.Column="3" Padding="8" Height="80">
+            <Button x:Name="Background" Grid.Column="3" Padding="8" Height="80" Style="{StaticResource MenuButtons}">
                 <Viewbox Stretch="Uniform">
                     <StackPanel>
                         <Image x:Name="SelectedBackgroundIcon" Source="/Assets/Themes/Default/Images/GUI/hatter.png" Width="45"/>
-                        <TextBlock Text="Háttér" HorizontalAlignment="Center" TextDecorations="Underline" Foreground="Blue"/>
+                        <TextBlock Text="Háttér" HorizontalAlignment="Center" Style="{StaticResource HoverBlueText}"/>
                         <TextBlock x:Name="BackgroundSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
                     </StackPanel>
                 </Viewbox>
             </Button>
-
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" Margin="10">
-            <Button x:Name="Canel" Content="Mégse" Height="20" Width="120" Margin="0,0,5,0"/>
+            <Button x:Name="Canel" Content="Mégse" Height="20" Width="120" Margin="0,0,5,0" Click="Canel_Click"/>
             <Button x:Name="Save" Content="Mentés" Height="20" Width="120" Margin="5,0,0,0"/>
         </StackPanel>
-
     </Grid>
+
 </Window>
