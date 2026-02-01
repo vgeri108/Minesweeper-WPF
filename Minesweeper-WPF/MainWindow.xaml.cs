@@ -33,9 +33,7 @@ namespace Minesweeper_WPF
             JsonManager.Style.Load();
             JsonManager.Theme.Load();
 
-            ClockImage.Source = new BitmapImage(Appearance.Images.Clock);
-            FlowerImage.Source = new BitmapImage(Appearance.Images.Flower);
-            BackgroundImage.ImageSource = new BitmapImage(Appearance.Images.Hatter);
+            ApplyTheme();
 
             BoardManager.Init();
 
@@ -87,6 +85,12 @@ namespace Minesweeper_WPF
             UpdateTimerText();
         }
 
+        private void ApplyTheme()
+        {
+            ClockImage.Source = new BitmapImage(Appearance.Images.Clock);
+            FlowerImage.Source = new BitmapImage(Appearance.Images.Flower);
+            BackgroundImage.ImageSource = new BitmapImage(Appearance.Images.Hatter);
+        }
         public static bool AllCellsAreHidden()
         {
             foreach (string item in Data.visible)
@@ -166,6 +170,8 @@ namespace Minesweeper_WPF
             ShowInTaskbar = false;
             themeSelect.ShowDialog();
             ShowInTaskbar= true;
+            ApplyTheme();
+            BoardManager.BoardApplyTheme();
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {

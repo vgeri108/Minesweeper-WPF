@@ -496,6 +496,9 @@ namespace Minesweeper_WPF
             mw.ShowInTaskbar = true;
             mw.UpdateTimerText();
         }
-
+        public static void BoardApplyTheme()
+        {
+            Draw();
+        }
     }
 }
