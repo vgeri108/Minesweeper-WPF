@@ -21,7 +21,8 @@ namespace Minesweeper_WPF
         private static readonly JsonSerializerOptions jsonOptions = new()
         {
             WriteIndented = true,
-            TypeInfoResolver = new DefaultJsonTypeInfoResolver()
+            TypeInfoResolver = new DefaultJsonTypeInfoResolver(),
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
         public class Settings
         {
@@ -392,7 +393,7 @@ namespace Minesweeper_WPF
                 string dir = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme);
                 Directory.CreateDirectory(dir);
                 string filePath = Path.Combine(dir, themesPath);
-                File.WriteAllText(filePath, JsonSerializer.Serialize(Themes, jsonOptions));
+                File.WriteAllText(filePath, JsonSerializer.Serialize(Themes, jsonOptions), System.Text.Encoding.UTF8);
             }
             public static void Load()
             {
@@ -401,7 +402,7 @@ namespace Minesweeper_WPF
                 if (!File.Exists(path))
                     return;
 
-                string json = File.ReadAllText(path);
+                string json = File.ReadAllText(path, System.Text.Encoding.UTF8);
                 var Themes = JsonSerializer.Deserialize<ThemeData>(json, jsonOptions);
 
                 if (Themes == null)
