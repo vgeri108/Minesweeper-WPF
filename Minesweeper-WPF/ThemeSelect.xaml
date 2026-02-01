@@ -108,7 +108,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" Margin="10">
             <Button x:Name="Canel" Content="Mégse" Height="20" Width="120" Margin="0,0,5,0" Click="Canel_Click"/>
-            <Button x:Name="Save" Content="Mentés" Height="20" Width="120" Margin="5,0,0,0"/>
+            <Button x:Name="Save" Content="Mentés" Height="20" Width="120" Margin="5,0,0,0" Click="Save_Click"/>
         </StackPanel>
     </Grid>
 
