@@ -103,6 +103,42 @@ namespace Minesweeper_WPF
                 return new Uri(relUri, UriKind.Relative);
             }
 
+            // Resolve URI for a specific theme
+            public static Uri ResolveThemeUri(string themeName, string relativePath)
+            {
+                // Candidate base paths (order matters)
+                string themeRootCandidate = $"Assets/Themes/{themeName}";
+                string[] bases = new[]
+                {
+                    themeRootCandidate,                                           // preferred: Assets/Themes/{Theme}/<rel>
+                    $"Assets/Images/GameBoard/{themeName}",                       // alternate layout
+                    "Assets/Images",                                              // common layout
+                    "Assets"                                                      // fallback
+                };
+
+                foreach (var b in bases)
+                {
+                    string candidate = Path.Combine(b, relativePath.Replace('/', Path.DirectorySeparatorChar));
+                    string abs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, candidate);
+                    try
+                    {
+                        if (File.Exists(abs))
+                        {
+                            // return absolute file Uri
+                            return new Uri(abs, UriKind.Absolute);
+                        }
+                    }
+                    catch
+                    {
+                        // ignore and continue
+                    }
+                }
+
+                // no existing file found; return same relative path under theme root (keeps previous behaviour)
+                string relUri = $"{themeRootCandidate}/{relativePath}".Replace('\\', '/');
+                return new Uri(relUri, UriKind.Relative);
+            }
+
             public static Uri ThemeName => ResolveUri(ImageNames["ThemeName"]);
             public static Uri ThemeImage => ResolveUri(ImageNames["ThemeImage"]);
             public static Uri error => ResolveUri(ImageNames["error"]);

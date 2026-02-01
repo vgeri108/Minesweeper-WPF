@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,88 @@ namespace Minesweeper_WPF
     /// </summary>
     public partial class ThemeSelect : Window
     {
+        private string StartTheme;
+
         public ThemeSelect()
         {
             InitializeComponent();
+            StartTheme = Configuration.CurrentTheme;
+            Load();
+        }
+
+        private void Load()
+        {
+            SelectedBoardIcon.Source = new BitmapImage(Appearance.Images.Board);
+            SelectedMineIcon.Source = new BitmapImage(Appearance.Images.Mines);
+            SelectedNumberIcon.Source = new BitmapImage(Appearance.Images.Numbers);
+            SelectedBackgroundIcon.Source = new BitmapImage(Appearance.Images.Background);
+
+            BoardSelected.Text = Configuration.CurrentTheme;
+            MinesSelected.Text = Configuration.CurrentTheme;
+            NumbersSelected.Text = Configuration.CurrentTheme;
+            BackgroundSelected.Text = Configuration.CurrentTheme;
+
+            ThemeList.Children.Clear();
+            foreach (string item in ThemeFinder.GetThemeList())
+            {
+                Image img = new Image
+                {
+                    Source = new BitmapImage(Appearance.Images.ResolveThemeUri(item, Appearance.Images.ImageNames["Hatter"])),
+                    Width = 64,
+                    Height = 64,
+                    Margin = new Thickness(0, 0, 0, 5),
+                };
+
+                TextBlock text = new TextBlock
+                {
+                    Text = item,
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+
+                StackPanel panel = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                panel.Children.Add(img);
+                panel.Children.Add(text);
+
+                Button btn = new Button
+                {
+                    Content = panel,
+                    Margin = new Thickness(5),
+                    Padding = new Thickness(5),
+                    Background = null,
+                    BorderThickness = new Thickness(0),
+                    Tag = item
+                };
+                btn.Click += ThemeButton_Click;
+
+                ThemeList.Children.Add(btn);
+            }
+        }
+
+        private void ThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null && btn.Tag is string themeName)
+            {
+                Configuration.CurrentTheme = themeName;
+                Load();
+            }
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            JsonManager.Settings.Save();
+            Close();
+        }
+
+        private void Canel_Click(object sender, RoutedEventArgs e)
+        {
+            Configuration.CurrentTheme = StartTheme;
+            Close();
         }
     }
 }
