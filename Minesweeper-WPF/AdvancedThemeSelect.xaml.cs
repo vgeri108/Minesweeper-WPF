@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,42 +10,33 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
 
 namespace Minesweeper_WPF
 {
     /// <summary>
-    /// Interaction logic for ThemeSelect.xaml
+    /// Interaction logic for AdvancedThemeSelect.xaml
     /// </summary>
-    public partial class ThemeSelect : Window
+    public partial class AdvancedThemeSelect : Window
     {
-        private string StartTheme;
-
-        public ThemeSelect()
+        private string StartTheme = Configuration.CurrentTheme;
+        private Dictionary<string, string> StartThemeSet = Appearance.Images.ImageNames;
+        private string SettingsType;
+        public AdvancedThemeSelect(string SettingsType)
         {
             InitializeComponent();
-            StartTheme = Configuration.CurrentTheme;
+            this.SettingsType = SettingsType;
             Load();
         }
-
         private void Load()
         {
-            SelectedBoardIcon.Source = new BitmapImage(Appearance.Images.Board);
-            SelectedMineIcon.Source = new BitmapImage(Appearance.Images.Mines);
-            SelectedNumberIcon.Source = new BitmapImage(Appearance.Images.Numbers);
-            SelectedBackgroundIcon.Source = new BitmapImage(Appearance.Images.Background);
-
-            BoardSelected.Text = Configuration.CurrentTheme;
-            MinesSelected.Text = Configuration.CurrentTheme;
-            NumbersSelected.Text = Configuration.CurrentTheme;
-            BackgroundSelected.Text = Configuration.CurrentTheme;
-
             ThemeList.Children.Clear();
             foreach (string item in ThemeFinder.GetThemeList())
             {
                 Image img = new Image
                 {
-                    Source = new BitmapImage(Appearance.Images.ResolveThemeUri(item, Appearance.Images.ImageNames["Hatter"])),
+                    Source = new BitmapImage(Appearance.Images.ResolveThemeUri(item, Appearance.Images.ImageNames[SettingsType])),
                     Width = 64,
                     Height = 64,
                     Margin = new Thickness(0, 0, 0, 5),
@@ -81,62 +71,34 @@ namespace Minesweeper_WPF
                 ThemeList.Children.Add(btn);
             }
         }
-
         private void ThemeButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             if (btn != null && btn.Tag is string themeName)
             {
+
+                Dictionary<string, string> tmp = Appearance.Images.ImageNames;
                 Configuration.CurrentTheme = themeName;
                 JsonManager.Theme.Load();
+                string ValueToKeep = Appearance.Images.ImageNames[SettingsType];
+                Configuration.CurrentTheme = StartTheme;
+                Appearance.Images.ImageNames = tmp;
+
+                Appearance.Images.ImageNames[SettingsType] = ValueToKeep;
                 Load();
             }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            JsonManager.Settings.Save();
+            JsonManager.Style.Save();
             Close();
         }
 
         private void Canel_Click(object sender, RoutedEventArgs e)
         {
-            Configuration.CurrentTheme = StartTheme;
-            JsonManager.Settings.Save();
-            JsonManager.Theme.Load();
+            Appearance.Images.ImageNames = StartThemeSet;
             Close();
         }
-
-        //private void Board_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AdvancedThemeSelect advancedThemeSelect = new AdvancedThemeSelect("Board");
-        //    ShowInTaskbar = false;
-        //    advancedThemeSelect.ShowDialog();
-        //    ShowInTaskbar = true;
-        //}
-
-        //private void Mines_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AdvancedThemeSelect advancedThemeSelect = new AdvancedThemeSelect("Mines");
-        //    ShowInTaskbar = false;
-        //    advancedThemeSelect.ShowDialog();
-        //    ShowInTaskbar = true;
-        //}
-
-        //private void Numbers_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AdvancedThemeSelect advancedThemeSelect = new AdvancedThemeSelect("Numbers");
-        //    ShowInTaskbar = false;
-        //    advancedThemeSelect.ShowDialog();
-        //    ShowInTaskbar = true;
-        //}
-
-        //private void Background_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AdvancedThemeSelect advancedThemeSelect = new AdvancedThemeSelect("Background");
-        //    ShowInTaskbar = false;
-        //    advancedThemeSelect.ShowDialog();
-        //    ShowInTaskbar = true;
-        //}
     }
 }

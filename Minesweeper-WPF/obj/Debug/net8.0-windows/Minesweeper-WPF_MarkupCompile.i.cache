@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Geri\source\repos\Minesweeper-WPF\Minesweeper-WPF\App.xaml
-15-2102233053
+16980796743
 32-620246991
-2663883768
+27-536458395
 198-1831388575
-about.xaml;DownloadProgress.xaml;FirstStartDifficulty.xaml;GameLose.xaml;GameWin.xaml;LoadGame_OpenDialog.xaml;MainWindow.xaml;NewGame_MenuDialog.xaml;NewGame_SettingsDialog.xaml;NewInUpdate.xaml;ResetStats.xaml;SaveGame_CloseDialog.xaml;Settings.xaml;Stats.xaml;ThemeSelect.xaml;
+about.xaml;AdvancedThemeSelect.xaml;DownloadProgress.xaml;FirstStartDifficulty.xaml;GameLose.xaml;GameWin.xaml;LoadGame_OpenDialog.xaml;MainWindow.xaml;NewGame_MenuDialog.xaml;NewGame_SettingsDialog.xaml;NewInUpdate.xaml;ResetStats.xaml;SaveGame_CloseDialog.xaml;Settings.xaml;Stats.xaml;ThemeSelect.xaml;
 
 False
 

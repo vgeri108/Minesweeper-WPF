@@ -8,6 +8,7 @@ using System.Text.Json.Serialization.Metadata;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using static Minesweeper_WPF.Appearance;
+using static Minesweeper_WPF.JsonManager;
 
 namespace Minesweeper_WPF
 {
@@ -343,32 +344,43 @@ namespace Minesweeper_WPF
             {
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
                 public string SerializationTime { get; set; } = DateTime.Now.ToString();
+                public Dictionary<string, string> ImageNames { get; set; } = new();
+                public Dictionary<string, Dictionary<string, string>> AllThemes { get; set; } = new();
             }
             public static void Save()
             {
-                var Styles = new StyleData
+                var styles = new StyleData
                 {
                     JsonVersion = Version.Json,
                     SerializationTime = DateTime.Now.ToString(),
-
-                    
+                    ImageNames = Appearance.Images.ImageNames.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    AllThemes = Appearance.Images.AllThemes.ToDictionary(kv => kv.Key, kv => kv.Value),
                 };
 
-                string json = JsonSerializer.Serialize(Styles, jsonOptions);
-                File.WriteAllText(stylePath, json);
+                string json = JsonSerializer.Serialize(styles, jsonOptions);
+                File.WriteAllText(stylePath, json, System.Text.Encoding.UTF8);
             }
+
             public static void Load()
             {
                 if (!File.Exists(stylePath))
                     return;
 
-                string json = File.ReadAllText(stylePath);
-                var Styles = JsonSerializer.Deserialize<StyleData>(json, jsonOptions);
+                string json = File.ReadAllText(stylePath, Encoding.UTF8);
 
-                if (Styles == null)
+                var styles = JsonSerializer.Deserialize<StyleData>(json, jsonOptions);
+                if (styles == null)
                     return;
 
+                foreach (var kv in styles.ImageNames)
+                {
+                    Appearance.Images.ImageNames[kv.Key] = kv.Value;
+                }
 
+                foreach (var kv in styles.AllThemes)
+                {
+                    Appearance.Images.AllThemes[kv.Key] = kv.Value;
+                }
             }
         }
         public class Theme

@@ -7,6 +7,9 @@
     <Compile Update="about.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="AdvancedThemeSelect.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DownloadProgress.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

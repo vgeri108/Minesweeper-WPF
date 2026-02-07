@@ -69,7 +69,7 @@
                 <Viewbox Stretch="Uniform">
                     <StackPanel>
                         <Image x:Name="SelectedBoardIcon" Source="/Assets/Themes/Default/Images/GUI/SelectedImage.png" Width="45"/>
-                        <TextBlock Text="Tábla" HorizontalAlignment="Center" Style="{StaticResource HoverBlueText}"/>
+                        <TextBlock Text="Tábla" HorizontalAlignment="Center" FontWeight="Bold"/>
                         <TextBlock x:Name="BoardSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
                     </StackPanel>
                 </Viewbox>
@@ -79,7 +79,7 @@
                 <Viewbox Stretch="Uniform">
                     <StackPanel>
                         <Image x:Name="SelectedMineIcon" Source="/icon.ico" Width="45"/>
-                        <TextBlock Text="Aknák" HorizontalAlignment="Center" Style="{StaticResource HoverBlueText}"/>
+                        <TextBlock Text="Aknák" HorizontalAlignment="Center" FontWeight="Bold"/>
                         <TextBlock x:Name="MinesSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
                     </StackPanel>
                 </Viewbox>
@@ -89,7 +89,7 @@
                 <Viewbox Stretch="Uniform">
                     <StackPanel>
                         <Image x:Name="SelectedNumberIcon" Source="/Assets/Themes/Default/Images/1.png" Width="45"/>
-                        <TextBlock Text="Számok" HorizontalAlignment="Center" Style="{StaticResource HoverBlueText}"/>
+                        <TextBlock Text="Számok" HorizontalAlignment="Center" FontWeight="Bold"/>
                         <TextBlock x:Name="NumbersSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
                     </StackPanel>
                 </Viewbox>
@@ -99,7 +99,7 @@
                 <Viewbox Stretch="Uniform">
                     <StackPanel>
                         <Image x:Name="SelectedBackgroundIcon" Source="/Assets/Themes/Default/Images/GUI/hatter.png" Width="45"/>
-                        <TextBlock Text="Háttér" HorizontalAlignment="Center" Style="{StaticResource HoverBlueText}"/>
+                        <TextBlock Text="Háttér" HorizontalAlignment="Center" FontWeight="Bold"/>
                         <TextBlock x:Name="BackgroundSelected" HorizontalAlignment="Center" Text="Alapértelmezett"/>
                     </StackPanel>
                 </Viewbox>

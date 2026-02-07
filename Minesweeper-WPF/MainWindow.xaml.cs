@@ -32,6 +32,7 @@ namespace Minesweeper_WPF
             JsonManager.Stats.Load();
             JsonManager.Style.Load();
             JsonManager.Theme.Load();
+            JsonManager.Style.Load();
 
             ApplyTheme();
 
@@ -62,8 +63,8 @@ namespace Minesweeper_WPF
                 JsonManager.Settings.Save();
                 Statistics.GenerateStatsIfNotExists();
                 JsonManager.Stats.Save();
-                JsonManager.Style.Save();
                 JsonManager.Theme.Save();
+                JsonManager.Style.Save();
             }
             if (Configuration.AutomaticUpdateSearch)
             {
