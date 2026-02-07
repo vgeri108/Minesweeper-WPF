@@ -16,4 +16,7 @@ Hátralévő feladatok:
 
 ## Képernyőképek
 
-![Pálya](Screenshots/Flag2512061.png)
+![Pálya](Screenshots/Start260207a.png)
+![Beállítások](Screenshots/Settings260207a.png)
+![Témák](Screenshots/Themes260207a.png)
+![Statisztikák](Screenshots/Stats260207a.png)
