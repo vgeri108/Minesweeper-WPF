@@ -138,11 +138,13 @@ namespace Minesweeper_WPF
         }
         private void Stats_Click(object sender, RoutedEventArgs e)
         {
+            Time.StopTimer();
             Stats stats = new Stats();
             stats.Owner = this;
             ShowInTaskbar = false;
             stats.ShowDialog();
             ShowInTaskbar = true;
+            Time.StartTimer(Time.ElapsedSeconds);
         }
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
@@ -166,6 +168,7 @@ namespace Minesweeper_WPF
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)
         {
+            Time.StopTimer();
             ThemeSelect themeSelect = new ThemeSelect();
             themeSelect.Owner = this;
             ShowInTaskbar = false;
@@ -173,6 +176,7 @@ namespace Minesweeper_WPF
             ShowInTaskbar= true;
             ApplyTheme();
             BoardManager.BoardApplyTheme();
+            Time.StartTimer(Time.ElapsedSeconds);
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
@@ -184,11 +188,13 @@ namespace Minesweeper_WPF
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
+            Time.StopTimer();
             ShowInTaskbar = false;
             about About = new about();
             About.Owner = this;
             About.ShowDialog();
             ShowInTaskbar = true;
+            Time.StartTimer(Time.ElapsedSeconds);
         }
         private void MoreGames_Click(object sender, RoutedEventArgs e)
         {
