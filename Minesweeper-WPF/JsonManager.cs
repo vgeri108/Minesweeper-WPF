@@ -354,7 +354,6 @@ namespace Minesweeper_WPF
                     JsonVersion = Version.Json,
                     SerializationTime = DateTime.Now.ToString(),
                     ImageNames = Appearance.Images.ImageNames.ToDictionary(kv => kv.Key, kv => kv.Value),
-                    AllThemes = Appearance.Images.AllThemes.ToDictionary(kv => kv.Key, kv => kv.Value),
                 };
 
                 string json = JsonSerializer.Serialize(styles, jsonOptions);
@@ -375,11 +374,6 @@ namespace Minesweeper_WPF
                 foreach (var kv in styles.ImageNames)
                 {
                     Appearance.Images.ImageNames[kv.Key] = kv.Value;
-                }
-
-                foreach (var kv in styles.AllThemes)
-                {
-                    Appearance.Images.AllThemes[kv.Key] = kv.Value;
                 }
             }
         }
