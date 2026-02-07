@@ -37,38 +37,38 @@ namespace Minesweeper_WPF
             string edition = GetWindowsEdition();
             var os = Environment.OSVersion;
             var v = os.Version;
-            Uri winIcon = new Uri("Assets/Images/GUI/Icons/windows.png", UriKind.Relative);
+            Uri winIcon = Appearance.Images.windows;
             string winName;
 
             if (v.Major == 6 && v.Minor == 1)
             {
                 winName = "Windows 7";
-                winIcon = new Uri("/Assets/Images/GUI/Icons/windows7.png", UriKind.Relative);
+                winIcon = Appearance.Images.windows7;
             }
             else if (v.Major == 6 && v.Minor == 2)
             {
                 winName = "Windows 8";
-                winIcon = new Uri("/Assets/Images/GUI/Icons/windows8.png", UriKind.Relative);
+                winIcon = Appearance.Images.windows8;
             }
             else if (v.Major == 6 && v.Minor == 3)
             {
                 winName = "Windows 8.1";
-                winIcon = new Uri("/Assets/Images/GUI/Icons/windows8.png", UriKind.Relative);
+                winIcon = Appearance.Images.windows8;
             }
             else if (v.Major == 10 && v.Build < 22000)
             {
                 winName = "Windows 10";
-                winIcon = new Uri("/Assets/Images/GUI/Icons/windows10.png", UriKind.Relative);
+                winIcon = Appearance.Images.windows10;
             }
             else if (v.Major == 10 && v.Build >= 22000)
             {
                 winName = "Windows 11";
-                winIcon = new Uri("/Assets/Images/GUI/Icons/windows11.png", UriKind.Relative);
+                winIcon = Appearance.Images.windows11;
             }
             else
             {
                 winName = "Ismeretlen Windows";
-                winIcon = new Uri("/Assets/Images/GUI/Icons/windows.png", UriKind.Relative);
+                winIcon = Appearance.Images.windows;
 
             }
 
