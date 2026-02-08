@@ -1,12 +1,8 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.4.1
+Verzió: Alpha 1.4.2
 
 === Frissítések ===
-Apró technikai változtatások:
- => .NET10-es verzió
- => Forráskód X és Y sorrend javítva, hogy jobban átlátható legyen
- => Nyerés ellenőrzés és kép betöltés apró optimalizálása
-
-!!! FONTOS !!!
-Ez a verzió nem fogja tudni betölteni a régebbi játékok mentéseit!
+Apró hibajavítások:
+ => Issue #3: Zászlók nem tűnnek el kezdéskor
+ => Issue #17: Statisztikák listája automatikus méret

@@ -24,6 +24,7 @@ namespace Minesweeper_WPF
 
 
         private static bool newGame = true;
+        private static bool firstClick = false;
         public static bool replayGame = false;
         public static bool LoadedGame = false;
 
@@ -106,7 +107,7 @@ namespace Minesweeper_WPF
                     for (int y = 0; y < Data.akna.GetLength(1); y++)
                     {
                         Data.akna[x, y] = semmi;
-                        Data.visible[x, y] = "false";
+                        if (Data.visible[x,y] != "flag") Data.visible[x, y] = "false";
                     }
                 }
                 for (int i = 0; i < Data.aknakszama; i++)
@@ -296,6 +297,7 @@ namespace Minesweeper_WPF
                             }
                         }
                         newGame = false;
+                        firstClick = false;
                         replayGame = false;
                     }
 
@@ -329,12 +331,13 @@ namespace Minesweeper_WPF
                     if (Data.akna == null || Data.visible == null) return;
                     if (x < 0 || x >= Data.akna.GetLength(0) || y < 0 || y >= Data.akna.GetLength(1)) return;
 
-                    if (newGame)
+                    if (firstClick)
                     {
                         Statistics.PlayedGames[Statistics.currentMode]++;
                         Statistics.GenerateStatsIfNotExists();
                         JsonManager.Stats.Save();
                         if (!LoadedGame) Time.StartTimer();
+                        firstClick = false;
                     }
                     LoadedGame = false;
                     if (Data.visible[x, y] == "false")

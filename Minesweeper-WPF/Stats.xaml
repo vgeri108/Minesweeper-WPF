@@ -26,7 +26,7 @@
                      SelectionChanged="Difficulties_SelectionChanged"
                      VerticalAlignment="Top"
                      HorizontalAlignment="Left"
-                     Height="70" Width="150"/>
+                     Height="Auto" Width="150"/>
 
             <GroupBox Grid.Column="1"
                       Header="Legjobb idők" Margin="15,0,15,0"
