@@ -1,17 +1,12 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.4: Témaváltás
+Verzió: Alpha 1.4.1
 
 === Frissítések ===
-Új funkciók:
- => Témaváltás ablak
-	=> Új Assets mappastruktúra
-	=> Témák listázása
-	=> Témánkénti config file
-	=> Kis előnézet a témákhoz
-
-Kisebb változtatások:
- => Az időmérő áll addig amíg valamilyen ablak meg van nyitva
-
 Apró technikai változtatások:
- => A felületen megjelenő képek a ThemeConfig.json alapján vannak betöltve
+ => .NET10-es verzió
+ => Forráskód X és Y sorrend javítva, hogy jobban átlátható legyen
+ => Nyerés ellenőrzés és kép betöltés apró optimalizálása
+
+!!! FONTOS !!!
+Ez a verzió nem fogja tudni betölteni a régebbi játékok mentéseit!
