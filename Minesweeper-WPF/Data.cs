@@ -32,9 +32,9 @@ namespace Minesweeper_WPF
 
         public static void ResizeBoard()
         {
-            akna = new string[meretM, meretSZ];
-            visible = new string[meretM, meretSZ];
-            Statistics.currentMode = $"{meretM}_{meretSZ}_{aknakszama}";
+            akna = new string[meretSZ, meretM];
+            visible = new string[meretSZ, meretM];
+            Statistics.currentMode = $"{meretSZ}_{meretM}_{aknakszama}";
             if (!Statistics.PlayedGames.ContainsKey(Statistics.currentMode))
             {
                 Statistics.Modes.Add(Statistics.currentMode);
@@ -125,7 +125,7 @@ namespace Minesweeper_WPF
             
             List<int> Times5 = new List<int>();
             List<string> Dates5 = new List<string>();
-            int Max = Times[currentMode].Count < 5 ? Times.Count : 5;
+            int Max = Times[currentMode].Count < 5 ? Times[currentMode].Count : 5;
             for (int i = 0; i < Max; i++)
             {
                 Times5.Add(Times[currentMode][i]);

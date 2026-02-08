@@ -279,8 +279,8 @@ namespace Minesweeper_WPF
                 {
                     for (int y = 0; y < Data.akna.GetLength(1); y++)
                     {
-                        Games.Akna[$"{y},{x}"] = Data.akna[y, x];
-                        Games.Visible[$"{y},{x}"] = Data.visible[y, x];
+                        Games.Akna[$"{x},{y}"] = Data.akna[x, y];
+                        Games.Visible[$"{x},{y}"] = Data.visible[x, y];
                     }
                 }
 
@@ -323,9 +323,9 @@ namespace Minesweeper_WPF
                     Data.visible[x, y] = kv.Value;
                 }
 
-                for (int x = 0; x < Games.meretM; x++)
+                for (int x = 0; x < Games.meretSZ; x++)
                 {
-                    for (int y = 0; y < Games.meretSZ; y++)
+                    for (int y = 0; y < Games.meretM; y++)
                     {
                         if (Data.akna[x, y] == null)
                             Data.akna[x, y] = Appearance.Characters.semmi;

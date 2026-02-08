@@ -42,6 +42,7 @@ namespace Minesweeper_WPF
             {
                 if (!Configuration.AlwaysContinueSavedGame)
                 {
+                    Show();
                     ShowInTaskbar = false;
                     LoadGame_OpenDialog loadGame_OpenDialog = new LoadGame_OpenDialog();
                     loadGame_OpenDialog.Owner = this;

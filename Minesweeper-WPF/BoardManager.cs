@@ -67,11 +67,11 @@ namespace Minesweeper_WPF
         }
         private static void InitGenerate()
         {
-            for (int y = 0; y < Data.meretM; y++)
+            for (int x = 0; x < Data.visible.GetLength(0); x++)
             {
-                for (int x = 0; x < Data.meretSZ; x++)
+                for (int y = 0; y < Data.visible.GetLength(1); y++)
                 {
-                    Data.visible[y, x] = "false";
+                    Data.visible[x, y] = "false";
                 }
             }
 
@@ -81,9 +81,9 @@ namespace Minesweeper_WPF
             gameBoard.Rows = Data.meretM;
             gameBoard.Columns = Data.meretSZ;
 
-            for (int y = 0; y < Data.meretM; y++)
+            for (int y = 0; y < Data.akna.GetLength(1); y++)
             {
-                for (int x = 0; x < Data.meretSZ; x++)
+                for (int x = 0; x < Data.akna.GetLength(0); x++)
                 {
                     AddButton(Appearance.Images.fedes, x, y);
                 }
@@ -101,12 +101,12 @@ namespace Minesweeper_WPF
             Random random = new Random();
             for (int tries = 0; tries < 1000 && !siker; tries++)
             {
-                for (int i = 0; i < Data.akna.GetLength(0); i++)
+                for (int x = 0; x < Data.akna.GetLength(0); x++)
                 {
-                    for (int j = 0; j < Data.akna.GetLength(1); j++)
+                    for (int y = 0; y < Data.akna.GetLength(1); y++)
                     {
-                        Data.akna[i, j] = semmi;
-                        Data.visible[i, j] = "false";
+                        Data.akna[x, y] = semmi;
+                        Data.visible[x, y] = "false";
                     }
                 }
                 for (int i = 0; i < Data.aknakszama; i++)
@@ -114,71 +114,65 @@ namespace Minesweeper_WPF
                     int x, y;
                     do
                     {
-                        x = random.Next(0, Data.meretSZ);
-                        y = random.Next(0, Data.meretM);
-                    } while ((Data.akna[y, x] != semmi) || (x == select_x && y == select_y));
-                    Data.akna[y, x] = minemark;
+                        x = random.Next(0, Data.akna.GetLength(0));
+                        y = random.Next(0, Data.akna.GetLength(1));
+                    } while ((Data.akna[x, y] != semmi) || (x == select_x && y == select_y));
+                    Data.akna[x, y] = minemark;
                 }
 
                 int count = 0;
-
-                for (int x = 0; x < Data.meretSZ; x++)
+                int maxX = Data.akna.GetLength(0);
+                int maxY = Data.akna.GetLength(1);
+                for (int x = 0; x < maxX; x++)
                 {
-                    for (int y = 0; y < Data.meretM; y++)
+                    for (int y = 0; y < maxY; y++)
                     {
-                        if (Data.akna[y, x] != minemark)
+                        if (Data.akna[x, y] != minemark)
                         {
                             count = 0;
-                            if (y - 1 >= 0) // fel (up)
-                            {
-                                if (Data.akna[y - 1, x] == minemark) count++;
-                            }
-                            if (x - 1 >= 0) // balra (left)
-                            {
-                                if (Data.akna[y, x - 1] == minemark) count++;
-                            }
-                            if ((y - 1 >= 0) && (x - 1 >= 0)) // balra fel (up-left)
-                            {
-                                if (Data.akna[y - 1, x - 1] == minemark) count++;
-                            }
-                            if (y + 1 < Data.meretM) // le (down)
-                            {
-                                if (Data.akna[y + 1, x] == minemark) count++;
-                            }
-                            if ((y - 1 >= 0) && (x + 1 < Data.meretSZ)) // jobbra fel (up-right)
-                            {
-                                if (Data.akna[y - 1, x + 1] == minemark) count++;
-                            }
-                            if (x + 1 < Data.meretSZ) // jobbra (right)
-                            {
-                                if (Data.akna[y, x + 1] == minemark) count++;
-                            }
-                            if ((y + 1 < Data.meretM) && (x - 1 >= 0)) // balra le (down-left)
-                            {
-                                if (Data.akna[y + 1, x - 1] == minemark) count++;
-                            }
-                            if ((y + 1 < Data.meretM) && (x + 1 < Data.meretSZ)) // jobbra le (down-right)
-                            {
-                                if (Data.akna[y + 1, x + 1] == minemark) count++;
-                            }
+
+                            // fel
+                            if (y - 1 >= 0 && Data.akna[x, y - 1] == minemark) count++;
+
+                            // le
+                            if (y + 1 < maxY && Data.akna[x, y + 1] == minemark) count++;
+
+                            // bal
+                            if (x - 1 >= 0 && Data.akna[x - 1, y] == minemark) count++;
+
+                            // jobb
+                            if (x + 1 < maxX && Data.akna[x + 1, y] == minemark) count++;
+
+                            // bal-fel
+                            if (x - 1 >= 0 && y - 1 >= 0 && Data.akna[x - 1, y - 1] == minemark) count++;
+
+                            // jobb-fel
+                            if (x + 1 < maxX && y - 1 >= 0 && Data.akna[x + 1, y - 1] == minemark) count++;
+
+                            // bal-le
+                            if (x - 1 >= 0 && y + 1 < maxY && Data.akna[x - 1, y + 1] == minemark) count++;
+
+                            // jobb-le
+                            if (x + 1 < maxX && y + 1 < maxY && Data.akna[x + 1, y + 1] == minemark) count++;
+
                             if (count == 0)
                             {
-                                Data.akna[y, x] = semmi;
+                                Data.akna[x, y] = semmi;
                             }
                             else
                             {
-                                Data.akna[y, x] = Convert.ToString(count);
+                                Data.akna[x, y] = Convert.ToString(count);
                             }
                         }
                     }
                 }
 
                 vanUres = false;
-                for (int x = 0; x < Data.meretSZ; x++)
+                for (int x = 0; x < Data.akna.GetLength(0); x++)
                 {
-                    for (int y = 0; y < Data.meretM; y++)
+                    for (int y = 0; y < Data.akna.GetLength(1); y++)
                     {
-                        if (Data.akna[y, x] == semmi)
+                        if (Data.akna[x, y] == semmi)
                         {
                             vanUres = true;
                             break;
@@ -187,11 +181,11 @@ namespace Minesweeper_WPF
                     if (vanUres) break;
                 }
 
-                if (Data.akna[select_y, select_x] == semmi)
+                if (Data.akna[select_x, select_y] == semmi)
                 {
                     siker = true;
                 }
-                else if (!vanUres && Data.akna[select_y, select_x] != minemark)
+                else if (!vanUres && Data.akna[select_x, select_y] != minemark)
                 {
                     siker = true;
                 }
@@ -201,81 +195,57 @@ namespace Minesweeper_WPF
         }
         public static void Draw()
         {
-            NyeresEllenorzes();
             gameBoard.Children.Clear();
             gameBoard.Rows = Data.meretM;
             gameBoard.Columns = Data.meretSZ;
-            for (int y = 0; y < Data.meretM; y++)
+
+            for (int y = 0; y < Data.akna.GetLength(1); y++)
             {
-                for (int x = 0; x < Data.meretSZ; x++)
+                for (int x = 0; x < Data.akna.GetLength(0); x++)
                 {
-                    Uri CellImage = Appearance.Images.error; //ha nem lenne valami hiba miatt kép
-                    string Cell = Data.akna[y, x];
-                    if (Data.visible[y, x] == "true" || gameover)
+                    Uri CellImage = Appearance.Images.error;
+                    string Cell = Data.akna[x, y];
+
+                    if (Data.visible[x, y] == "true" || gameover)
                     {
-                        if (Cell == "1")
+                        switch (Cell)
                         {
-                            CellImage = Appearance.Images._1;
-                        }
-                        else if (Cell == "2")
-                        {
-                            CellImage = Appearance.Images._2;
-                        }
-                        else if (Cell == "3")
-                        {
-                            CellImage = Appearance.Images._3;
-                        }
-                        else if (Cell == "4")
-                        {
-                            CellImage = Appearance.Images._4;
-                        }
-                        else if (Cell == "5")
-                        {
-                            CellImage = Appearance.Images._5;
-                        }
-                        else if (Cell == "6")
-                        {
-                            CellImage = Appearance.Images._6;
-                        }
-                        else if (Cell == "7")
-                        {
-                            CellImage = Appearance.Images._7;
-                        }
-                        else if (Cell == "8")
-                        {
-                            CellImage = Appearance.Images._8;
-                        }
-                        else if (Cell == Appearance.Characters.semmi)
-                        {
-                            CellImage = Appearance.Images.semmi;
-                        }
-                        else if (Cell == Appearance.Characters.akna)
-                        {
-                            CellImage = Appearance.Images.akna;
+                            case "1": CellImage = Appearance.Images._1; break;
+                            case "2": CellImage = Appearance.Images._2; break;
+                            case "3": CellImage = Appearance.Images._3; break;
+                            case "4": CellImage = Appearance.Images._4; break;
+                            case "5": CellImage = Appearance.Images._5; break;
+                            case "6": CellImage = Appearance.Images._6; break;
+                            case "7": CellImage = Appearance.Images._7; break;
+                            case "8": CellImage = Appearance.Images._8; break;
+                            case var s when s == Appearance.Characters.semmi: CellImage = Appearance.Images.semmi; break;
+                            case var s when s == Appearance.Characters.akna: CellImage = Appearance.Images.akna; break;
                         }
                         AddButton(CellImage, x, y);
                     }
-                    else if (Data.visible[y, x] == "flag")
+                    else
                     {
-                        AddButton(Appearance.Images.zaszlozott, x, y);
-                    }
-                    else if (Data.visible[y, x] == "question")
-                    {
-                        AddButton(Appearance.Images.kerdojel, x, y);
-                    }
-                    else if (Data.visible[y, x] == "false")
-                    {
-                        AddButton(Appearance.Images.fedes, x, y);
+                        switch (Data.visible[x, y])
+                        {
+                            case "false": AddButton(Appearance.Images.fedes, x, y); break;
+                            case "flag": AddButton(Appearance.Images.zaszlozott, x, y); break;
+                            case "question": AddButton(Appearance.Images.kerdojel, x, y); break;
+                        }
                     }
                 }
             }
         }
+
         private static void Felfedes(int x, int y)
         {
-            if (x < 0 || x >= Data.meretSZ || y < 0 || y >= Data.meretM) return;
-            if (Data.visible[y, x] == "true" || Data.visible[y, x] == "flag") return;
-            Data.visible[y, x] = "true";
-            if (Data.akna[y, x] == semmi)
+            int maxX = Data.visible.GetLength(0);
+            int maxY = Data.visible.GetLength(1);
+
+            if (x < 0 || x >= maxX || y < 0 || y >= maxY) return;
+
+            if (Data.visible[x, y] == "true" || Data.visible[x, y] == "flag") return;
+            Data.visible[x, y] = "true";
+            if (Data.akna[x, y] == semmi)
             {
                 Felfedes(x - 1, y); //fel
                 Felfedes(x + 1, y); //le
@@ -299,7 +269,7 @@ namespace Minesweeper_WPF
                     int y = (int)pos.Y;
 
                     if (Data.akna == null || Data.visible == null) return;
-                    if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
+                    if (x < 0 || x >= Data.akna.GetLength(0) || y < 0 || y >= Data.akna.GetLength(1)) return;
 
                     if (newGame)
                     {
@@ -317,11 +287,11 @@ namespace Minesweeper_WPF
                         }
                         else
                         {
-                            for (int _y = 0; _y < Data.meretM; _y++)
+                            for (int _x = 0; _x < Data.visible.GetLength(0); _x++)
                             {
-                                for (int _x = 0; _x < Data.meretSZ; _x++)
+                                for (int _y = 0; _y < Data.visible.GetLength(1); _y++)
                                 {
-                                    Data.visible[_y, _x] = "false";
+                                    Data.visible[_x, _y] = "false";
                                 }
                             }
                         }
@@ -329,7 +299,7 @@ namespace Minesweeper_WPF
                         replayGame = false;
                     }
 
-                    if (Data.akna[y, x] == minemark)
+                    if (Data.akna[x, y] == minemark)
                     {
                         gameover = true;
                         gameover_type = "akna";
@@ -337,7 +307,7 @@ namespace Minesweeper_WPF
                     }
                     Felfedes(x, y);
                     Draw();
-
+                    NyeresEllenorzes();
                     if (gameover)
                     {
                         ShowGameOverDialog();
@@ -357,7 +327,7 @@ namespace Minesweeper_WPF
                     int y = (int)pos.Y;
 
                     if (Data.akna == null || Data.visible == null) return;
-                    if (y < 0 || y >= Data.akna.GetLength(0) || x < 0 || x >= Data.akna.GetLength(1)) return;
+                    if (x < 0 || x >= Data.akna.GetLength(0) || y < 0 || y >= Data.akna.GetLength(1)) return;
 
                     if (newGame)
                     {
@@ -367,21 +337,22 @@ namespace Minesweeper_WPF
                         if (!LoadedGame) Time.StartTimer();
                     }
                     LoadedGame = false;
-                    if (Data.visible[y, x] == "false")
+                    if (Data.visible[x, y] == "false")
                     {
-                        Data.visible[y, x] = "flag";
-                        Flag(y, x);
+                        Data.visible[x, y] = "flag";
+                        Flag();
                     }
-                    else if (Data.visible[y, x] == "flag")
+                    else if (Data.visible[x, y] == "flag")
                     {
-                        Data.visible[y, x] = "question";
-                        RemoveFlag(y, x);
+                        Data.visible[x, y] = "question";
+                        RemoveFlag();
                     }
-                    else if (Data.visible[y, x] == "question")
+                    else if (Data.visible[x, y] == "question")
                     {
-                        Data.visible[y, x] = "false";
+                        Data.visible[x, y] = "false";
                     }
                     Draw();
+                    NyeresEllenorzes();
                 }
             }
         }
@@ -407,7 +378,7 @@ namespace Minesweeper_WPF
 
             gameBoard.Children.Add(btn);
         }
-        private static void Flag(int y, int x)
+        private static void Flag()
         {
             Data.flagCount++;
 
@@ -416,7 +387,7 @@ namespace Minesweeper_WPF
                 mw.MineCounterUpdate(Data.aknakszama - Data.flagCount);
             }
         }
-        private static void RemoveFlag(int y, int x)
+        private static void RemoveFlag()
         {
             Data.flagCount--;
 
@@ -427,11 +398,11 @@ namespace Minesweeper_WPF
         }
         private static void NyeresEllenorzes()
         {
-            for (int y = 0; y < Data.akna.GetLength(0); y++)
+            for (int x = 0; x < Data.akna.GetLength(0); x++)
             {
-                for (int x = 0; x < Data.akna.GetLength(1); x++)
+                for (int y = 0; y < Data.akna.GetLength(1); y++)
                 {
-                    if (Data.akna[y, x] != minemark && Data.visible[y, x] != "true")
+                    if (Data.akna[x, y] != minemark && Data.visible[x, y] != "true")
                     {
                         return;
                     }
