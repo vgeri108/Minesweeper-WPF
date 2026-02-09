@@ -24,7 +24,7 @@ namespace Minesweeper_WPF
 
 
         private static bool newGame = true;
-        private static bool firstClick = false;
+        private static bool firstClick = true;
         public static bool replayGame = false;
         public static bool LoadedGame = false;
 
@@ -54,12 +54,15 @@ namespace Minesweeper_WPF
                 newGame = true; //az időmérő nullázódik ha true és új generálás
                                 //replayGame ---- ha true akkor az időmérő nullázódik, de nem lesz új pálya
                 gameover = false;
+                newGame = true;
+                firstClick = true;
                 gameover_type = "-";
                 InitGenerate();
             }
             else
             {
                 newGame = false;
+                firstClick = false;
                 Draw();
                 int LoadedTime = Time.ElapsedSeconds;
                 Time.StopTimer();
@@ -277,7 +280,7 @@ namespace Minesweeper_WPF
                         Statistics.GenerateStatsIfNotExists();
                         Statistics.PlayedGames[Statistics.currentMode]++;
                         JsonManager.Stats.Save();
-                        if (!LoadedGame)
+                        if (!LoadedGame && firstClick)
                         {
                             Time.StartTimer();
                         }
@@ -297,6 +300,7 @@ namespace Minesweeper_WPF
                             }
                         }
                         newGame = false;
+                        firstClick = false;
                         firstClick = false;
                         replayGame = false;
                     }

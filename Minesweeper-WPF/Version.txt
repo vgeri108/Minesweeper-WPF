@@ -1,8 +1,7 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.4.2
+Verzió: Alpha 1.4.3
 
 === Frissítések ===
 Apró hibajavítások:
- => Issue #3: Zászlók nem tűnnek el kezdéskor
- => Issue #17: Statisztikák listája automatikus méret
+ => Issue #17: Statisztikák listája automatikus méret (2. javítás)
