@@ -261,6 +261,7 @@ namespace Minesweeper_WPF
                 public int ElapsedSeconds { get; set; } = 1;
                 public Dictionary<string, string> Akna { get; set; } = new();
                 public Dictionary<string, string> Visible { get; set; } = new();
+                public Dictionary<string, string> CoverTexture { get; set; } = new();
             }
             public static void Save()
             {
@@ -281,6 +282,7 @@ namespace Minesweeper_WPF
                     {
                         Games.Akna[$"{x},{y}"] = Data.akna[x, y];
                         Games.Visible[$"{x},{y}"] = Data.visible[x, y];
+                        Games.CoverTexture[$"{x},{y}"] = Data.coverTexture[x, y].ToString();
                     }
                 }
 
@@ -323,6 +325,14 @@ namespace Minesweeper_WPF
                     Data.visible[x, y] = kv.Value;
                 }
 
+                foreach (var kv in Games.CoverTexture)
+                {
+                    var p = kv.Key.Split(',');
+                    int x = int.Parse(p[0]);
+                    int y = int.Parse(p[1]);
+                    Data.coverTexture[x, y] = kv.Value;
+                }
+
                 for (int x = 0; x < Games.meretSZ; x++)
                 {
                     for (int y = 0; y < Games.meretM; y++)
@@ -345,7 +355,7 @@ namespace Minesweeper_WPF
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
                 public string SerializationTime { get; set; } = DateTime.Now.ToString();
                 public Dictionary<string, string> ImageNames { get; set; } = new();
-                public Dictionary<string, Dictionary<string, string>> AllThemes { get; set; } = new();
+                public List<string> CoverTextures{ get; set; } = new();
             }
             public static void Save()
             {
@@ -354,6 +364,7 @@ namespace Minesweeper_WPF
                     JsonVersion = Version.Json,
                     SerializationTime = DateTime.Now.ToString(),
                     ImageNames = Appearance.Images.ImageNames.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    CoverTextures = Appearance.Images.CoverTextureList
                 };
 
                 string json = JsonSerializer.Serialize(styles, jsonOptions);
@@ -375,6 +386,7 @@ namespace Minesweeper_WPF
                 {
                     Appearance.Images.ImageNames[kv.Key] = kv.Value;
                 }
+                Appearance.Images.CoverTextureList = styles.CoverTextures;
             }
         }
         public class Theme
@@ -384,6 +396,7 @@ namespace Minesweeper_WPF
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
                 public string SerializationTime { get; set; } = DateTime.Now.ToString();
                 public Dictionary<string, string> ImageNames { get; set; } = new();
+                public List<string> CoverTextures { get; set; } = new();
             }
             public static void Save()
             {
@@ -393,6 +406,7 @@ namespace Minesweeper_WPF
                     SerializationTime = DateTime.Now.ToString(),
 
                     ImageNames = Appearance.Images.ImageNames.ToDictionary(kv => kv.Key, kv => kv.Value),
+                    CoverTextures = Appearance.Images.CoverTextureList
                 };
 
                 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
@@ -421,6 +435,7 @@ namespace Minesweeper_WPF
                     else
                         Appearance.Images.ImageNames.Add(kv.Key, kv.Value);
                 }
+                Appearance.Images.CoverTextureList = Themes.CoverTextures;
             }
         }
     }

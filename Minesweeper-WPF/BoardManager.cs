@@ -21,7 +21,7 @@ namespace Minesweeper_WPF
             gameBoard = grid;
         }
 
-
+        private static readonly Random r = new Random();
 
         private static bool newGame = true;
         private static bool firstClick = true;
@@ -57,6 +57,7 @@ namespace Minesweeper_WPF
                 newGame = true;
                 firstClick = true;
                 gameover_type = "-";
+                RandomizeCover();
                 InitGenerate();
             }
             else
@@ -89,7 +90,7 @@ namespace Minesweeper_WPF
             {
                 for (int x = 0; x < Data.akna.GetLength(0); x++)
                 {
-                    AddButton(Appearance.Images.fedes, x, y);
+                    AddButton(new Uri($"Assets/Themes/{Configuration.CurrentTheme}/{Data.coverTexture[x,y]}", UriKind.Relative), x, y);
                 }
             }
 
@@ -102,7 +103,6 @@ namespace Minesweeper_WPF
         {
             bool vanUres;
             bool siker = false;
-            Random random = new Random();
             for (int tries = 0; tries < 1000 && !siker; tries++)
             {
                 for (int x = 0; x < Data.akna.GetLength(0); x++)
@@ -118,8 +118,8 @@ namespace Minesweeper_WPF
                     int x, y;
                     do
                     {
-                        x = random.Next(0, Data.akna.GetLength(0));
-                        y = random.Next(0, Data.akna.GetLength(1));
+                        x = r.Next(0, Data.akna.GetLength(0));
+                        y = r.Next(0, Data.akna.GetLength(1));
                     } while ((Data.akna[x, y] != semmi) || (x == select_x && y == select_y));
                     Data.akna[x, y] = minemark;
                 }
@@ -231,7 +231,7 @@ namespace Minesweeper_WPF
                     {
                         switch (Data.visible[x, y])
                         {
-                            case "false": AddButton(Appearance.Images.fedes, x, y); break;
+                            case "false": AddButton(new Uri($"Assets/Themes/{Configuration.CurrentTheme}/{Data.coverTexture[x,y]}", UriKind.Relative), x, y); break;
                             case "flag": AddButton(Appearance.Images.zaszlozott, x, y); break;
                             case "question": AddButton(Appearance.Images.kerdojel, x, y); break;
                         }
@@ -300,7 +300,6 @@ namespace Minesweeper_WPF
                             }
                         }
                         newGame = false;
-                        firstClick = false;
                         firstClick = false;
                         replayGame = false;
                     }
@@ -476,7 +475,27 @@ namespace Minesweeper_WPF
         }
         public static void BoardApplyTheme()
         {
+            RandomizeCover();
             Draw();
+        }
+        private static void RandomizeCover()
+        {
+            for (int x = 0; x < Data.coverTexture.GetLength(0); x++)
+            {
+                for (int y = 0; y < Data.coverTexture.GetLength(1); y++)
+                {
+                    if (Appearance.Images.CoverTextureList.Count > 0)
+                    {
+                        Data.coverTexture[x, y] = Appearance.Images.CoverTextureList[r.Next(0, Appearance.Images.CoverTextureList.Count)];
+                    }
+                    else
+                    {
+                        Data.coverTexture[x, y] = Appearance.Images.ImageNames["fedes"];
+                    }
+                    Debug.Write(Data.coverTexture[x, y] + ",");
+                }
+                Debug.WriteLine("");
+            }
         }
     }
 }

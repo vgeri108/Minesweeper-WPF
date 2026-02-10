@@ -64,6 +64,7 @@ namespace Minesweeper_WPF
                 { "Numbers", "Images/1.png" },
                 { "Background", "Images/GUI/hatter.png" },
             };
+            public static List<string> CoverTextureList = new List<string>();
 
             // Try resolving the path to an existing file in several likely locations under the app output folder.
             // If a matching file is found, return an absolute Uri to that file (so BitmapImage can load reliably).

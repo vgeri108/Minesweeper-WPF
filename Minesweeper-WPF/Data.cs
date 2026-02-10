@@ -17,11 +17,12 @@ namespace Minesweeper_WPF
 
         public static string[,] akna;
         public static string[,] visible;
+        public static string[,] coverTexture;
 
         public static int flagCount = 0;
 
-        public static int LastMeretM = 9;
         public static int LastMeretSZ = 9;
+        public static int LastMeretM = 9;
         public static int LastAknakszama = 10;
 
         public static bool ApplyOnNextGame = false; //ha true akkor az alábbi beállítások fogják felülírni a feljebbi értékeket
@@ -34,6 +35,7 @@ namespace Minesweeper_WPF
         {
             akna = new string[meretSZ, meretM];
             visible = new string[meretSZ, meretM];
+            coverTexture = new string[meretSZ, meretM];
             Statistics.currentMode = $"{meretSZ}_{meretM}_{aknakszama}";
             if (!Statistics.PlayedGames.ContainsKey(Statistics.currentMode))
             {
@@ -59,9 +61,9 @@ namespace Minesweeper_WPF
     public class Version
     {
         public static bool FirstStart = true;
-        public static string Game = "Alpha 1.4.3";
+        public static string Game = "Alpha 1.4.4";
         public static string Json = Game;
-        public static string GithubTag = "vA1.4.3";
+        public static string GithubTag = "vA1.4.4";
     }
     public class Statistics
     {

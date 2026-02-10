@@ -1,6 +1,6 @@
 ﻿{
   "JsonVersion": "Alpha 1.4",
-  "SerializationTime": "2026. 02. 07. 10:38:27",
+  "SerializationTime": "2026. 02. 10. 16:58:24",
   "ImageNames": {
     "_comment1": "----- Téma beállításai -----",
     "ThemeName": "Alapértelmezett",
@@ -37,5 +37,6 @@
     "Mines": "Images/Mine.png",
     "Numbers": "Images/1.png",
     "Background": "Images/GUI/hatter.png"
-  }
+  },
+  "CoverTextures": ["Images/Covered.png"]
 }
