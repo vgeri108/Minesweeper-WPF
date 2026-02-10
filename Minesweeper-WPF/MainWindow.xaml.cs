@@ -30,7 +30,6 @@ namespace Minesweeper_WPF
             
             JsonManager.Settings.Load();
             JsonManager.Stats.Load();
-            JsonManager.Style.Load();
             JsonManager.Theme.Load();
             JsonManager.Style.Load();
 
