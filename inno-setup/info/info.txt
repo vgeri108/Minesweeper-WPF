@@ -1,6 +1,6 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.4.3
+Verzió: Alpha 1.4.4
 
 Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
 
@@ -8,5 +8,5 @@ Ha hibát talál kérem jelentse:
 https://github.com/vgeri108/Minesweeper-WPF/issues
 
 === Frissítések ===
-Apró hibajavítások:
- => Issue #3: Zászlók nem tűnnek el kezdéskor (2.javítás)
+Új funkciók:
+ => Fedés képének randomizációja

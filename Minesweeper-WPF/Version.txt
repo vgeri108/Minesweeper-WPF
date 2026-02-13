@@ -1,7 +1,7 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.4.3
+Verzió: Alpha 1.4.4
 
 === Frissítések ===
-Apró hibajavítások:
- => Issue #17: Statisztikák listája automatikus méret (2. javítás)
+Új funkciók:
+ => Fedés képének randomizációja

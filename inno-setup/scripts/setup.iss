@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Aknakereső"
-#define MyAppVersion "Alpha 1.4.3"
+#define MyAppVersion "Alpha 1.4.4"
 #define MyAppPublisher "Naquadah Fusion"
 #define MyAppURL "https://github.com/vgeri108/Minesweeper-WPF"
 #define MyAppExeName "Minesweeper-WPF.exe"
