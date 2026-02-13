@@ -96,6 +96,7 @@ namespace Minesweeper_WPF
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             JsonManager.Settings.Save();
+            JsonManager.Style.Save();
             Close();
         }
 

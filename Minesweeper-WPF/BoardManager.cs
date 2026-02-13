@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,7 +91,10 @@ namespace Minesweeper_WPF
             {
                 for (int x = 0; x < Data.akna.GetLength(0); x++)
                 {
-                    AddButton(new Uri($"Assets/Themes/{Configuration.CurrentTheme}/{Data.coverTexture[x,y]}", UriKind.Relative), x, y);
+                    string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                    string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
+                    Uri imageUri = new Uri(imagePath, UriKind.Absolute);
+                    AddButton(imageUri, x, y);
                 }
             }
 
@@ -231,7 +235,11 @@ namespace Minesweeper_WPF
                     {
                         switch (Data.visible[x, y])
                         {
-                            case "false": AddButton(new Uri($"Assets/Themes/{Configuration.CurrentTheme}/{Data.coverTexture[x,y]}", UriKind.Relative), x, y); break;
+                            case "false": 
+                                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                                string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x,y]);
+                                AddButton(new Uri(imagePath, UriKind.Absolute), x, y); 
+                                break;
                             case "flag": AddButton(Appearance.Images.zaszlozott, x, y); break;
                             case "question": AddButton(Appearance.Images.kerdojel, x, y); break;
                         }
@@ -372,9 +380,23 @@ namespace Minesweeper_WPF
                 Margin = new Thickness(0),
                 Padding = new Thickness(0),
             };
+            
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.UriSource = CellImage;
+            try
+            {
+                bitmap.EndInit();
+            }
+            catch
+            {
+                bitmap = new BitmapImage(Appearance.Images.error);
+            }
+            
             Image img = new Image
             {
-                Source = new BitmapImage(CellImage),
+                Source = bitmap,
                 Stretch = Stretch.UniformToFill,
             };
 

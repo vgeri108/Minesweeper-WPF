@@ -262,6 +262,7 @@ namespace Minesweeper_WPF
                 public Dictionary<string, string> Akna { get; set; } = new();
                 public Dictionary<string, string> Visible { get; set; } = new();
                 public Dictionary<string, string> CoverTexture { get; set; } = new();
+                public string CoverTheme { get; set; }
             }
             public static void Save()
             {
@@ -273,7 +274,8 @@ namespace Minesweeper_WPF
                     meretSZ = Data.meretSZ,
                     aknakszama = Data.aknakszama,
                     Difficulty = Data.Difficulty,
-                    ElapsedSeconds = Time.ElapsedSeconds
+                    ElapsedSeconds = Time.ElapsedSeconds,
+                    CoverTheme = Configuration.CurrentTheme,
                 };
 
                 for (int x = 0; x < Data.akna.GetLength(0); x++)
@@ -325,25 +327,38 @@ namespace Minesweeper_WPF
                     Data.visible[x, y] = kv.Value;
                 }
 
-                foreach (var kv in Games.CoverTexture)
+                if (Games.CoverTheme == Configuration.CurrentTheme)
                 {
-                    var p = kv.Key.Split(',');
-                    int x = int.Parse(p[0]);
-                    int y = int.Parse(p[1]);
-                    Data.coverTexture[x, y] = kv.Value;
-                }
-
-                for (int x = 0; x < Games.meretSZ; x++)
-                {
-                    for (int y = 0; y < Games.meretM; y++)
+                    foreach (var kv in Games.CoverTexture)
                     {
-                        if (Data.akna[x, y] == null)
-                            Data.akna[x, y] = Appearance.Characters.semmi;
-
-                        if (Data.visible[x, y] == null)
-                            Data.visible[x, y] = "false";
+                        var p = kv.Key.Split(',');
+                        int x = int.Parse(p[0]);
+                        int y = int.Parse(p[1]);
+                        Data.coverTexture[x, y] = kv.Value;
                     }
                 }
+                else
+                {
+                    for (int x = 0; x < Data.coverTexture.GetLength(0); x++)
+                    {
+                        for (int y = 0; y < Data.coverTexture.GetLength(1); y++)
+                        {
+                            Data.coverTexture[x, y] = Appearance.Images.ImageNames["fedes"];
+                        }
+                    }
+                }
+
+                    for (int x = 0; x < Games.meretSZ; x++)
+                    {
+                        for (int y = 0; y < Games.meretM; y++)
+                        {
+                            if (Data.akna[x, y] == null)
+                                Data.akna[x, y] = Appearance.Characters.semmi;
+
+                            if (Data.visible[x, y] == null)
+                                Data.visible[x, y] = "false";
+                        }
+                    }
 
                 BoardManager.Init();
             }

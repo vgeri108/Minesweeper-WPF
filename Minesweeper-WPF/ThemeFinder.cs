@@ -11,7 +11,12 @@ namespace Minesweeper_WPF
     {
         public static List<string> GetThemeList()
         {
-            string themesPath = Path.Combine("Assets", "Themes");
+            string themesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Themes");
+            
+            if (!Directory.Exists(themesPath))
+            {
+                return new List<string>();
+            }
 
             List<string> themeNames =
                 Directory.GetDirectories(themesPath)
