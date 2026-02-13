@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,8 @@ namespace Minesweeper_WPF
                 { "_comment3", "----- Pálya alatti sáv -----" },
                 { "Clock", "Images/GUI/clock.png" },
                 { "Flower", "Images/GUI/flower.png" },
+                { "TextBoxBackgroundColor", "#31569C"},
+                { "TextBoxTextColor", "#FFFFFF"},
 
                 { "_comment4", "----- Névjegy menü feliratai -----" },
                 { "win?", "Images/GUI/windows.png" },

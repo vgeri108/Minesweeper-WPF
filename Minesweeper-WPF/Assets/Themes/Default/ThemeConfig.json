@@ -26,6 +26,8 @@
     "_comment3": "----- Pálya alatti sáv -----",
     "Clock": "Images/GUI/clock.png",
     "Flower": "Images/GUI/flower.png",
+    "TextBoxBackgroundColor": "#31569C",
+    "TextBoxTextColor": "#FFFFFF",
     "_comment4": "----- Névjegy menü feliratai -----",
     "win?": "Images/GUI/windows.png",
     "win7": "Images/GUI/windows7.png",

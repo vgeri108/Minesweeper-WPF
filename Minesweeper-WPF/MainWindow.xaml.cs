@@ -91,7 +91,57 @@ namespace Minesweeper_WPF
             ClockImage.Source = new BitmapImage(Appearance.Images.Clock);
             FlowerImage.Source = new BitmapImage(Appearance.Images.Flower);
             BackgroundImage.ImageSource = new BitmapImage(Appearance.Images.Hatter);
+
+            MineCounterBox.Background = HexToBrush(Appearance.Images.ImageNames["TextBoxBackgroundColor"]);
+            MineCounter.Foreground = HexToBrush(Appearance.Images.ImageNames["TextBoxTextColor"]);
+            TimerBox.Background = HexToBrush(Appearance.Images.ImageNames["TextBoxBackgroundColor"]);
+            Timer.Foreground = HexToBrush(Appearance.Images.ImageNames["TextBoxTextColor"]);
         }
+
+        private System.Windows.Media.Brush HexToBrush(string hex)
+        {
+            if (string.IsNullOrWhiteSpace(hex))
+                return System.Windows.Media.Brushes.Transparent;
+
+            hex = hex.Trim();
+
+            if (hex.StartsWith("#"))
+                hex = hex.Substring(1);
+
+            try
+            {
+                byte a = 255;
+                byte r, g, b;
+
+                if (hex.Length == 6) // RRGGBB
+                {
+                    r = Convert.ToByte(hex.Substring(0, 2), 16);
+                    g = Convert.ToByte(hex.Substring(2, 2), 16);
+                    b = Convert.ToByte(hex.Substring(4, 2), 16);
+                }
+                else if (hex.Length == 8) // AARRGGBB
+                {
+                    a = Convert.ToByte(hex.Substring(0, 2), 16);
+                    r = Convert.ToByte(hex.Substring(2, 2), 16);
+                    g = Convert.ToByte(hex.Substring(4, 2), 16);
+                    b = Convert.ToByte(hex.Substring(6, 2), 16);
+                }
+                else
+                {
+                    return System.Windows.Media.Brushes.Transparent;
+                }
+
+                var color = System.Windows.Media.Color.FromArgb(a, r, g, b);
+                var brush = new System.Windows.Media.SolidColorBrush(color);
+                if (brush.CanFreeze) brush.Freeze();
+                return brush;
+            }
+            catch
+            {
+                return System.Windows.Media.Brushes.Transparent;
+            }
+        }
+
         public static bool AllCellsAreHidden()
         {
             foreach (string item in Data.visible)
