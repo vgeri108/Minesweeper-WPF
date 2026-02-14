@@ -80,7 +80,6 @@
                                Margin="0,0,8,0"/>
 
                         <Border x:Name="TimerBox"
-                                Background="#31569C"
                                 BorderBrush="Gray"
                                 BorderThickness="1"
                                 CornerRadius="6"
@@ -88,7 +87,6 @@
                                 MinWidth="80">
                             <TextBlock x:Name="Timer"
                                        Text="0"
-                                       Foreground="White"
                                        FontSize="18"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
@@ -100,7 +98,6 @@
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
                         <Border x:Name="MineCounterBox"
-                                Background="#31569C"
                                 BorderBrush="Gray"
                                 BorderThickness="1"
                                 CornerRadius="6"
@@ -109,7 +106,6 @@
                                 Margin="0,0,8,0">
                             <TextBlock x:Name="MineCounter"
                                        Text="10"
-                                       Foreground="White"
                                        FontSize="18"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
