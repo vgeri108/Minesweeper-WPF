@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using System.Text.Json;
 
 namespace Minesweeper_WPF
 {
@@ -36,17 +38,21 @@ namespace Minesweeper_WPF
             SelectedNumberIcon.Source = new BitmapImage(Appearance.Images.Numbers);
             SelectedBackgroundIcon.Source = new BitmapImage(Appearance.Images.Background);
 
-            BoardSelected.Text = Configuration.CurrentTheme;
-            MinesSelected.Text = Configuration.CurrentTheme;
-            NumbersSelected.Text = Configuration.CurrentTheme;
-            BackgroundSelected.Text = Configuration.CurrentTheme;
+            BoardSelected.Text = Appearance.Images.ImageNames["ThemeName"];
+            MinesSelected.Text = Appearance.Images.ImageNames["ThemeName"];
+            NumbersSelected.Text = Appearance.Images.ImageNames["ThemeName"];
+            BackgroundSelected.Text = Appearance.Images.ImageNames["ThemeName"];
+
+            ThemeName.Text = "Téma neve: " + Appearance.Images.ImageNames["ThemeName"];
+            ThemeCreator.Text = "Téma készítője: " + Appearance.Images.ImageNames["Creator"];
+            ThemeDescription.Text = "Téma leírása: " + Appearance.Images.ImageNames["Description"];
 
             ThemeList.Children.Clear();
             foreach (string item in ThemeFinder.GetThemeList())
             {
                 Image img = new Image
                 {
-                    Source = new BitmapImage(Appearance.Images.ResolveThemeUri(item, Appearance.Images.ImageNames["Hatter"])),
+                    Source = new BitmapImage(Appearance.Images.ResolveThemeUri(item, ThemeFinder.GetThemeImageFromJson(item))),
                     Width = 64,
                     Height = 64,
                     Margin = new Thickness(0, 0, 0, 5),
@@ -54,7 +60,7 @@ namespace Minesweeper_WPF
 
                 TextBlock text = new TextBlock
                 {
-                    Text = item,
+                    Text = ThemeFinder.GetThemeNameFromJson(item),
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
 

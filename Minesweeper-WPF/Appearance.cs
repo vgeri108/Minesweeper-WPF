@@ -27,6 +27,8 @@ namespace Minesweeper_WPF
             {
                 { "_comment1", "----- Téma beállításai -----" },
                 { "ThemeName", "Alapértelmezett" },
+                { "Creator", "vgeri108"},
+                { "Description", "Alapértelmezett aknakereső kinézet a Windows 7-es játékra alapozva."},
                 { "ThemeImage", "pack.png" },
 
                 { "_comment2", "----- Pálya kinézete -----" },
