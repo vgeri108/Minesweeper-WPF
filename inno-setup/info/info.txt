@@ -1,6 +1,6 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.4.4
+Verzió: Alpha 1.4.5
 
 Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
 
@@ -9,4 +9,8 @@ https://github.com/vgeri108/Minesweeper-WPF/issues
 
 === Frissítések ===
 Új funkciók:
- => Fedés képének randomizációja
+ => Pálya alati sáv színei változtathatóak
+ => Témaleírások
+
+Hibajavítások:
+ => Issue #18 javítva: Stopper nem indul el mindig témaváltás után
