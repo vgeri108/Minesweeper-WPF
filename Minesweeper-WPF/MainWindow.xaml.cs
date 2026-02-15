@@ -218,6 +218,8 @@ namespace Minesweeper_WPF
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)
         {
+            bool Timer = Time.Timer.IsEnabled;
+
             Time.StopTimer();
             ThemeSelect themeSelect = new ThemeSelect();
             themeSelect.Owner = this;
@@ -226,7 +228,11 @@ namespace Minesweeper_WPF
             ShowInTaskbar= true;
             ApplyTheme();
             BoardManager.BoardApplyTheme();
-            Time.StartTimer(Time.ElapsedSeconds);
+
+            if (Timer && !AllCellsAreHidden())
+            {
+                Time.StartTimer(Time.ElapsedSeconds);
+            }
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
