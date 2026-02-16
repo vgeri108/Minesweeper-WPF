@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
         Icon="/update.ico"
+        MinHeight="300"
+        MinWidth="600"
         Title="Új frissítés érhető el" Height="300" Width="600">
     <Grid Background="#FFF0F0F0">
         <Grid.ColumnDefinitions>

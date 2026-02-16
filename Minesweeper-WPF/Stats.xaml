@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Icon="/icon.ico"
         WindowStartupLocation="CenterOwner"
+        MinHeight="200"
+        MinWidth="650"
         Title="Aknakereső statisztikája - User" Height="200" Width="650"
         Background="#FFF0F0F0">
     <Grid Margin="10">

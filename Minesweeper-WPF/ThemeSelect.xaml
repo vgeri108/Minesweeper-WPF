@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Icon="/icon.ico"
         WindowStartupLocation="CenterOwner"
+        MinHeight="500"
+        MinWidth="500"
         Title="Megjelenés módosítása" Height="500" Width="500">
 
     <Window.Resources>
