@@ -114,7 +114,7 @@ namespace Minesweeper_WPF
                     for (int y = 0; y < Data.akna.GetLength(1); y++)
                     {
                         Data.akna[x, y] = semmi;
-                        if (Data.visible[x,y] != "flag") Data.visible[x, y] = "false";
+                        if (Data.visible[x,y] != "flag" && Data.visible[x, y] != "question") Data.visible[x, y] = "false";
                     }
                 }
                 for (int i = 0; i < Data.aknakszama; i++)
