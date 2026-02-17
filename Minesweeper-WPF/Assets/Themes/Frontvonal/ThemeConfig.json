@@ -40,7 +40,10 @@
     "Board": "Images/Board.png",
     "Mines": "Images/Mine/Mine.png",
     "Numbers": "Images/Num/1.png",
-    "Background": "Images/hatter.png"
+    "Background": "Images/hatter.png",
+    "_comment6": "----- Hangok -----",
+    "Start": "../Default/Sounds/start.wav",
+    "Click": "../Default/Sounds/click.wav"
   },
   "CoverTextures": [
     "Images/Cover/Covered2.png",
