@@ -182,7 +182,6 @@ namespace Minesweeper_WPF
                 newGame_MenuDialog.Owner = this;
                 newGame_MenuDialog.ShowDialog();
                 ShowInTaskbar = true;
-                Time.Timer.Start();
                 UpdateTimerText();
             }
         }

@@ -26,8 +26,6 @@ namespace Minesweeper_WPF
 
         private void StartNew_Click(object sender, RoutedEventArgs e)
         {
-            Time.ResetTimer();
-            Time.UpdateTimerText();
             BoardManager.Init();
             Close();
         }
