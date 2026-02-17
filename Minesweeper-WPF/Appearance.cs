@@ -68,6 +68,10 @@ namespace Minesweeper_WPF
                 { "Mines", "Images/Mine.png" },
                 { "Numbers", "Images/1.png" },
                 { "Background", "Images/GUI/hatter.png" },
+
+                { "_comment6", "----- Hangok -----"},
+                { "Start", "Sounds/start.wav"},
+                { "Click", "Sounds/click.wav"},
             };
             public static List<string> CoverTextureList = new List<string>();
 

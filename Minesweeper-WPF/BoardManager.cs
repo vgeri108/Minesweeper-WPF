@@ -60,6 +60,7 @@ namespace Minesweeper_WPF
                 gameover_type = "-";
                 RandomizeCover();
                 InitGenerate();
+                Sounds.Start.Play();
             }
             else
             {
@@ -290,6 +291,7 @@ namespace Minesweeper_WPF
                         JsonManager.Stats.Save();
                         if (!LoadedGame && firstClick)
                         {
+                            Sounds.Click.Play();
                             Time.StartTimer();
                         }
                         LoadedGame = false;
