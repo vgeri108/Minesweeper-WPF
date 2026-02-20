@@ -1,6 +1,6 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.4.6
+Verzió: Alpha 1.4.7
 
 Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
 
@@ -8,13 +8,8 @@ Ha hibát talál kérem jelentse:
 https://github.com/vgeri108/Minesweeper-WPF/issues
 
 === Frissítések ===
-Új funkciók:
- => Ablakoknak van minimum mérete
- => Pályagenerálás utáni hang
- => Első kiásás hang
-
 Új kinézet:
- => Frontvonal téma
+ => Klasszikus
 
 Hibajavítások:
- => Issue #19 javítva: Stopper nem indul el mindig Új játék indítás után
+ => Issue #20 javítva: Jááték közben is lehet hangot változtatni a témával
