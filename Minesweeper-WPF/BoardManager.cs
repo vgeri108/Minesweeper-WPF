@@ -9,6 +9,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -35,6 +36,12 @@ namespace Minesweeper_WPF
         static bool gameover = false;
         static string gameover_type = "-";
 
+        // egyszerű kép cache a nagy pályákhoz
+        private static readonly Dictionary<string, BitmapImage> bitmapCache = new Dictionary<string, BitmapImage>(StringComparer.OrdinalIgnoreCase);
+        private static readonly object bitmapCacheLock = new object();
+
+        // Button pool — újrafelhasználjuk a Button és Image objektumokat nagy pályákhoz
+        private static readonly List<Button> buttonPool = new List<Button>();
 
         public static void Init()
         {
@@ -74,9 +81,12 @@ namespace Minesweeper_WPF
         }
         private static void InitGenerate()
         {
-            for (int x = 0; x < Data.visible.GetLength(0); x++)
+            int width = Data.visible.GetLength(0);
+            int height = Data.visible.GetLength(1);
+
+            for (int x = 0; x < width; x++)
             {
-                for (int y = 0; y < Data.visible.GetLength(1); y++)
+                for (int y = 0; y < height; y++)
                 {
                     Data.visible[x, y] = "false";
                 }
@@ -84,18 +94,72 @@ namespace Minesweeper_WPF
 
             Data.flagCount = 0;
 
-            gameBoard.Children.Clear();
             gameBoard.Rows = Data.meretM;
             gameBoard.Columns = Data.meretSZ;
 
-            for (int y = 0; y < Data.akna.GetLength(1); y++)
+            // Pool mérete (sorok*oszlopok)
+            int maxX = Data.akna.GetLength(0);
+            int maxY = Data.akna.GetLength(1);
+            int required = maxX * maxY;
+
+            // Ha a pool nem megfelelő, újrageneráljuk egyszer — ez minimalizálja a folyamatos objektumlétrehozást
+            if (buttonPool.Count != required)
             {
-                for (int x = 0; x < Data.akna.GetLength(0); x++)
+                buttonPool.Clear();
+                gameBoard.Children.Clear();
+
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                for (int y = 0; y < maxY; y++)
                 {
-                    string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-                    string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
-                    Uri imageUri = new Uri(imagePath, UriKind.Absolute);
-                    AddButton(imageUri, x, y);
+                    for (int x = 0; x < maxX; x++)
+                    {
+                        Button btn = new Button
+                        {
+                            Tag = new Point(x, y),
+                            FontWeight = FontWeights.Bold,
+                            FontSize = 15,
+                            Margin = new Thickness(0),
+                            Padding = new Thickness(0),
+                        };
+
+                        // kezdő kép (cover)
+                        string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
+                        Uri imageUri = new Uri(imagePath, UriKind.Absolute);
+                        BitmapImage bmp = GetCachedBitmap(imageUri);
+
+                        Image img = new Image
+                        {
+                            Source = bmp,
+                            Stretch = System.Windows.Media.Stretch.UniformToFill,
+                        };
+
+                        btn.Content = img;
+                        btn.Click += Cell_Click;
+                        btn.MouseRightButtonUp += Cell_RightClick;
+                        btn.PreviewMouseLeftButtonDown += Cell_PreviewMouseLeftButtonDown;
+
+                        buttonPool.Add(btn);
+                        gameBoard.Children.Add(btn);
+                    }
+                }
+            }
+            else
+            {
+                // Frissítjük a Tag-eket és a kezdő képeket, ha pool maradt ugyanakkora (pl. csak új játék, de felbontás ugyanaz)
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                int idx = 0;
+                for (int y = 0; y < maxY; y++)
+                {
+                    for (int x = 0; x < maxX; x++)
+                    {
+                        var btn = buttonPool[idx++];
+                        btn.Tag = new Point(x, y);
+
+                        string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
+                        var bmp = GetCachedBitmap(new Uri(imagePath, UriKind.Absolute));
+                        if (btn.Content is Image img) img.Source = bmp;
+                        else btn.Content = new Image { Source = bmp, Stretch = System.Windows.Media.Stretch.UniformToFill };
+                    }
                 }
             }
 
@@ -108,11 +172,14 @@ namespace Minesweeper_WPF
         {
             bool vanUres;
             bool siker = false;
+            int maxX = Data.akna.GetLength(0);
+            int maxY = Data.akna.GetLength(1);
+
             for (int tries = 0; tries < 1000 && !siker; tries++)
             {
-                for (int x = 0; x < Data.akna.GetLength(0); x++)
+                for (int x = 0; x < maxX; x++)
                 {
-                    for (int y = 0; y < Data.akna.GetLength(1); y++)
+                    for (int y = 0; y < maxY; y++)
                     {
                         Data.akna[x, y] = semmi;
                         if (Data.visible[x,y] != "flag" && Data.visible[x, y] != "question") Data.visible[x, y] = "false";
@@ -123,15 +190,13 @@ namespace Minesweeper_WPF
                     int x, y;
                     do
                     {
-                        x = r.Next(0, Data.akna.GetLength(0));
-                        y = r.Next(0, Data.akna.GetLength(1));
+                        x = r.Next(0, maxX);
+                        y = r.Next(0, maxY);
                     } while ((Data.akna[x, y] != semmi) || (x == select_x && y == select_y));
                     Data.akna[x, y] = minemark;
                 }
 
                 int count = 0;
-                int maxX = Data.akna.GetLength(0);
-                int maxY = Data.akna.GetLength(1);
                 for (int x = 0; x < maxX; x++)
                 {
                     for (int y = 0; y < maxY; y++)
@@ -177,9 +242,9 @@ namespace Minesweeper_WPF
                 }
 
                 vanUres = false;
-                for (int x = 0; x < Data.akna.GetLength(0); x++)
+                for (int x = 0; x < maxX; x++)
                 {
-                    for (int y = 0; y < Data.akna.GetLength(1); y++)
+                    for (int y = 0; y < maxY; y++)
                     {
                         if (Data.akna[x, y] == semmi)
                         {
@@ -204,13 +269,18 @@ namespace Minesweeper_WPF
         }
         public static void Draw()
         {
-            gameBoard.Children.Clear();
+            // Nem töröljük a gameBoard.Children-t minden alkalommal — újrafelhasználjuk a poolt.
             gameBoard.Rows = Data.meretM;
             gameBoard.Columns = Data.meretSZ;
 
-            for (int y = 0; y < Data.akna.GetLength(1); y++)
+            int maxX = Data.akna.GetLength(0);
+            int maxY = Data.akna.GetLength(1);
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            int CellIndex = 0;
+            for (int y = 0; y < maxY; y++)
             {
-                for (int x = 0; x < Data.akna.GetLength(0); x++)
+                for (int x = 0; x < maxX; x++)
                 {
                     Uri CellImage = Appearance.Images.error;
                     string Cell = Data.akna[x, y];
@@ -230,20 +300,129 @@ namespace Minesweeper_WPF
                             case var s when s == Appearance.Characters.semmi: CellImage = Appearance.Images.semmi; break;
                             case var s when s == Appearance.Characters.akna: CellImage = Appearance.Images.akna; break;
                         }
-                        AddButton(CellImage, x, y);
                     }
                     else
                     {
                         switch (Data.visible[x, y])
                         {
-                            case "false": 
-                                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-                                string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x,y]);
-                                AddButton(new Uri(imagePath, UriKind.Absolute), x, y); 
+                            case "false":
+                                string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
+                                CellImage = new Uri(imagePath, UriKind.Absolute);
                                 break;
-                            case "flag": AddButton(Appearance.Images.zaszlozott, x, y); break;
-                            case "question": AddButton(Appearance.Images.kerdojel, x, y); break;
+                            case "flag": CellImage = Appearance.Images.zaszlozott; break;
+                            case "question": CellImage = Appearance.Images.kerdojel; break;
+                            default:
+                                string defaultPath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
+                                CellImage = new Uri(defaultPath, UriKind.Absolute);
+                                break;
                         }
+                    }
+
+                    if (CellIndex < buttonPool.Count)
+                    {
+                        var btn = buttonPool[CellIndex++];
+                        btn.Tag = new Point(x, y);
+                        if (btn.Content is Image img)
+                        {
+                            img.Source = GetCachedBitmap(CellImage);
+                        }
+                        else
+                        {
+                            btn.Content = new Image { Source = GetCachedBitmap(CellImage), Stretch = System.Windows.Media.Stretch.UniformToFill };
+                        }
+                    }
+                    else
+                    {
+                        AddButton(CellImage, x, y);
+                        CellIndex++;
+                    }
+                }
+            }
+        }
+
+        // Preview handler a dupla kattintásra (easy mining)
+        private static void Cell_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount != 2) return;
+
+            if (sender is not Button btn) return;
+            if (btn.Tag is not Point pos) return;
+
+            int x = (int)pos.X;
+            int y = (int)pos.Y;
+
+            // csak akkor működik, ha a mező látható és szám
+            if (Data.visible == null || Data.akna == null) return;
+            if (x < 0 || x >= Data.akna.GetLength(0) || y < 0 || y >= Data.akna.GetLength(1)) return;
+            if (Data.visible[x, y] != "true") return;
+
+            // jelleg ellenőrzés: csak számokra
+            string cell = Data.akna[x, y];
+            if (!int.TryParse(cell, out int requiredFlags) || requiredFlags <= 0) return;
+
+            // elvégezzük az easy-mine műveletet
+            EasyMine(x, y);
+
+            // frissítjük a megjelenítést és állapotot
+            Draw();
+            NyeresEllenorzes();
+            if (gameover)
+            {
+                ShowGameOverDialog();
+            }
+
+            // fogyasszuk el az eseményt, hogy a Click ne fusson kétszer
+            e.Handled = true;
+        }
+
+        private static void EasyMine(int x, int y)
+        {
+            int maxX = Data.akna.GetLength(0);
+            int maxY = Data.akna.GetLength(1);
+
+            // megszámoljuk a környező zászlókat
+            int flagCount = 0;
+            for (int dx = -1; dx <= 1; dx++)
+            {
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    if (dx == 0 && dy == 0) continue;
+                    int nx = x + dx, ny = y + dy;
+                    if (nx < 0 || nx >= maxX || ny < 0 || ny >= maxY) continue;
+                    if (Data.visible[nx, ny] == "flag") flagCount++;
+                }
+            }
+
+            if (!int.TryParse(Data.akna[x, y], out int requiredFlags) || requiredFlags != flagCount) return;
+
+            // ha megegyezik, felnyitjuk a környező nem-zászló / nem-kérdőjeles mezőket
+            for (int dx = -1; dx <= 1; dx++)
+            {
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    if (dx == 0 && dy == 0) continue;
+                    int nx = x + dx, ny = y + dy;
+                    if (nx < 0 || nx >= maxX || ny < 0 || ny >= maxY) continue;
+
+                    // kihagyjuk a zászlókat és kérdőjeleket és már láthatókat
+                    if (Data.visible[nx, ny] == "flag" || Data.visible[nx, ny] == "question" || Data.visible[nx, ny] == "true") continue;
+
+                    // ha akna — játék vége
+                    if (Data.akna[nx, ny] == minemark)
+                    {
+                        gameover = true;
+                        gameover_type = "akna";
+                        Time.StopTimer();
+                    }
+                    else if (Data.akna[nx, ny] == semmi)
+                    {
+                        // ha üres, teljes felfedés szükséges (rekurzív viselkedés megőrzése)
+                        Felfedes(nx, ny);
+                    }
+                    else
+                    {
+                        // szám: csak jelöljük láthatónak
+                        Data.visible[nx, ny] = "true";
                     }
                 }
             }
@@ -282,7 +461,9 @@ namespace Minesweeper_WPF
                     int y = (int)pos.Y;
 
                     if (Data.akna == null || Data.visible == null) return;
-                    if (x < 0 || x >= Data.akna.GetLength(0) || y < 0 || y >= Data.akna.GetLength(1)) return;
+                    int maxX = Data.akna.GetLength(0);
+                    int maxY = Data.visible.GetLength(1);
+                    if (x < 0 || x >= maxX || y < 0 || y >= maxY) return;
 
                     if (newGame)
                     {
@@ -342,7 +523,9 @@ namespace Minesweeper_WPF
                     int y = (int)pos.Y;
 
                     if (Data.akna == null || Data.visible == null) return;
-                    if (x < 0 || x >= Data.akna.GetLength(0) || y < 0 || y >= Data.akna.GetLength(1)) return;
+                    int maxX = Data.akna.GetLength(0);
+                    int maxY = Data.akna.GetLength(1);
+                    if (x < 0 || x >= maxX || y < 0 || y >= maxY) return;
 
                     if (firstClick)
                     {
@@ -374,6 +557,7 @@ namespace Minesweeper_WPF
         }
         private static void AddButton(Uri CellImage, int x, int y)
         {
+            // Ez a visszaesés addolási út, ha poolból valamiért nem tudunk dolgozni.
             Button btn = new Button
             {
                 Tag = new Point(x, y),
@@ -383,31 +567,70 @@ namespace Minesweeper_WPF
                 Padding = new Thickness(0),
             };
             
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-            bitmap.UriSource = CellImage;
-            try
-            {
-                bitmap.EndInit();
-            }
-            catch
-            {
-                bitmap = new BitmapImage(Appearance.Images.error);
-            }
-            
+            BitmapImage bitmap = GetCachedBitmap(CellImage);
+
             Image img = new Image
             {
                 Source = bitmap,
-                Stretch = Stretch.UniformToFill,
+                Stretch = System.Windows.Media.Stretch.UniformToFill,
             };
 
             btn.Content = img;
             btn.Click += Cell_Click;
             btn.MouseRightButtonUp += Cell_RightClick;
+            btn.PreviewMouseLeftButtonDown += Cell_PreviewMouseLeftButtonDown;
 
             gameBoard.Children.Add(btn);
         }
+
+        private static BitmapImage GetCachedBitmap(Uri uri)
+        {
+            if (uri == null) uri = Appearance.Images.error;
+            string key = uri.IsAbsoluteUri ? uri.AbsoluteUri : uri.ToString();
+
+            lock (bitmapCacheLock)
+            {
+                if (bitmapCache.TryGetValue(key, out var cached)) return cached;
+
+                try
+                {
+                    var bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.CacheOption = BitmapCacheOption.OnLoad;
+                    bmp.UriSource = uri;
+                    bmp.EndInit();
+                    bmp.Freeze();
+                    bitmapCache[key] = bmp;
+                    return bmp;
+                }
+                catch
+                {
+                    // ha hiba történik, próbáljuk meg az error képet használni (szintén cache-elve)
+                    var errUri = Appearance.Images.error;
+                    string errKey = errUri.IsAbsoluteUri ? errUri.AbsoluteUri : errUri.ToString();
+                    if (bitmapCache.TryGetValue(errKey, out var errCached)) return errCached;
+
+                    try
+                    {
+                        var errBmp = new BitmapImage();
+                        errBmp.BeginInit();
+                        errBmp.CacheOption = BitmapCacheOption.OnLoad;
+                        errBmp.UriSource = errUri;
+                        errBmp.EndInit();
+                        errBmp.Freeze();
+                        bitmapCache[errKey] = errBmp;
+                        return errBmp;
+                    }
+                    catch
+                    {
+                        // végső fallback: új üres BitmapImage (ritkán fordul elő)
+                        var empty = new BitmapImage();
+                        return empty;
+                    }
+                }
+            }
+        }
+
         private static void Flag()
         {
             Data.flagCount++;
@@ -428,9 +651,12 @@ namespace Minesweeper_WPF
         }
         private static void NyeresEllenorzes()
         {
-            for (int x = 0; x < Data.akna.GetLength(0); x++)
+            int maxX = Data.akna.GetLength(0);
+            int maxY = Data.akna.GetLength(1);
+
+            for (int x = 0; x < maxX; x++)
             {
-                for (int y = 0; y < Data.akna.GetLength(1); y++)
+                for (int y = 0; y < maxY; y++)
                 {
                     if (Data.akna[x, y] != minemark && Data.visible[x, y] != "true")
                     {
@@ -504,9 +730,12 @@ namespace Minesweeper_WPF
         }
         private static void RandomizeCover()
         {
-            for (int x = 0; x < Data.coverTexture.GetLength(0); x++)
+            int maxX = Data.coverTexture.GetLength(0);
+            int maxY = Data.coverTexture.GetLength(1);
+
+            for (int x = 0; x < maxX; x++)
             {
-                for (int y = 0; y < Data.coverTexture.GetLength(1); y++)
+                for (int y = 0; y < maxY; y++)
                 {
                     if (Appearance.Images.CoverTextureList.Count > 0)
                     {
@@ -516,9 +745,7 @@ namespace Minesweeper_WPF
                     {
                         Data.coverTexture[x, y] = Appearance.Images.ImageNames["fedes"];
                     }
-                    Debug.Write(Data.coverTexture[x, y] + ",");
                 }
-                Debug.WriteLine("");
             }
         }
     }
