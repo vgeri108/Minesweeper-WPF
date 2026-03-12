@@ -22,6 +22,7 @@ namespace Minesweeper_WPF
         public bool IsCanceled { get; private set; } = true;
         public bool NeedNewGame { get; private set; } = false;
         public bool ContinueTimer { get; private set; } = false;
+        private int MaxMines;
         public Settings()
         {
             InitializeComponent();
@@ -52,6 +53,7 @@ namespace Minesweeper_WPF
             {
                 rbCustom.IsChecked = true;
             }
+            CalcMaxMines();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -200,19 +202,26 @@ namespace Minesweeper_WPF
         {
             if (tbHeight.Text.Length == 0) tbHeight.Text = "9";
             if (Convert.ToInt32(tbHeight.Text) < 9) tbHeight.Text = "9";
-            if (Convert.ToInt32(tbHeight.Text) > 14) tbHeight.Text = "24";
+            if (Convert.ToInt32(tbHeight.Text) > 24) tbHeight.Text = "24";
+            CalcMaxMines();
         }
         private void tbWidth_LostFocus(object sender, RoutedEventArgs e)
         {
             if (tbWidth.Text.Length == 0) tbWidth.Text = "9";
             if (Convert.ToInt32(tbWidth.Text) < 9) tbWidth.Text = "9";
-            if (Convert.ToInt32(tbWidth.Text) > 14) tbWidth.Text = "30";
+            if (Convert.ToInt32(tbWidth.Text) > 30) tbWidth.Text = "30";
+            CalcMaxMines();
         }
         private void tbMines_LostFocus(object sender, RoutedEventArgs e)
         {
             if (tbMines.Text.Length == 0) tbMines.Text = "10";
             if (Convert.ToInt32(tbMines.Text) < 9) tbMines.Text = "10";
-            if (Convert.ToInt32(tbMines.Text) > 14) tbMines.Text = "668";
+            if (Convert.ToInt32(tbMines.Text) > MaxMines) tbMines.Text = MaxMines.ToString();
+        }
+        private void CalcMaxMines()
+        {
+            MaxMines = (int)Math.Round((Convert.ToInt32(tbHeight.Text) * Convert.ToInt32(tbWidth.Text)) * 0.80);
+            MineCountText.Text = $"Aknák (10-{MaxMines})";
         }
     }
 }
