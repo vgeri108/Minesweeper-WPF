@@ -9,7 +9,6 @@ Ez a játék az [Aknakereső-konzol](https://github.com/vgeri108/minesweeper) fe
 A játék még fejlesztés alatt áll, de már játszahtó.
 
 Hátralévő feladatok:
-- Dupla klikkelés a számokra kiássa a szomszédos mezőket
 - Kérdőjelek letiltása a beállításokban
 - Több alkalmazás beállítás
 - Egyéb beállítások és [hibajavítások](https://github.com/vgeri108/Minesweeper-WPF/issues)
