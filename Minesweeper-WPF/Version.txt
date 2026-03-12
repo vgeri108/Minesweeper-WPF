@@ -1,10 +1,9 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.4.7
+Verzió: Alpha 1.5
 
 === Frissítések ===
-Új kinézet:
- => Klasszikus
+Jelentős képbetöltés és teljesítményoptimalizációk.
 
 Hibajavítások:
- => Issue #20 javítva: Jááték közben is lehet hangot változtatni a témával
+ => Issue #16 javítva: Nem lehet több aknát megadni mint a pálya (mostantól maximum 80%)
