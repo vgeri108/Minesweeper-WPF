@@ -543,7 +543,10 @@ namespace Minesweeper_WPF
                     }
                     else if (Data.visible[x, y] == "flag")
                     {
-                        Data.visible[x, y] = "question";
+                        if (Configuration.EnableQuestionMarks)
+                            Data.visible[x, y] = "question";
+                        else Data.visible[x, y] = "false";
+                        
                         RemoveFlag();
                     }
                     else if (Data.visible[x, y] == "question")

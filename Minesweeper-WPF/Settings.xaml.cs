@@ -100,14 +100,6 @@ namespace Minesweeper_WPF
                 {
                     MessageBox.Show(error.Message, "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                //Configuration.Animations = (bool)Animations.IsChecked;
-                Configuration.Sounds = (bool)Sounds.IsChecked;
-                Configuration.Tips = (bool)Tips.IsChecked;
-                Configuration.AlwaysContinueSavedGame = (bool)ContinueSaved.IsChecked;
-                Configuration.AlwaysSaveGameOnExit = (bool)SaveExit.IsChecked;
-                Configuration.EnableQuestionMarks = (bool)QuestionMarks.IsChecked;
-                Configuration.AutomaticUpdateSearch = (bool)UpdateCheck.IsChecked;
             }
             else
             {
@@ -129,6 +121,14 @@ namespace Minesweeper_WPF
                     MessageBox.Show(error.Message, "Hiba",MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+
+            //Configuration.Animations = (bool)Animations.IsChecked;
+            Configuration.Sounds = (bool)Sounds.IsChecked;
+            Configuration.Tips = (bool)Tips.IsChecked;
+            Configuration.AlwaysContinueSavedGame = (bool)ContinueSaved.IsChecked;
+            Configuration.AlwaysSaveGameOnExit = (bool)SaveExit.IsChecked;
+            Configuration.EnableQuestionMarks = (bool)QuestionMarks.IsChecked;
+            Configuration.AutomaticUpdateSearch = (bool)UpdateCheck.IsChecked;
 
             if (NeedNewGame && !MainWindow.AllCellsAreHidden())
             {
