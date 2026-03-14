@@ -1,9 +1,11 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.5
+Verzió: Alpha 1.5.1
 
 === Frissítések ===
-Jelentős képbetöltés és teljesítményoptimalizációk.
+Új funkciók:
+ => A zászlózás ki és be kapcsolható
 
 Hibajavítások:
- => Issue #16 javítva: Nem lehet több aknát megadni mint a pálya (mostantól maximum 80%)
+ => App verzió frissítve
+	Az Alpha 1.5-ös verzió mindig elérhető frissítést mutat

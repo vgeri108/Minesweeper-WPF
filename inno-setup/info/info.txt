@@ -1,6 +1,6 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.5
+Verzió: Alpha 1.5.1
 
 Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
 
@@ -8,7 +8,9 @@ Ha hibát talál kérem jelentse:
 https://github.com/vgeri108/Minesweeper-WPF/issues
 
 === Frissítések ===
-Jelentős képbetöltés és teljesítményoptimalizációk.
+Új funkciók:
+ => A zászlózás ki és be kapcsolható
 
 Hibajavítások:
- => Issue #16 javítva: Nem lehet több aknát megadni mint a pálya (mostantól maximum 80%)
+ => App verzió frissítve
+	Az Alpha 1.5-ös verzió mindig elérhető frissítést mutat
