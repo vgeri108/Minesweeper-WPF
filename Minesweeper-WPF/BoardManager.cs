@@ -510,6 +510,7 @@ namespace Minesweeper_WPF
                     }
                 }
             }
+            Sounds.EveryClick.Play();
         }
         private static void Cell_RightClick(object sender, RoutedEventArgs e)
         {
@@ -540,6 +541,7 @@ namespace Minesweeper_WPF
                     {
                         Data.visible[x, y] = "flag";
                         Flag();
+                        Sounds.Flag.Play();
                     }
                     else if (Data.visible[x, y] == "flag")
                     {

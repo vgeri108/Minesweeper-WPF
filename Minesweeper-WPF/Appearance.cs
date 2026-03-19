@@ -72,6 +72,8 @@ namespace Minesweeper_WPF
                 { "_comment6", "----- Hangok -----"},
                 { "Start", "Sounds/start.wav"},
                 { "Click", "Sounds/click.wav"},
+                { "FlagPlace", "Sounds/Silence.wav"},
+                { "EveryClick", "Sounds/Silence.wav"},
             };
             public static List<string> CoverTextureList = new List<string>();
 

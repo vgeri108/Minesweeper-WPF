@@ -9,5 +9,7 @@ namespace Minesweeper_WPF
     {
         public static SoundPlayer Start => new SoundPlayer($"Assets/Themes/{Configuration.CurrentTheme}/{Appearance.Images.ImageNames["Start"]}");
         public static SoundPlayer Click => new SoundPlayer($"Assets/Themes/{Configuration.CurrentTheme}/{Appearance.Images.ImageNames["Click"]}");
+        public static SoundPlayer Flag => new SoundPlayer($"Assets/Themes/{Configuration.CurrentTheme}/{Appearance.Images.ImageNames["FlagPlace"]}");
+        public static SoundPlayer EveryClick => new SoundPlayer($"Assets/Themes/{Configuration.CurrentTheme}/{Appearance.Images.ImageNames["EveryClick"]}");
     }
 }
