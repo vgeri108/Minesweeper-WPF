@@ -1,6 +1,6 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.5.1
+Verzió: Alpha 1.5.2
 
 Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
 
@@ -8,9 +8,5 @@ Ha hibát talál kérem jelentse:
 https://github.com/vgeri108/Minesweeper-WPF/issues
 
 === Frissítések ===
-Új funkciók:
- => A zászlózás ki és be kapcsolható
-
-Hibajavítások:
- => App verzió frissítve
-	Az Alpha 1.5-ös verzió mindig elérhető frissítést mutat
+Minden klikkeléshez és zászló lehelyezéshez lehet hangot adni.
+A hangnak a témában kell szerepelnie, és jelenleg egyik téma sem tartalmaz!
