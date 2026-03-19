@@ -494,6 +494,10 @@ namespace Minesweeper_WPF
                         firstClick = false;
                         replayGame = false;
                     }
+                    else
+                    {
+                        Sounds.EveryClick.Play();
+                    }
 
                     if (Data.akna[x, y] == minemark)
                     {
@@ -510,7 +514,6 @@ namespace Minesweeper_WPF
                     }
                 }
             }
-            Sounds.EveryClick.Play();
         }
         private static void Cell_RightClick(object sender, RoutedEventArgs e)
         {
