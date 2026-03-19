@@ -43,7 +43,9 @@
     "Background": "Images/GUI/hatter.png",
     "_comment6": "----- Hangok -----",
     "Start": "Sounds/start.wav",
-    "Click": "Sounds/click.wav"
+    "Click": "Sounds/click.wav",
+    "FlagPlace": "Sounds/Silence.wav",
+    "EveryClick": "Sounds/Silence.wav"
   },
   "CoverTextures": ["Images/Covered.png"]
 }
