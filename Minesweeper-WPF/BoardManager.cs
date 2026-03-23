@@ -33,7 +33,7 @@ namespace Minesweeper_WPF
         private static string semmi = Appearance.Characters.semmi;
         private static string minemark = Appearance.Characters.akna;
 
-        static bool gameover = false;
+        public static bool gameover = false;
         static string gameover_type = "-";
 
         // egyszerű kép cache a nagy pályákhoz

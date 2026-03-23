@@ -261,7 +261,7 @@ namespace Minesweeper_WPF
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!AllCellsAreHidden())
+            if (!AllCellsAreHidden() && !BoardManager.gameover)
             {
                 if (!Configuration.AlwaysSaveGameOnExit)
                 {
