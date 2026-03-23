@@ -473,7 +473,8 @@ namespace Minesweeper_WPF
                         if (!LoadedGame && firstClick)
                         {
                             Sounds.Click.Play();
-                            Time.StartTimer();
+                            Time.StartTimer(1);
+                            ((MainWindow)Application.Current.MainWindow).UpdateTimerText();
                         }
                         LoadedGame = false;
                         if (!replayGame)
@@ -536,7 +537,11 @@ namespace Minesweeper_WPF
                         Statistics.PlayedGames[Statistics.currentMode]++;
                         Statistics.GenerateStatsIfNotExists();
                         JsonManager.Stats.Save();
-                        if (!LoadedGame) Time.StartTimer();
+                        if (!LoadedGame)
+                        {
+                            Time.StartTimer(1);
+                            ((MainWindow)Application.Current.MainWindow).UpdateTimerText();
+                        }
                         firstClick = false;
                     }
                     LoadedGame = false;
