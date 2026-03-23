@@ -25,8 +25,11 @@ namespace Minesweeper_WPF
 
             int Percent = (int)Math.Round(((Double)Statistics.WinnedGames[Statistics.currentMode] / Statistics.PlayedGames[Statistics.currentMode]) * 100);
 
+            int bestTime = Statistics.BestTimes[Statistics.currentMode];
+            string BestTimeText = bestTime == 999 ? "Még nincs eredmény" : bestTime + " másodperc";
+
             TimeText.Text = $"Idő: {Time.ElapsedSeconds} másodperc";
-            BestTime.Text = $"Legjobb idő: {Statistics.BestTimes[Statistics.currentMode]} másodperc";
+            BestTime.Text = $"Legjobb idő: {BestTimeText}";
             Date.Text = "Dátum: " + DateTime.Now.ToString("yyyy/MM/dd");
             PlayedGames.Text = $"Lejátszott játékok: {Statistics.PlayedGames[Statistics.currentMode]}";
             WinnedGames.Text = $"Megnyert játékok: {Statistics.WinnedGames[Statistics.currentMode]}";
