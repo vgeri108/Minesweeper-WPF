@@ -122,6 +122,8 @@ namespace Minesweeper_WPF
                 }
             }
 
+            if (BoardManager.replayGame) BoardManager.replayGame = false;
+
             //Configuration.Animations = (bool)Animations.IsChecked;
             Configuration.Sounds = (bool)Sounds.IsChecked;
             Configuration.Tips = (bool)Tips.IsChecked;
