@@ -187,13 +187,17 @@ namespace Minesweeper_WPF
         }
         private void Stats_Click(object sender, RoutedEventArgs e)
         {
+            bool Timer = Time.Timer.IsEnabled;
             Time.StopTimer();
             Stats stats = new Stats();
             stats.Owner = this;
             ShowInTaskbar = false;
             stats.ShowDialog();
             ShowInTaskbar = true;
-            Time.StartTimer(Time.ElapsedSeconds);
+            if (Timer && !AllCellsAreHidden())
+            {
+                Time.StartTimer(Time.ElapsedSeconds);
+            }
         }
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
