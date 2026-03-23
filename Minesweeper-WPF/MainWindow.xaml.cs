@@ -42,11 +42,9 @@ namespace Minesweeper_WPF
                 if (!Configuration.AlwaysContinueSavedGame)
                 {
                     Show();
-                    ShowInTaskbar = false;
                     LoadGame_OpenDialog loadGame_OpenDialog = new LoadGame_OpenDialog();
                     loadGame_OpenDialog.Owner = this;
                     loadGame_OpenDialog.ShowDialog();
-                    ShowInTaskbar = true;
                 }
                 else
                 {
@@ -72,7 +70,6 @@ namespace Minesweeper_WPF
                 {
                     Show();
                     NewInUpdate newInUpdate = new NewInUpdate();
-                    ShowInTaskbar = false;
                     newInUpdate.Owner = this;
                     newInUpdate.ShowDialog();
                 }
@@ -177,11 +174,9 @@ namespace Minesweeper_WPF
             else
             {
                 Time.StopTimer();
-                ShowInTaskbar = false;
                 NewGame_MenuDialog newGame_MenuDialog = new NewGame_MenuDialog();
                 newGame_MenuDialog.Owner = this;
                 newGame_MenuDialog.ShowDialog();
-                ShowInTaskbar = true;
                 UpdateTimerText();
             }
         }
@@ -191,9 +186,7 @@ namespace Minesweeper_WPF
             Time.StopTimer();
             Stats stats = new Stats();
             stats.Owner = this;
-            ShowInTaskbar = false;
             stats.ShowDialog();
-            ShowInTaskbar = true;
             if (Timer && !AllCellsAreHidden())
             {
                 Time.StartTimer(Time.ElapsedSeconds);
@@ -204,7 +197,6 @@ namespace Minesweeper_WPF
             bool loadedGame = BoardManager.LoadedGame;
             Time.StopTimer();
             BoardManager.LoadedGame = false;
-            ShowInTaskbar = false;
             Settings settings = new Settings();
             settings.Owner = this;
             settings.ShowDialog();
@@ -217,7 +209,6 @@ namespace Minesweeper_WPF
                 Time.ResetTimer();
                 UpdateTimerText();
             }
-            ShowInTaskbar = true;
         }
         private void Appearance_Click(object sender, RoutedEventArgs e)
         {
@@ -226,7 +217,6 @@ namespace Minesweeper_WPF
             Time.StopTimer();
             ThemeSelect themeSelect = new ThemeSelect();
             themeSelect.Owner = this;
-            ShowInTaskbar = false;
             themeSelect.ShowDialog();
             ShowInTaskbar= true;
             ApplyTheme();
@@ -248,11 +238,9 @@ namespace Minesweeper_WPF
         private void About_Click(object sender, RoutedEventArgs e)
         {
             Time.StopTimer();
-            ShowInTaskbar = false;
             about About = new about();
             About.Owner = this;
             About.ShowDialog();
-            ShowInTaskbar = true;
             Time.StartTimer(Time.ElapsedSeconds);
         }
         private void MoreGames_Click(object sender, RoutedEventArgs e)
@@ -270,7 +258,6 @@ namespace Minesweeper_WPF
                 if (!Configuration.AlwaysSaveGameOnExit)
                 {
                     Time.StopTimer();
-                    ShowInTaskbar = false;
                     SaveGame_CloseDialog saveGame_CloseDialog = new SaveGame_CloseDialog();
                     saveGame_CloseDialog.Owner = this;
                     saveGame_CloseDialog.ShowDialog();

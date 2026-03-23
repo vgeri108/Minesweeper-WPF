@@ -681,7 +681,6 @@ namespace Minesweeper_WPF
         {
             if (!(System.Windows.Application.Current?.MainWindow is MainWindow mw)) return;
 
-            mw.ShowInTaskbar = false;
             Window dialog;
             if (gameover_type == "akna")
             {
@@ -729,9 +728,7 @@ namespace Minesweeper_WPF
 
             JsonManager.Stats.Save();
             dialog.Owner = mw;
-            dialog.ShowInTaskbar = true;
             dialog.ShowDialog();
-            mw.ShowInTaskbar = true;
             mw.UpdateTimerText();
         }
         public static void BoardApplyTheme()

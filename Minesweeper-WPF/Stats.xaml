@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterOwner"
         MinHeight="200"
         MinWidth="650"
+        ShowInTaskbar="False"
         Title="Aknakereső statisztikája - User" Height="200" Width="650"
         Background="#FFF0F0F0">
     <Grid Margin="10">

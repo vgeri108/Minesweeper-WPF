@@ -8,6 +8,7 @@
         Icon="/icon.ico"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
         Title="Kilépés a játékból" Height="130" Width="410">
     <Grid Margin="0">
         <Grid.RowDefinitions>

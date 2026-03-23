@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterOwner"
         MinHeight="500"
         MinWidth="500"
+        ShowInTaskbar="False"
         Title="Megjelenés módosítása" Height="500" Width="500">
 
     <Window.Resources>

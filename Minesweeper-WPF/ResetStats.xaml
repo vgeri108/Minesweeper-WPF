@@ -8,6 +8,7 @@
         Icon="/icon.ico"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
+        ShowInTaskbar="False"
         Title="Statisztikák visszaállítása" Height="150" Width="450"
         Background="#FFF0F0F0">
     <Grid>

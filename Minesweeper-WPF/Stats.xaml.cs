@@ -115,11 +115,9 @@ namespace Minesweeper_WPF
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            ShowInTaskbar = false;
             ResetStats resetStats = new ResetStats(Difficulties.SelectedItem.ToString(), SelectedDifficulty);
             resetStats.Owner = this;
             resetStats.ShowDialog();
-            ShowInTaskbar = true;
             FillList();
         }
     }

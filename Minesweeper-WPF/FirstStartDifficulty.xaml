@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen"
         MinHeight="330"
         MinWidth="420"
+        ShowInTaskbar="False"
         Title="Nehézségi fok kiválasztása" Height="330" Width="420" ResizeMode="NoResize">
     <Grid Margin="10">
         <Grid.RowDefinitions>

@@ -8,6 +8,7 @@
         FontFamily="Segoe UI"
         Icon="/icon.ico"
         WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
         FontSize="12" WindowStyle="SingleBorderWindow" Background="#FFF0F0F0">
 
     <Grid Margin="10">

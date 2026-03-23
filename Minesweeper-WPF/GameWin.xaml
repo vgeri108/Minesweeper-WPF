@@ -11,6 +11,7 @@
         WindowStartupLocation="CenterOwner"
         MinHeight="250"
         MinWidth="400"
+        ShowInTaskbar="False"
         Title="Ön nyert!" Height="250" Width="400" Background="#FFF0F0F0">
     
     <Grid Margin="13,5,13,0">
