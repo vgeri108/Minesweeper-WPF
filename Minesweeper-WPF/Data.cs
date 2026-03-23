@@ -100,16 +100,26 @@ namespace Minesweeper_WPF
 
         public static void SortTimes()
         {
-            for (int i = 0; i < Times.Count - 1; i++)
+            if (!Times.ContainsKey(currentMode)) return;
+            var timesList = Times[currentMode];
+            if (timesList == null || timesList.Count <= 1) return;
+
+            if (!Dates.ContainsKey(currentMode) || Dates[currentMode].Count != timesList.Count)
             {
-                for (int j = 0; j < Times.Count - 1 - i; j++)
+                // Ensure Dates has the same length to avoid indexing errors
+                Dates[currentMode] = new List<string>(Enumerable.Repeat("Nincs adat.", timesList.Count));
+            }
+
+            int n = timesList.Count;
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - 1 - i; j++)
                 {
-                    if (Times[currentMode].Count == 1) return;
-                    if (Times[currentMode][j] > Times[currentMode][j + 1])
+                    if (timesList[j] > timesList[j + 1])
                     {
-                        int tmp = Times[currentMode][j];
-                        Times[currentMode][j] = Times[currentMode][j + 1];
-                        Times[currentMode][j + 1] = tmp;
+                        int tmp = timesList[j];
+                        timesList[j] = timesList[j + 1];
+                        timesList[j + 1] = tmp;
 
                         string tmpText = Dates[currentMode][j];
                         Dates[currentMode][j] = Dates[currentMode][j + 1];
@@ -117,6 +127,8 @@ namespace Minesweeper_WPF
                     }
                 }
             }
+
+            Times[currentMode] = timesList;
             TimeListSizeTo5();
             JsonManager.Stats.Save();
         }
