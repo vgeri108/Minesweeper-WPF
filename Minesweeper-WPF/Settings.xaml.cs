@@ -124,6 +124,9 @@ namespace Minesweeper_WPF
 
             if (BoardManager.replayGame) BoardManager.replayGame = false;
 
+            if (!NeedNewGame && Data.Difficulty == Data.NextDifficulty) NeedNewGame = true;
+
+
             //Configuration.Animations = (bool)Animations.IsChecked;
             Configuration.Sounds = (bool)Sounds.IsChecked;
             Configuration.Tips = (bool)Tips.IsChecked;
