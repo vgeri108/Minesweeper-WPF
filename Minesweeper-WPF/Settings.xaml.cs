@@ -27,13 +27,12 @@ namespace Minesweeper_WPF
         {
             InitializeComponent();
 
-            //Animations.IsChecked = Configuration.Animations;
+            Animations.IsChecked = Configuration.Animations;
             Sounds.IsChecked = Configuration.Sounds;
             Tips.IsChecked = Configuration.Tips;
             ContinueSaved.IsChecked = Configuration.AlwaysContinueSavedGame;
             SaveExit.IsChecked = Configuration.AlwaysSaveGameOnExit;
             QuestionMarks.IsChecked = Configuration.EnableQuestionMarks;
-            UpdateCheck.IsChecked = Configuration.AutomaticUpdateSearch;
             tbHeight.Text = Data.LastMeretM.ToString();
             tbWidth.Text = Data.LastMeretSZ.ToString();
             tbMines.Text = Data.LastAknakszama.ToString();
@@ -127,13 +126,12 @@ namespace Minesweeper_WPF
             if (!NeedNewGame && Data.Difficulty == Data.NextDifficulty) NeedNewGame = true;
 
 
-            //Configuration.Animations = (bool)Animations.IsChecked;
+            Configuration.Animations = (bool)Animations.IsChecked;
             Configuration.Sounds = (bool)Sounds.IsChecked;
             Configuration.Tips = (bool)Tips.IsChecked;
             Configuration.AlwaysContinueSavedGame = (bool)ContinueSaved.IsChecked;
             Configuration.AlwaysSaveGameOnExit = (bool)SaveExit.IsChecked;
             Configuration.EnableQuestionMarks = (bool)QuestionMarks.IsChecked;
-            Configuration.AutomaticUpdateSearch = (bool)UpdateCheck.IsChecked;
 
             if (NeedNewGame && !MainWindow.AllCellsAreHidden())
             {
