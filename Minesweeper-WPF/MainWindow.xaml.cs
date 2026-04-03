@@ -200,7 +200,7 @@ namespace Minesweeper_WPF
             Settings settings = new Settings();
             settings.Owner = this;
             settings.ShowDialog();
-            if (settings.IsCanceled || settings.ContinueTimer)
+            if ((settings.IsCanceled || settings.ContinueTimer) && !AllCellsAreHidden())
             {
                 Time.StartTimer(Time.ElapsedSeconds);
             }
