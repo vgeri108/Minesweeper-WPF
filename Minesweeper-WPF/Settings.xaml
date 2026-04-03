@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Beállítások"
         Width="430"
-        Height="435"
+        Height="440"
         ResizeMode="NoResize"
         FontFamily="Segoe UI"
         Icon="/icon.ico"
