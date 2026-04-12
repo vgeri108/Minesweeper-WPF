@@ -38,6 +38,12 @@
                 <Separator/>
                 <MenuItem Header="Kilépés" x:Name="Exit" Click="Exit_Click"/>
             </MenuItem>
+            <MenuItem Header="Beállítások">
+                <MenuItem Header="Játék beállításai" Click="Settings_Click"/>
+                <MenuItem Header="Alkalmazás beállításai" x:Name="AppSettings" Click="AppSettings_Click"/>
+                <Separator/>
+                <MenuItem Header="Frissítések keresése" x:Name="CheckForUpdates" Click="CheckForUpdates_Click"/>
+            </MenuItem>
             <MenuItem Header="Súgó">
                 <MenuItem Header="Súgó megjelenítése" x:Name="Help" Click="Help_Click"/>
                 <Separator/>

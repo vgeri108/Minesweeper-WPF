@@ -1,0 +1,50 @@
+﻿<Window x:Class="Minesweeper_WPF.AppSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minesweeper_WPF"
+        mc:Ignorable="d"
+        Title="Beállítások"
+        Width="430"
+        Height="440"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        Icon="/icon.ico"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        FontSize="12" WindowStyle="SingleBorderWindow" Background="#FFF0F0F0">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0">
+            <StackPanel>
+                <GroupBox Header="Frissítések">
+                    <StackPanel>
+                        <CheckBox x:Name="UpdateCheck" Margin="0,0,0,0" IsChecked="True">
+                            <TextBlock Text="Frissítések keresése indításkor"/>
+                        </CheckBox>
+                        <Button x:Name="CheckUpdates" Content="Frissítések keresése" Margin="5" Click="CheckUpdates_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Mentések">
+                    <StackPanel>
+                        <CheckBox x:Name="ContinueSaved" Margin="0,0,0,8">
+                            <TextBlock Text="Mindig a mentett játék folytatása"/>
+                        </CheckBox>
+                        <CheckBox x:Name="SaveExit" Margin="0,0,0,8">
+                            <TextBlock Text="Kilépéskor mindig mentse a játékot"/>
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="OK" Width="105" Click="OK_Click" Margin="0,0,10,0"/>
+            <Button Content="Mégse" Width="105" Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

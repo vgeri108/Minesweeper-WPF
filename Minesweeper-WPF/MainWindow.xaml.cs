@@ -270,5 +270,46 @@ namespace Minesweeper_WPF
                 }
             }
         }
+        private void AppSettings_Click(object sender, RoutedEventArgs e)
+        {
+            bool Timer = Time.Timer.IsEnabled;
+            Time.StopTimer();
+
+            AppSettings appSettings = new AppSettings();
+            appSettings.Owner = this;
+            appSettings.ShowDialog();
+
+            if (Timer && !AllCellsAreHidden())
+            {
+                Time.StartTimer(Time.ElapsedSeconds);
+            }
+        }
+
+        private async void CheckForUpdates_Click(object sender, RoutedEventArgs e)
+        {
+            var progress = new Progress("Frissítések keresése", "A frissítések keresése folyamatban van...");
+            progress.Show();
+
+            bool isNewAvailable = false;
+
+            await Task.Run(() =>
+            {
+                isNewAvailable = Update.IsNewAvailable();
+            });
+
+            progress.Close();
+
+            if (isNewAvailable)
+            {
+                Show();
+                NewInUpdate newInUpdate = new NewInUpdate();
+                newInUpdate.Owner = this;
+                newInUpdate.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("A legfrissebb verzió van telepítve.", "Frissítés", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }

@@ -10,6 +10,9 @@
     <Compile Update="AdvancedThemeSelect.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="AppSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DownloadProgress.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -32,6 +35,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="NewInUpdate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Progress.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ResetStats.xaml.cs">
