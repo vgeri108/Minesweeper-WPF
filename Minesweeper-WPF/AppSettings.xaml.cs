@@ -31,6 +31,7 @@ namespace Minesweeper_WPF
             Configuration.AutomaticUpdateSearch = (bool)UpdateCheck.IsChecked;
             Configuration.AlwaysContinueSavedGame = (bool)ContinueSaved.IsChecked;
             Configuration.AlwaysSaveGameOnExit = (bool)SaveExit.IsChecked;
+            JsonManager.Settings.Save();
             Close();
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
