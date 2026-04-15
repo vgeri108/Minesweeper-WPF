@@ -1,7 +1,20 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.5.2
+Verzió: Alpha 1.6
 
 === Frissítések ===
-Minden klikkeléshez és zászló lehelyezéshez lehet hangot adni.
-A hangnak a témában kell szerepelnie, és jelenleg egyik téma sem tartalmaz!
+   => Frissítés keresés folyamatjelző ablak
+   => Alkalmazás beállítások menüpont
+
+=== Hibajavítások ===
+   => Issue #15 javítva: A megnyert/elveszett játékot már nem lehet elmenteni.
+   => Issue #22 javítva: Időmérő indulás javításai.
+   => Issue #23 javítva: Statisztika idő eredmények sorrendje javítva.
+   => Issue #25 javítva: Statisztika sorozatai megfelelően vannak számlálva.
+   => Issue #13 javítva: Újrakezdett játék után lehet nehézséget váltani.
+   => Issue #5 javítva: Ablakok nem villognak
+   => Issue #4 javítva: Nincs eredmény felirat a 999mp legjobb idő helyett.
+   => Issue #9 javítva: Az időmérő 1-ről indul. (Mint Windows7-nél)
+   => Issue #10 javítva: A játék már nem generál új pályát rákérdezés nélkül.
+   => Issue #26 javítva: Hiányzó hangok hozzáadva a témákhoz.
+   => Issue #27 javítva: Alkalmazás beállítások mentése javítva.
