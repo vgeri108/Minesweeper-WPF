@@ -711,13 +711,13 @@ namespace Minesweeper_WPF
             {
                 Statistics.CurrentStreak[Statistics.currentMode] = 1;
                 Statistics.LoseStreak[Statistics.currentMode] = 0;
-                Statistics.WinStreak[Statistics.currentMode]++;
+                Statistics.WinStreak[Statistics.currentMode] = 1;
             }
             else if (Statistics.IsLastGameWinned[Statistics.currentMode] && gameover_type == "akna")
             {
                 Statistics.CurrentStreak[Statistics.currentMode] = 1;
                 Statistics.WinStreak[Statistics.currentMode] = 0;
-                Statistics.LoseStreak[Statistics.currentMode]++;
+                Statistics.LoseStreak[Statistics.currentMode] = 1;
             }
             else if (!Statistics.IsLastGameWinned[Statistics.currentMode] && gameover_type == "akna")
             {
@@ -731,6 +731,7 @@ namespace Minesweeper_WPF
             if (Statistics.LoseStreak[Statistics.currentMode] > Statistics.LongestLoseStreak[Statistics.currentMode])
                 Statistics.LongestLoseStreak[Statistics.currentMode] = Statistics.LoseStreak[Statistics.currentMode];
 
+            Statistics.IsLastGameWinned[Statistics.currentMode] = gameover_type != "akna";
             JsonManager.Stats.Save();
             dialog.Owner = mw;
             dialog.ShowDialog();
