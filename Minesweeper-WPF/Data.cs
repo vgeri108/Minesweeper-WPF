@@ -88,7 +88,7 @@ namespace Minesweeper_WPF
             if (!WinnedGames.ContainsKey(currentMode)) WinnedGames.Add(currentMode, 0);
             if (!Times.ContainsKey(currentMode)) Times.Add(currentMode, new List<int>(){-1});
             if (!Dates.ContainsKey(currentMode)) Dates.Add(currentMode, new List<string>(){"Nincs adat."});
-            if (!BestTimes.ContainsKey(currentMode)) BestTimes.Add(currentMode, 0);
+            if (!BestTimes.ContainsKey(currentMode)) BestTimes.Add(currentMode, 999);
             if (!IsLastGameWinned.ContainsKey(currentMode)) IsLastGameWinned.Add(currentMode, false);
             if (!WinStreak.ContainsKey(currentMode)) WinStreak.Add(currentMode, 0);
             if (!LongestWinStreak.ContainsKey(currentMode)) LongestWinStreak.Add(currentMode, 0);
