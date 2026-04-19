@@ -598,13 +598,16 @@ namespace Minesweeper_WPF
                         Sounds.EveryClick.Play();
                     }
 
-                    if (Data.akna[x, y] == minemark)
+                    if (Data.visible[x, y] == "false" || Data.visible[x, y] == "question")
                     {
-                        gameover = true;
-                        gameover_type = "akna";
-                        Time.StopTimer();
+                        if (Data.akna[x, y] == minemark)
+                        {
+                            gameover = true;
+                            gameover_type = "akna";
+                            Time.StopTimer();
+                        }
+                        Felfedes(x, y);
                     }
-                    Felfedes(x, y);
                     NyeresEllenorzes();
                     Draw();
                     if (gameover)
