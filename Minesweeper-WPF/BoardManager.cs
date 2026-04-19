@@ -285,36 +285,134 @@ namespace Minesweeper_WPF
                     Uri CellImage = Appearance.Images.error;
                     string Cell = Data.akna[x, y];
 
-                    if (Data.visible[x, y] == "true" || gameover)
+
+
+                    if (!gameover) //normál játék közbeni kirajzolás
                     {
-                        switch (Cell)
+                        if (Data.visible[x, y] == "true")
                         {
-                            case "1": CellImage = Appearance.Images._1; break;
-                            case "2": CellImage = Appearance.Images._2; break;
-                            case "3": CellImage = Appearance.Images._3; break;
-                            case "4": CellImage = Appearance.Images._4; break;
-                            case "5": CellImage = Appearance.Images._5; break;
-                            case "6": CellImage = Appearance.Images._6; break;
-                            case "7": CellImage = Appearance.Images._7; break;
-                            case "8": CellImage = Appearance.Images._8; break;
-                            case var s when s == Appearance.Characters.semmi: CellImage = Appearance.Images.semmi; break;
-                            case var s when s == Appearance.Characters.akna: CellImage = Appearance.Images.akna; break;
+                            switch (Cell)
+                            {
+                                case "1": CellImage = Appearance.Images._1; break;
+                                case "2": CellImage = Appearance.Images._2; break;
+                                case "3": CellImage = Appearance.Images._3; break;
+                                case "4": CellImage = Appearance.Images._4; break;
+                                case "5": CellImage = Appearance.Images._5; break;
+                                case "6": CellImage = Appearance.Images._6; break;
+                                case "7": CellImage = Appearance.Images._7; break;
+                                case "8": CellImage = Appearance.Images._8; break;
+                                case var s when s == Appearance.Characters.semmi: CellImage = Appearance.Images.semmi; break;
+                                case var s when s == Appearance.Characters.akna: CellImage = Appearance.Images.akna; break;
+                            }
+                        }
+                        else
+                        {
+                            switch (Data.visible[x, y])
+                            {
+                                case "false":
+                                    string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
+                                    CellImage = new Uri(imagePath, UriKind.Absolute);
+                                    break;
+                                case "flag": CellImage = Appearance.Images.zaszlozott; break;
+                                case "question": CellImage = Appearance.Images.kerdojel; break;
+                            }
                         }
                     }
-                    else
+                    else //vmi féle játék vége
                     {
-                        switch (Data.visible[x, y])
+                        if (gameover_type == "cleared") //nyerés esetén
                         {
-                            case "false":
-                                string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
-                                CellImage = new Uri(imagePath, UriKind.Absolute);
-                                break;
-                            case "flag": CellImage = Appearance.Images.zaszlozott; break;
-                            case "question": CellImage = Appearance.Images.kerdojel; break;
-                            default:
-                                string defaultPath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
-                                CellImage = new Uri(defaultPath, UriKind.Absolute);
-                                break;
+                            if (Data.visible[x, y] == "true")
+                            {
+                                switch (Cell)
+                                {
+                                    case "1": CellImage = Appearance.Images._1; break;
+                                    case "2": CellImage = Appearance.Images._2; break;
+                                    case "3": CellImage = Appearance.Images._3; break;
+                                    case "4": CellImage = Appearance.Images._4; break;
+                                    case "5": CellImage = Appearance.Images._5; break;
+                                    case "6": CellImage = Appearance.Images._6; break;
+                                    case "7": CellImage = Appearance.Images._7; break;
+                                    case "8": CellImage = Appearance.Images._8; break;
+                                    case var s when s == Appearance.Characters.semmi: CellImage = Appearance.Images.semmi; break;
+                                    case var s when s == Appearance.Characters.akna: CellImage = Appearance.Images.aknaKikerulve; break;
+                                }
+                            }
+                            else
+                            {
+                                switch (Data.visible[x, y])
+                                {
+                                    case "false":
+                                        if (Cell == Appearance.Characters.akna)
+                                        {
+                                            CellImage = Appearance.Images.aknaKikerulve;
+                                        }
+                                        else
+                                        {
+                                            string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
+                                            CellImage = new Uri(imagePath, UriKind.Absolute);
+                                        }
+                                        break;
+                                    case "flag": CellImage = Appearance.Images.zaszlozott; break;
+                                    case "question": CellImage = Appearance.Images.aknaKerdojelNyerve; break;
+                                }
+                            }
+                        }
+                        else //robbanás esetén
+                        {
+                            if (Data.visible[x, y] == "true")
+                            {
+                                switch (Cell)
+                                {
+                                    case "1": CellImage = Appearance.Images._1; break;
+                                    case "2": CellImage = Appearance.Images._2; break;
+                                    case "3": CellImage = Appearance.Images._3; break;
+                                    case "4": CellImage = Appearance.Images._4; break;
+                                    case "5": CellImage = Appearance.Images._5; break;
+                                    case "6": CellImage = Appearance.Images._6; break;
+                                    case "7": CellImage = Appearance.Images._7; break;
+                                    case "8": CellImage = Appearance.Images._8; break;
+                                    case var s when s == Appearance.Characters.semmi: CellImage = Appearance.Images.semmi; break;
+                                    case var s when s == Appearance.Characters.akna: CellImage = Appearance.Images.aknaNyomva; break;
+                                }
+                            }
+                            else
+                            {
+                                switch (Data.visible[x, y])
+                                {
+                                    case "false":
+                                        if (Cell == Appearance.Characters.akna)
+                                        {
+                                            CellImage = Appearance.Images.aknaNemNyomott;
+                                        }
+                                        else
+                                        {
+                                            string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
+                                            CellImage = new Uri(imagePath, UriKind.Absolute);
+                                        }
+                                        break;
+                                    case "flag":
+                                        if (Cell == Appearance.Characters.akna)
+                                        {
+                                            CellImage = Appearance.Images.aknaZaszlozott;
+                                        }
+                                        else
+                                        {
+                                            CellImage = Appearance.Images.nemAkna;
+                                        }
+                                        break;
+                                    case "question":
+                                        if (Cell == Appearance.Characters.akna)
+                                        {
+                                            CellImage = Appearance.Images.aknaKerdojel;
+                                        }
+                                        else
+                                        {
+                                            CellImage = Appearance.Images.kerdojel;
+                                        }
+                                        break;
+                                }
+                            }
                         }
                     }
 
@@ -364,8 +462,8 @@ namespace Minesweeper_WPF
             EasyMine(x, y);
 
             // frissítjük a megjelenítést és állapotot
-            Draw();
             NyeresEllenorzes();
+            Draw();
             if (gameover)
             {
                 ShowGameOverDialog();
@@ -507,8 +605,8 @@ namespace Minesweeper_WPF
                         Time.StopTimer();
                     }
                     Felfedes(x, y);
-                    Draw();
                     NyeresEllenorzes();
+                    Draw();
                     if (gameover)
                     {
                         ShowGameOverDialog();

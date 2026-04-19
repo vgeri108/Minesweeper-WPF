@@ -41,6 +41,11 @@ namespace Minesweeper_WPF
                 { "akna", "Images/Mine.png" },
                 { "aknaNyomva", "Images/MineClicked.png" },
                 { "aknaNemNyomott", "Images/MineNotClicked.png" },
+                { "aknaKerdojel", "Images/MineQuestion.png" },
+                { "aknaZaszlozott", "Images/MineFlagged.png" },
+                { "aknaKikerulve", "Images/MineWinNotClicked.png" },
+                { "nemAkna", "Images/NotMine.png" },
+                { "aknaKerdojelNyerve", "Images/MineWinQuestion.png" },
                 { "1", "Images/1.png" },
                 { "2", "Images/2.png" },
                 { "3", "Images/3.png" },
@@ -161,6 +166,11 @@ namespace Minesweeper_WPF
             public static Uri akna => ResolveUri(ImageNames["akna"]);
             public static Uri aknaNyomva => ResolveUri(ImageNames["aknaNyomva"]);
             public static Uri aknaNemNyomott => ResolveUri(ImageNames["aknaNemNyomott"]);
+            public static Uri aknaKerdojel => ResolveUri(ImageNames["aknaKerdojel"]);
+            public static Uri aknaZaszlozott => ResolveUri(ImageNames["aknaZaszlozott"]);
+            public static Uri nemAkna => ResolveUri(ImageNames["nemAkna"]);
+            public static Uri aknaKikerulve => ResolveUri(ImageNames["aknaKikerulve"]);
+            public static Uri aknaKerdojelNyerve => ResolveUri(ImageNames["aknaKerdojelNyerve"]);
             public static Uri _1 => ResolveUri(ImageNames["1"]);
             public static Uri _2 => ResolveUri(ImageNames["2"]);
             public static Uri _3 => ResolveUri(ImageNames["3"]);
