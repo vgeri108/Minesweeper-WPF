@@ -237,11 +237,15 @@ namespace Minesweeper_WPF
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
+            bool Timer = Time.Timer.IsEnabled;
             Time.StopTimer();
             about About = new about();
             About.Owner = this;
             About.ShowDialog();
-            Time.StartTimer(Time.ElapsedSeconds);
+            if (Timer && !AllCellsAreHidden())
+            {
+                Time.StartTimer(Time.ElapsedSeconds);
+            }
         }
         private void MoreGames_Click(object sender, RoutedEventArgs e)
         {
