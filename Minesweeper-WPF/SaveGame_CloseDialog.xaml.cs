@@ -35,6 +35,7 @@ namespace Minesweeper_WPF
         private void DontSave_Click(object sender, RoutedEventArgs e)
         {
             IsCanceled = false;
+            JsonManager.Game.DeleteSave();
             Close();
         }
 

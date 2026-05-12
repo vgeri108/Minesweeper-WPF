@@ -48,7 +48,10 @@ namespace Minesweeper_WPF
                 }
                 else
                 {
+                    Progress progress = new Progress("Betöltés", "A mentés betöltése folyamatban van...");
+                    progress.Show();
                     JsonManager.Game.Load();
+                    progress.Close();
                 }
             }
 

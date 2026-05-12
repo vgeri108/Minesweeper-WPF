@@ -28,18 +28,17 @@ namespace Minesweeper_WPF
 
         private void Continue_Click(object sender, RoutedEventArgs e)
         {
+            Progress progress = new Progress("Betöltés", "A mentés betöltése folyamatban van...");
+            progress.Show();
             JsonManager.Game.Load();
+            progress.Close();
             Close();
         }
 
         private void DontContinue_Click(object sender, RoutedEventArgs e)
         {
 
-            try
-            {
-                File.Delete("LastSave.mine");
-            }
-            catch (Exception ex) { }
+            JsonManager.Game.DeleteSave();
             
             Close();
         }

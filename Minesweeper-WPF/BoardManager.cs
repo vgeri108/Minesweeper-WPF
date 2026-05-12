@@ -77,6 +77,10 @@ namespace Minesweeper_WPF
                 int LoadedTime = Time.ElapsedSeconds;
                 Time.StopTimer();
                 Time.StartTimer(LoadedTime);
+                if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
+                {
+                    mw.MineCounterUpdate(Data.aknakszama - Data.flagCount);
+                }
             }
         }
         private static void InitGenerate()
@@ -799,6 +803,7 @@ namespace Minesweeper_WPF
                 if (Statistics.Times[Statistics.currentMode].Contains(-1)) Statistics.Times[Statistics.currentMode].Remove(-1);
                 if (Statistics.Dates[Statistics.currentMode].Contains("Nincs adat.")) Statistics.Dates[Statistics.currentMode].Remove("Nincs adat.");
                 dialog = new GameWin();
+                JsonManager.Game.DeleteSave();
             }
 
             Statistics.GenerateStatsIfNotExists();

@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\savegame_closedialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\savegame_closedialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\loadgame_opendialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\loadgame_opendialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\jsonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\jsonmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|solutionrelative:minesweeper-wpf\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2750B65B-EE70-483C-9E28-67425C84E846}|Minesweeper-WPF\\Minesweeper-WPF.csproj|c:\\users\\geri\\source\\repos\\minesweeper-wpf\\minesweeper-wpf\\appearance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 165,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,20 +58,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SaveGame_CloseDialog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\SaveGame_CloseDialog.xaml.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\SaveGame_CloseDialog.xaml.cs",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\SaveGame_CloseDialog.xaml.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\SaveGame_CloseDialog.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T15:24:23.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoadGame_OpenDialog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\LoadGame_OpenDialog.xaml.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\LoadGame_OpenDialog.xaml.cs",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\LoadGame_OpenDialog.xaml.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\LoadGame_OpenDialog.xaml.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAD4vyEAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T15:23:24.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "JsonManager.cs",
+              "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\JsonManager.cs",
+              "RelativeDocumentMoniker": "Minesweeper-WPF\\JsonManager.cs",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\JsonManager.cs",
+              "RelativeToolTip": "Minesweeper-WPF\\JsonManager.cs",
+              "ViewState": "AgIAAGQBAAAAAAAAAAAAAHYBAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-08T09:14:19.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Minesweeper-WPF\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\MainWindow.xaml.cs",
               "RelativeToolTip": "Minesweeper-WPF\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAWwO8AAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAD4vywAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-20T16:16:51.601Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Appearance.cs",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Appearance.cs",
               "RelativeDocumentMoniker": "Minesweeper-WPF\\Appearance.cs",
@@ -71,29 +122,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "BoardManager.cs",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs",
               "RelativeDocumentMoniker": "Minesweeper-WPF\\BoardManager.cs",
               "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\BoardManager.cs",
               "RelativeToolTip": "Minesweeper-WPF\\BoardManager.cs",
-              "ViewState": "AgIAAD4CAAAAAAAAAAAiwGACAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABcDAAAAAAAAAAD4vyUDAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-16T16:33:46.714Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Data.cs",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Data.cs",
               "RelativeDocumentMoniker": "Minesweeper-WPF\\Data.cs",
               "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Data.cs",
               "RelativeToolTip": "Minesweeper-WPF\\Data.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwEEAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAAqwEEAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-14T08:21:10.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-14T08:21:10.287Z"
             }
           ]
         }

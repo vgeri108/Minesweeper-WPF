@@ -259,6 +259,7 @@ namespace Minesweeper_WPF
                 public int aknakszama { get; set; } = 10;
                 public string Difficulty { get; set; } = "Easy";
                 public int ElapsedSeconds { get; set; } = 1;
+                public int FlagCount { get; set; } = 0;
                 public Dictionary<string, string> Akna { get; set; } = new();
                 public Dictionary<string, string> Visible { get; set; } = new();
                 public Dictionary<string, string> CoverTexture { get; set; } = new();
@@ -275,6 +276,7 @@ namespace Minesweeper_WPF
                     aknakszama = Data.aknakszama,
                     Difficulty = Data.Difficulty,
                     ElapsedSeconds = Time.ElapsedSeconds,
+                    FlagCount = Data.flagCount,
                     CoverTheme = Configuration.CurrentTheme,
                 };
 
@@ -307,6 +309,7 @@ namespace Minesweeper_WPF
                 Data.aknakszama = Games.aknakszama;
                 Data.Difficulty = Games.Difficulty;
                 Time.ElapsedSeconds = Games.ElapsedSeconds;
+                Data.flagCount = Games.FlagCount;
 
                 BoardManager.LoadedGame = true;
                 Data.ResizeBoard();
@@ -361,6 +364,15 @@ namespace Minesweeper_WPF
                     }
 
                 BoardManager.Init();
+            }
+
+            public static void DeleteSave()
+            {
+                try
+                {
+                    File.Delete("LastSave.mine");
+                }
+                catch (Exception ex) { }
             }
         }
         public class Style
