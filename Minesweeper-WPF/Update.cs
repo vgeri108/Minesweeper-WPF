@@ -133,5 +133,16 @@ namespace Minesweeper_WPF
                 MessageBox.Show(ex.Message);
             }
         }
+        public static void ApplyChanges(string version)
+        {
+            if (version != Version.GithubTag)
+            {
+                Progress progress = new Progress("Frissítés", "A frissítés konfigurálása folyamatban van...");
+                progress.Show();
+                //frissítés után lefuttatandó kód
+                progress.Close();
+                MessageBox.Show("Az Aknakereső sikeresen frissült", "Frissítés", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }

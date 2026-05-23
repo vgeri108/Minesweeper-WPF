@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using static Minesweeper_WPF.Appearance;
 using static Minesweeper_WPF.JsonManager;
@@ -463,6 +465,38 @@ namespace Minesweeper_WPF
                         Appearance.Images.ImageNames.Add(kv.Key, kv.Value);
                 }
                 Appearance.Images.CoverTextureList = Themes.CoverTextures;
+            }
+        }
+        public class Ver
+        {
+            public static void Save()
+            {
+                try
+                {
+                    File.WriteAllText(".version", Version.GithubTag);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            public static string Load()
+            {
+                try
+                {
+                    if (!File.Exists(".version"))
+                        return Version.GithubTag;
+
+                    var content = File.ReadAllText(".version");
+                    if (string.IsNullOrWhiteSpace(content))
+                        return Version.GithubTag;
+                    else return content;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return Version.GithubTag;
+                }
             }
         }
     }

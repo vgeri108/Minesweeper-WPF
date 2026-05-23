@@ -27,7 +27,10 @@ namespace Minesweeper_WPF
             InitializeComponent();
 
             generator = new BoardManager(GameBoard);
-            
+
+            Update.ApplyChanges(JsonManager.Ver.Load());
+            JsonManager.Ver.Save();
+
             JsonManager.Settings.Load();
             JsonManager.Stats.Load();
             JsonManager.Theme.Load();
