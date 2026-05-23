@@ -28,24 +28,20 @@
             </Grid.ColumnDefinitions>
             <Image Source="/icon.ico" VerticalAlignment="Top" Margin="0,5,0,0"/>
             <TextBlock Grid.Column="2" TextWrapping="Wrap" Margin="20,0,30,0" x:Name="InfoText">
-                Microsoft Windows
+                Naquadah-Fusion
                 <LineBreak/>
-                Verzió:6.2 (build: 9200)
+                Verzió: 6.2
                 <LineBreak/>
-                © 2013 Microsoft Corporation. Minden jog fenntartva.
+                © 2026 Naquadah-Fusion. Minden jog fenntartva.
                 <LineBreak/>
-                A Windows 8.1 Enterprise operációs rendszert és felhasználói felületét
-                védjegyek, továbbá oltalom alatt álló vagy bejegyzett szellemi
-                tulajdonjogok védik az Egyesült Államokban, illetve más országokban vagy
-                régiókban.
+                Ez a szoftver nyílt forráskódú, szabadon felhasználható, módosítható és terjeszthető a MIT licenc feltételei szerint.
                 <LineBreak/>
                 <LineBreak/>
-                Aknakereső - Fejlesztő: Oberon Games és Microsoft Corporation, 
-                a Microsoft Corporation megbízásából.
+                Aknakereső - Fejlesztő: Naquadah-Fusion
                 <LineBreak/>
                 <LineBreak/>
-                A termék a Microsoft szoftverlicenc-szerződés hatálya alá esik. A
-                termék használatára jogosult: 
+                A termék a MIT licenc feltételei alá esik.
+                A termék használatára jogosult: 
                 <LineBreak/>
                 <LineBreak/>
                 User

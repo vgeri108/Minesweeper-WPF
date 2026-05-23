@@ -75,14 +75,15 @@ namespace Minesweeper_WPF
             Logo.Source = new BitmapImage(winIcon);
 
             InfoText.Text =
-$@"Microsoft Windows
-Verzió:{" "+v.Major +"."+ v.Minor} (build: {v.Build})
-© 2025 Microsoft Corporation. Minden jog fenntartva.
-A {winName} {edition} operációs rendszert és felhasználói felületét védjegyek, továbbá oltalom alatt álló vagy bejegyzett szellemi tulajdonjogok védik az Egyesült Államokban, illetve más országokban vagy régiókban.
+$@"Naquadah-Fusion
+Windows: {v.Major +"."+ v.Minor} (build: {v.Build})
+Aknakereső: {Version.Game} - GitHub tag: {Version.GithubTag}
+© 2026 Naquadah-Fusion. Minden jog fenntartva.
+Ez a szoftver nyílt forráskódú, szabadon felhasználható, módosítható és terjeszthető a MIT licenc feltételei szerint.
 
-Aknakereső - Fejlesztő: Oberon Games és Microsoft Corporation, a Microsoft Corporation megbízásából.
+Aknakereső - Fejlesztő: Naquadah-Fusion
 
-A termék a Microsoft szoftverlicenc-szerződés hatálya alá esik. A termék használatára jogosult: 
+A termék a MIT licenc feltételei alá esik. A termék használatára jogosult: 
 
 {Environment.UserName}";
         }
