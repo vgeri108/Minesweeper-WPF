@@ -55,5 +55,8 @@
     <Compile Update="ThemeSelect.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Tips.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
