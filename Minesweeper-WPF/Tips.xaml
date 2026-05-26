@@ -10,7 +10,8 @@
         WindowStartupLocation="Manual"
         AllowsTransparency="True"
         Background="Transparent"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        LostFocus="Window_LostFocus"
+        ShowInTaskbar="False"
         Title="Tippek" Height="300" Width="550">
     <Border x:Name="RootBorder" CornerRadius="20" Padding="20,20,20,10">
         <Border.Background>

@@ -240,6 +240,7 @@ namespace Minesweeper_WPF
         private void Help_Click(object sender, RoutedEventArgs e)
         {
             Tips tips = new Tips("Tipp", "kdjlsfjhsdf");
+            tips.Owner = this;
             tips.Show();
         }
         private void About_Click(object sender, RoutedEventArgs e)

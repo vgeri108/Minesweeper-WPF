@@ -37,6 +37,10 @@ namespace Minesweeper_WPF
                     {
                         Dispatcher.BeginInvoke(new Action(LeftBottom), System.Windows.Threading.DispatcherPriority.Render);
                     };
+                    mw.LocationChanged += (ms, me) =>
+                    {
+                        Dispatcher.BeginInvoke(new Action(LeftBottom), System.Windows.Threading.DispatcherPriority.Render);
+                    };
                 }
             };
 
@@ -133,15 +137,16 @@ namespace Minesweeper_WPF
             Left = targetLeft;
             Top = targetTop;
         }
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ButtonState == MouseButtonState.Pressed)
-                DragMove();
-        }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Activate();
+            Topmost = true;
         }
     }
 }
