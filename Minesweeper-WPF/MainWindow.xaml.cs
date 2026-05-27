@@ -101,7 +101,7 @@ namespace Minesweeper_WPF
             Timer.Foreground = HexToBrush(Appearance.Images.ImageNames["TextBoxTextColor"]);
         }
 
-        private System.Windows.Media.Brush HexToBrush(string hex)
+        public static System.Windows.Media.Brush HexToBrush(string hex)
         {
             if (string.IsNullOrWhiteSpace(hex))
                 return System.Windows.Media.Brushes.Transparent;
@@ -143,6 +143,37 @@ namespace Minesweeper_WPF
             {
                 return System.Windows.Media.Brushes.Transparent;
             }
+        }
+
+        public static System.Windows.Media.Color HexToColor(string hex)
+        {
+            if (string.IsNullOrWhiteSpace(hex))
+                return Colors.Transparent;
+
+            hex = hex.Trim().TrimStart('#');
+
+            byte a = 255;
+            byte r, g, b;
+
+            if (hex.Length == 6)
+            {
+                r = Convert.ToByte(hex.Substring(0, 2), 16);
+                g = Convert.ToByte(hex.Substring(2, 2), 16);
+                b = Convert.ToByte(hex.Substring(4, 2), 16);
+            }
+            else if (hex.Length == 8)
+            {
+                a = Convert.ToByte(hex.Substring(0, 2), 16);
+                r = Convert.ToByte(hex.Substring(2, 2), 16);
+                g = Convert.ToByte(hex.Substring(4, 2), 16);
+                b = Convert.ToByte(hex.Substring(6, 2), 16);
+            }
+            else
+            {
+                return Colors.Transparent;
+            }
+
+            return Color.FromArgb(a, r, g, b);
         }
 
         public static bool AllCellsAreHidden()

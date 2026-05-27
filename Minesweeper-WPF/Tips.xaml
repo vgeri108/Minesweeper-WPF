@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
-        ResizeMode="CanResizeWithGrip"
         WindowStyle="None"
         WindowStartupLocation="Manual"
         AllowsTransparency="True"
@@ -16,8 +15,8 @@
     <Border x:Name="RootBorder" CornerRadius="20" Padding="20,20,20,10">
         <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="White"/>
-                <GradientStop Color="#FFB8C8DE" Offset="0.9"/>
+                <GradientStop x:Name="GradientUp" Color="White"/>
+                <GradientStop x:Name="GradientDown" Color="#FFB8C8DE" Offset="0.9"/>
             </LinearGradientBrush>
         </Border.Background>
 
@@ -41,7 +40,7 @@
                 <TextBlock x:Name="Description" Grid.Row="1" TextWrapping="Wrap" Text="Ne lépj aknára, mert akkor fel fogsz robbanni." FontSize="14"/>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5,30,5,0">
-                    <Image Source="/infowarn1.png" Height="50"/>
+                    <Image x:Name="Warn" Height="50"/>
                     <TextBlock Text="A tippeket a Beállítások párbeszédpanelen kapcsolhatja ki." FontSize="14" VerticalAlignment="Center"/>
                 </StackPanel>
 

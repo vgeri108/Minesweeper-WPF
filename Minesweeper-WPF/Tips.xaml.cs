@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Minesweeper_WPF
 {
@@ -20,6 +21,10 @@ namespace Minesweeper_WPF
             InitializeComponent();
             Title.Text = title;
             Description.Text = description;
+
+            Warn.Source = new BitmapImage(Appearance.Images.Warning);
+            GradientUp.Color = MainWindow.HexToColor(Appearance.Images.ImageNames["TipColorUp"]);
+            GradientDown.Color = MainWindow.HexToColor(Appearance.Images.ImageNames["TipColorDown"]);
 
             originalWidth = Width;
             originalHeight = Height;

@@ -74,7 +74,12 @@ namespace Minesweeper_WPF
                 { "Numbers", "Images/1.png" },
                 { "Background", "Images/GUI/hatter.png" },
 
-                { "_comment6", "----- Hangok -----"},
+                { "_comment6", "----- Tippek ablak -----" },
+                { "Warning", "Images/GUI/warning.png" },
+                { "TipColorUp", "#FFFFFFFF" },
+                { "TipColorDown", "#FFB8C8DE" },
+
+                { "_comment7", "----- Hangok -----"},
                 { "Start", "Sounds/start.wav"},
                 { "Click", "Sounds/click.wav"},
                 { "FlagPlace", "Sounds/Silence.wav"},
@@ -193,6 +198,8 @@ namespace Minesweeper_WPF
             public static Uri Mines => ResolveUri(ImageNames["Mines"]);
             public static Uri Numbers => ResolveUri(ImageNames["Numbers"]);
             public static Uri Background => ResolveUri(ImageNames["Background"]);
+
+            public static Uri Warning => ResolveUri(ImageNames["Warning"]);
         }
     }
 }
