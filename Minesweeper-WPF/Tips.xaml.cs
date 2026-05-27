@@ -71,6 +71,9 @@ namespace Minesweeper_WPF
             double mainContentWidth, mainContentHeight;
             Point mainContentTopLeftScreen;
 
+            double cornerRadius = Math.Min(RootBorder.CornerRadius.BottomLeft,
+                Math.Min(RootBorder.ActualHeight / 2.0, RootBorder.ActualWidth / 2.0));
+
             if (mainContent != null && mainContent.ActualWidth > 0 && mainContent.ActualHeight > 0)
             {
                 mainContentWidth = mainContent.ActualWidth;
@@ -101,13 +104,13 @@ namespace Minesweeper_WPF
             double mainMinWidth = mainWindow.MinWidth;
             if (!double.IsNaN(mainMinWidth) && !double.IsInfinity(mainMinWidth))
             {
-                desiredWidth = Math.Max(desiredWidth, mainMinWidth);
+                desiredWidth = Math.Max(desiredWidth, mainMinWidth - cornerRadius);
                 if (desiredWidth > mainContentWidth)
                     desiredWidth = mainContentWidth;
                 desiredHeight = desiredWidth / originalAspect;
             }
 
-            MinWidth = mainMinWidth;
+            MinWidth = mainMinWidth - cornerRadius;
             Width = desiredWidth;
             Height = desiredHeight;
 
@@ -117,9 +120,6 @@ namespace Minesweeper_WPF
             double mainBottom = mainTop + mainContentHeight;
 
             RootBorder.UpdateLayout();
-
-            double cornerRadius = Math.Min(RootBorder.CornerRadius.BottomLeft, 
-                Math.Min(RootBorder.ActualHeight / 2.0, RootBorder.ActualWidth / 2.0));
 
             double targetLeft = mainLeft - cornerRadius;
             double targetTop = mainBottom - (RootBorder.ActualHeight - cornerRadius);

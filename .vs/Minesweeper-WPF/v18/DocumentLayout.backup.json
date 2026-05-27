@@ -50,8 +50,8 @@
               "Title": "Tips.xaml",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Tips.xaml",
               "RelativeDocumentMoniker": "Minesweeper-WPF\\Tips.xaml",
-              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Tips.xaml",
-              "RelativeToolTip": "Minesweeper-WPF\\Tips.xaml",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Tips.xaml*",
+              "RelativeToolTip": "Minesweeper-WPF\\Tips.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-05-25T11:44:34.943Z",
               "EditorCaption": ""
@@ -62,9 +62,9 @@
               "Title": "Tips.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Tips.xaml.cs",
               "RelativeDocumentMoniker": "Minesweeper-WPF\\Tips.xaml.cs",
-              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Tips.xaml.cs",
-              "RelativeToolTip": "Minesweeper-WPF\\Tips.xaml.cs",
-              "ViewState": "AgIAAHoAAAAAAAAAAAD4v5cAAAAaAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Tips.xaml.cs*",
+              "RelativeToolTip": "Minesweeper-WPF\\Tips.xaml.cs*",
+              "ViewState": "AgIAAGkAAAAAAAAAAAD4v40AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-25T11:51:09.744Z",
               "EditorCaption": ""
