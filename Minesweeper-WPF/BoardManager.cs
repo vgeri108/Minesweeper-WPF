@@ -120,11 +120,11 @@ namespace Minesweeper_WPF
                         Button btn = new Button
                         {
                             Tag = new Point(x, y),
-                            FontWeight = FontWeights.Bold,
-                            FontSize = 15,
                             Margin = new Thickness(0),
-                            Padding = new Thickness(0),
+                            Padding = new Thickness(0)
                         };
+
+                        btn.SetResourceReference(System.Windows.FrameworkElement.StyleProperty, "GameBoardButton");
 
                         // kezdő kép (cover)
                         string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
@@ -135,6 +135,7 @@ namespace Minesweeper_WPF
                         {
                             Source = bmp,
                             Stretch = System.Windows.Media.Stretch.UniformToFill,
+                            Margin = new Thickness(0),
                         };
 
                         btn.Content = img;
