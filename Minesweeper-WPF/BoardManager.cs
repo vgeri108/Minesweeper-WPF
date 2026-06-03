@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -18,6 +20,7 @@ namespace Minesweeper_WPF
     class BoardManager
     {
         private static UniformGrid gameBoard;
+        private static bool mouseHandlersAdded = false;
         public BoardManager(UniformGrid grid)
         {
             gameBoard = grid;
@@ -139,6 +142,7 @@ namespace Minesweeper_WPF
                         };
 
                         btn.Content = img;
+                        GameBoardHelper.SetIsInteractiveCell(btn, Data.visible[x, y] != "true");
                         btn.Click += Cell_Click;
                         btn.MouseRightButtonUp += Cell_RightClick;
                         btn.PreviewMouseLeftButtonDown += Cell_PreviewMouseLeftButtonDown;
@@ -164,6 +168,7 @@ namespace Minesweeper_WPF
                         var bmp = GetCachedBitmap(new Uri(imagePath, UriKind.Absolute));
                         if (btn.Content is Image img) img.Source = bmp;
                         else btn.Content = new Image { Source = bmp, Stretch = System.Windows.Media.Stretch.UniformToFill };
+                        GameBoardHelper.SetIsInteractiveCell(btn, Data.visible[x, y] != "true");
                     }
                 }
             }
@@ -171,6 +176,44 @@ namespace Minesweeper_WPF
             if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
             {
                 mw.MineCounterUpdate(Data.aknakszama - Data.flagCount);
+            }
+
+            try
+            {
+                if (gameBoard != null)
+                {
+                    var mousePos = System.Windows.Input.Mouse.GetPosition(gameBoard);
+
+                    foreach (var child in gameBoard.Children)
+                    {
+                        if (child is Button b)
+                        {
+                            GameBoardHelper.SetIsSelectedCell(b, false);
+                        }
+                    }
+
+                    var hit = VisualTreeHelper.HitTest(gameBoard, mousePos);
+                    if (hit != null)
+                    {
+                        DependencyObject current = hit.VisualHit;
+                        while (current != null && current != gameBoard)
+                        {
+                            if (current is Button btn && btn.Tag is Point)
+                            {
+                                if (GameBoardHelper.GetIsInteractiveCell(btn))
+                                {
+                                    GameBoardHelper.SetIsSelectedCell(btn, true);
+                                }
+                                break;
+                            }
+                            current = VisualTreeHelper.GetParent(current);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                
             }
         }
         public static string[,] Generate(int select_x, int select_y)
@@ -187,7 +230,7 @@ namespace Minesweeper_WPF
                     for (int y = 0; y < maxY; y++)
                     {
                         Data.akna[x, y] = semmi;
-                        if (Data.visible[x,y] != "flag" && Data.visible[x, y] != "question") Data.visible[x, y] = "false";
+                        if (Data.visible[x, y] != "flag" && Data.visible[x, y] != "question") Data.visible[x, y] = "false";
                     }
                 }
                 for (int i = 0; i < Data.aknakszama; i++)
@@ -425,6 +468,9 @@ namespace Minesweeper_WPF
                     {
                         var btn = buttonPool[CellIndex++];
                         btn.Tag = new Point(x, y);
+
+                        GameBoardHelper.SetIsInteractiveCell(btn, Data.visible[x, y] != "true");
+
                         if (btn.Content is Image img)
                         {
                             img.Source = GetCachedBitmap(CellImage);
@@ -662,7 +708,7 @@ namespace Minesweeper_WPF
                         if (Configuration.EnableQuestionMarks)
                             Data.visible[x, y] = "question";
                         else Data.visible[x, y] = "false";
-                        
+
                         RemoveFlag();
                     }
                     else if (Data.visible[x, y] == "question")
@@ -685,7 +731,7 @@ namespace Minesweeper_WPF
                 Margin = new Thickness(0),
                 Padding = new Thickness(0),
             };
-            
+
             BitmapImage bitmap = GetCachedBitmap(CellImage);
 
             Image img = new Image
@@ -869,5 +915,54 @@ namespace Minesweeper_WPF
                 }
             }
         }
+    }
+
+
+    //kijelölés effect kezelése
+    public class HoverOpacityConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values == null || values.Length < 2) return 0.0;
+            bool isMouseOver = false;
+            bool isInteractive = false;
+            try
+            {
+                if (values[0] is bool b0) isMouseOver = b0;
+                if (values[1] is bool b1) isInteractive = b1;
+            }
+            catch
+            {
+            }
+            return (isMouseOver && isInteractive) ? 0.25 : 0.0;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public static class GameBoardHelper
+    {
+        public static readonly DependencyProperty IsInteractiveCellProperty =
+            DependencyProperty.RegisterAttached(
+                "IsInteractiveCell",
+                typeof(bool),
+                typeof(GameBoardHelper),
+                new PropertyMetadata(false));
+
+        public static bool GetIsInteractiveCell(DependencyObject obj) => (bool)obj.GetValue(IsInteractiveCellProperty);
+        public static void SetIsInteractiveCell(DependencyObject obj, bool value) => obj.SetValue(IsInteractiveCellProperty, value);
+
+        public static readonly DependencyProperty IsSelectedCellProperty =
+            DependencyProperty.RegisterAttached(
+                "IsSelectedCell",
+                typeof(bool),
+                typeof(GameBoardHelper),
+                new PropertyMetadata(false));
+
+        public static bool GetIsSelectedCell(DependencyObject obj) => (bool)obj.GetValue(IsSelectedCellProperty);
+        public static void SetIsSelectedCell(DependencyObject obj, bool value) => obj.SetValue(IsSelectedCellProperty, value);
     }
 }
