@@ -58,23 +58,33 @@
                 <Expander Header="Játék mentése" IsExpanded="True" Foreground="#FF0077B6">
                     <StackPanel Margin="10">
 
-                        <TextBlock TextWrapping="Wrap" Foreground="Black">
-                            • Ha egy játékot csak később tud befejezni, nyugodtan zárja be, majd kattintson a
-                            <Run FontWeight="Bold" Text="Mentés"/>
-                            gombra. A következő indításkor a játék rá fog kérdezni, hogy folytatni szeretné-e az utolsó játszmát. Ehhez kattintson az 
-                            <Run FontWeight="Bold" Text="Igen"/>
-                            lehetőségre.
-                        </TextBlock>
+                        <Grid Margin="0,0,0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="●" Foreground="Black"/>
+
+                            <TextBlock Grid.Column="1" TextWrapping="Wrap" Foreground="Black">
+                                Ha egy játékot csak később tud befejezni, nyugodtan zárja be, majd kattintson a
+                                <Run FontWeight="Bold" Text="Mentés"/>
+                                gombra. A következő indításkor a játék rá fog kérdezni, hogy folytatni szeretné-e az utolsó játszmát. Ehhez kattintson az
+                                <Run FontWeight="Bold" Text="Igen"/>
+                                lehetőségre.
+                            </TextBlock>
+                        </Grid>
+
                     </StackPanel>
                 </Expander>
 
                 <Expander Header="Játékbeállítások módosítása" IsExpanded="True" Foreground="#FF0077B6">
                     <StackPanel Margin="10">
+
                         <TextBlock TextWrapping="Wrap" Foreground="Black">
                             Módosíthatja a nehézségi szintet, be- vagy kikapcsolhatja az animációkat amik jelenleg nincsenek, és további beállításokat végezhet.
                         </TextBlock>
 
-
                         <TextBlock TextWrapping="Wrap" Foreground="Black">
                             1.
                             <Run Foreground="Green" Text="➜"/>
@@ -96,27 +106,26 @@
                         <TextBlock TextWrapping="Wrap" Foreground="Black">
                             3. Kattintson a
                             <Run FontWeight="Bold" Text="Játék"/>
-                            menüre, majd kattintson a 
+                            menüre, majd kattintson a
                             <Run FontWeight="Bold" Text="Beállítások"/>
                             parancsra.
                         </TextBlock>
+
                         <TextBlock TextWrapping="Wrap" Foreground="Black">
-                            4. Adja meg a kívánt beállításokat, majd kattintson az 
+                            4. Adja meg a kívánt beállításokat, majd kattintson az
                             <Run FontWeight="Bold" Text="OK"/>
                             gombra.
                         </TextBlock>
-
 
                     </StackPanel>
                 </Expander>
 
-
                 <Expander Header="A játék megjelenésének testreszabása" IsExpanded="True" Foreground="#FF0077B6">
                     <StackPanel Margin="10">
+
                         <TextBlock TextWrapping="Wrap" Foreground="Black">
                             A tábla színének módosításán túl azt is megadhatja, hogy aknákat vagy virágokat rejtsen-e.
                         </TextBlock>
-
 
                         <TextBlock TextWrapping="Wrap" Foreground="Black">
                             1.
@@ -139,30 +148,30 @@
                         <TextBlock TextWrapping="Wrap" Foreground="Black">
                             3. Kattintson a
                             <Run FontWeight="Bold" Text="Játék"/>
-                            menüre, majd kattintson a 
+                            menüre, majd kattintson a
                             <Run FontWeight="Bold" Text="Megjelenés módosítása"/>
                             parancsra.
                         </TextBlock>
+
                         <TextBlock TextWrapping="Wrap" Foreground="Black">
-                            4. Adja meg a kívánt beállításokat, majd kattintson az 
+                            4. Adja meg a kívánt beállításokat, majd kattintson az
                             <Run FontWeight="Bold" Text="OK"/>
                             gombra.
                         </TextBlock>
-
-                        
-
 
                     </StackPanel>
                 </Expander>
 
                 <StackPanel Width="180" Margin="20">
-                    <Image x:Name="BoardShowcase" Source="/Assets/Themes/Default/Images/GUI/BoardImage.png" />
+                    <Image x:Name="BoardShowcase" Source="/Assets/Themes/Default/Images/GUI/BoardImage.png"/>
                     <TextBlock Text="Aknakereső" FontStyle="Italic" HorizontalAlignment="Center"/>
                 </StackPanel>
 
                 <StackPanel>
                     <TextBlock Text="Aknakereső: szabályok és alapismeretek" FontWeight="Bold"/>
+
                     <StackPanel Margin="20">
+
                         <TextBlock FontWeight="Bold">A cél</TextBlock>
 
                         <TextBlock TextWrapping="Wrap">
@@ -176,11 +185,38 @@
                         <TextBlock TextWrapping="Wrap">
                             Az aknakeresőben három szabványos tábla közül választhat, amelyek
                             egyre bonyolultabbak.<LineBreak/>
-                            <LineBreak/>
-                            • Kezdő: 81 négyzet, 10 akna<LineBreak/>
-                            • Középhaladó: 256 négyzet, 40 akna<LineBreak/>
-                            • Haladó: 480 négyzet, 99 akna<LineBreak/>
                         </TextBlock>
+
+                        <Grid Margin="0,0,0,3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="●"/>
+                            <TextBlock Grid.Column="1">Kezdő: 81 négyzet, 10 akna</TextBlock>
+                        </Grid>
+
+                        <Grid Margin="0,0,0,3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="●"/>
+                            <TextBlock Grid.Column="1">Középhaladó: 256 négyzet, 40 akna</TextBlock>
+                        </Grid>
+
+                        <Grid Margin="0,0,0,3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="●"/>
+                            <TextBlock Grid.Column="1">Haladó: 480 négyzet, 99 akna</TextBlock>
+                        </Grid>
+
                         <TextBlock>
                             Egyéni táblákat is létrehozhat, ha a
                             <Run FontWeight="Bold" Text="Játék"/> menü
@@ -191,36 +227,83 @@
                         </TextBlock>
 
                         <TextBlock Text="Játékszabályok" FontWeight="Bold"/>
+
                         <TextBlock TextWrapping="Wrap">
-                            Az Aknakereső szabályai igen egyszerűek:<LineBreak/>
-                            • Ha aknára lel, a játéknak vége.<LineBreak/>
-                            • Ha azonban üres négyzetet talál, folytathatja.<LineBreak/>
-                            • Fedjen fel egy számot, és ez elárulja, mennyi akna rejlik a nyolc
-                            szomszédos négyzetben. Ebből következtethet arra, hogy melyik közeli
-                            négyzetre kattinthat biztonságosan.<LineBreak/>
+                            Az Aknakereső szabályai igen egyszerűek:
                         </TextBlock>
 
-                        <TextBlock Text="Tippek és javaslatok" FontWeight="Bold"/>
-                        <TextBlock TextWrapping="Wrap">
-                            <Run FontWeight="Bold">• Jelölje meg az aknákat.</Run>
-                            Ha valamelyik négyzetről azt gyanítja, hogy aknát rejt, 
-                            Kattintson rá a jobb gombbal. Ekkor a négyzeten egy zászló
-                            jelenik meg. Ha bizonytalan, kattintson még egyet, hogy a négyzetet
-                            kérdőjellel lássa el.<LineBreak/>
-                            
-                            <Run FontWeight="Bold">• Tanulmányozza a mintákat.</Run>
-                            Ha három egymás melletti négyzeten a 2-3-2 számsor jelenik meg,
-                            tudhatja, hogy a sor valamelyik oldalán 3 akna lapul. Amelyik négyzeten
-                            a nyolcas számot látja, annak minden szomszédja alá van aknázva.<LineBreak/>
-                            
-                            <Run FontWeight="Bold">• Fedezzen fel felderítetlen területeket.</Run>
-                            Nem tudja, hogy legközelebb hova kattintson? Fedezzen fel felderítetlen
-                            területeket. Érdemes inkább a jelöletlen négyzetek közé kattintani, és
-                            elkerülni az aknagyanús területeket.<LineBreak/>
-                        </TextBlock>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="●"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap">
+                                Ha aknára lel, a játéknak vége.
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="●"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="Wrap">
+                                Ha azonban üres négyzetet talál, folytathatja.
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="●"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" TextWrapping="Wrap">
+                                Fedjen fel egy számot, és ez elárulja, mennyi akna rejlik a nyolc
+                                szomszédos négyzetben. Ebből következtethet arra, hogy melyik közeli
+                                négyzetre kattinthat biztonságosan.
+                            </TextBlock>
+
+                        </Grid>
+
+                        <TextBlock Text="Tippek és javaslatok" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                        <Grid Margin="0,5,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="●"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap">
+                                <Run FontWeight="Bold">Jelölje meg az aknákat.</Run>
+                                Ha valamelyik négyzetről azt gyanítja, hogy aknát rejt,
+                                Kattintson rá a jobb gombbal. Ekkor a négyzeten egy zászló
+                                jelenik meg. Ha bizonytalan, kattintson még egyet, hogy a négyzetet
+                                kérdőjellel lássa el.
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="●"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="Wrap">
+                                <Run FontWeight="Bold">Tanulmányozza a mintákat.</Run>
+                                Ha három egymás melletti négyzeten a 2-3-2 számsor jelenik meg,
+                                tudhatja, hogy a sor valamelyik oldalán 3 akna lapul. Amelyik négyzeten
+                                a nyolcas számot látja, annak minden szomszédja alá van aknázva.
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="●"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" TextWrapping="Wrap">
+                                <Run FontWeight="Bold">Fedezzen fel felderítetlen területeket.</Run>
+                                Nem tudja, hogy legközelebb hova kattintson? Fedezzen fel felderítetlen
+                                területeket. Érdemes inkább a jelöletlen négyzetek közé kattintani, és
+                                elkerülni az aknagyanús területeket.
+                            </TextBlock>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
-
             </StackPanel>
         </ScrollViewer>
     </Grid>
