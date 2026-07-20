@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
-        Title="Windows súgó és támogatás" Height="600" Width="450">
+        Title="Windows súgó és támogatás" Height="765" Width="512">
     <Grid>
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
@@ -20,85 +20,87 @@
                 </TextBlock>
                 <TextBlock/>
 
-                <Expander Header="Játék indítása" IsExpanded="True">
+                <Expander Header="Játék indítása" IsExpanded="True" Foreground="#FF0077B6">
                     <StackPanel Margin="10">
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             1.
                             <Run Foreground="Green" Text="➜"/>
                             <Hyperlink>Kattintson ide a Játékok mappa megnyitásához.</Hyperlink>
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             2. Kattintson duplán az
                             <Run FontWeight="Bold" Text="Aknakereső"/>
                             elemre.
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             <Run Text="(Nem látható? Előfordulhat, hogy engedélyeznie kell a Windows-játékok szolgáltatást. "/>
                             <Hyperlink>Lásd a Hol találhatók a játékok?</Hyperlink>
                             <Run Text=" című témakört.)"/>
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             3. Válasszon a következő nehézségi szintek közül:
                             <Run FontWeight="Bold" Text="Kezdő, Középhaladó"/>
                             vagy
                             <Run FontWeight="Bold" Text="Haladó"/>.
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             4. A kezdéshez kattintson az egyik négyzetre.
                         </TextBlock>
 
                     </StackPanel>
                 </Expander>
 
-                <Expander Header="Játék mentése" IsExpanded="True">
+                <Expander Header="Játék mentése" IsExpanded="True" Foreground="#FF0077B6">
                     <StackPanel Margin="10">
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             • Ha egy játékot csak később tud befejezni, nyugodtan zárja be, majd kattintson a
                             <Run FontWeight="Bold" Text="Mentés"/>
-                            gombra. A következő indításkor a játék rá fog kérdezni, hogy folytatni szeretné-e az utolsó játszmát. Ehhez kattintson az Igen lehetőségre.
+                            gombra. A következő indításkor a játék rá fog kérdezni, hogy folytatni szeretné-e az utolsó játszmát. Ehhez kattintson az 
+                            <Run FontWeight="Bold" Text="Igen"/>
+                            lehetőségre.
                         </TextBlock>
                     </StackPanel>
                 </Expander>
 
-                <Expander Header="Játékbeállítások módosítása" IsExpanded="True">
+                <Expander Header="Játékbeállítások módosítása" IsExpanded="True" Foreground="#FF0077B6">
                     <StackPanel Margin="10">
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             Módosíthatja a nehézségi szintet, be- vagy kikapcsolhatja az animációkat amik jelenleg nincsenek, és további beállításokat végezhet.
                         </TextBlock>
 
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             1.
                             <Run Foreground="Green" Text="➜"/>
                             <Hyperlink>Kattintson ide a Játékok mappa megnyitásához.</Hyperlink>
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             2. Kattintson duplán az
                             <Run FontWeight="Bold" Text="Aknakereső"/>
                             elemre.
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             <Run Text="(Nem látható? Előfordulhat, hogy engedélyeznie kell a Windows-játékok szolgáltatást. "/>
                             <Hyperlink>Lásd a Hol találhatók a játékok?</Hyperlink>
                             <Run Text=" című témakört.)"/>
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             3. Kattintson a
                             <Run FontWeight="Bold" Text="Játék"/>
                             menüre, majd kattintson a 
                             <Run FontWeight="Bold" Text="Beállítások"/>
                             parancsra.
                         </TextBlock>
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             4. Adja meg a kívánt beállításokat, majd kattintson az 
                             <Run FontWeight="Bold" Text="OK"/>
                             gombra.
@@ -109,39 +111,39 @@
                 </Expander>
 
 
-                <Expander Header="A játék megjelenésének testreszabása" IsExpanded="True">
+                <Expander Header="A játék megjelenésének testreszabása" IsExpanded="True" Foreground="#FF0077B6">
                     <StackPanel Margin="10">
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             A tábla színének módosításán túl azt is megadhatja, hogy aknákat vagy virágokat rejtsen-e.
                         </TextBlock>
 
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             1.
                             <Run Foreground="Green" Text="➜"/>
                             <Hyperlink>Kattintson ide a Játékok mappa megnyitásához.</Hyperlink>
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             2. Kattintson duplán az
                             <Run FontWeight="Bold" Text="Aknakereső"/>
                             elemre.
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             <Run Text="(Nem látható? Előfordulhat, hogy engedélyeznie kell a Windows-játékok szolgáltatást. "/>
                             <Hyperlink>Lásd a Hol találhatók a játékok?</Hyperlink>
                             <Run Text=" című témakört.)"/>
                         </TextBlock>
 
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             3. Kattintson a
                             <Run FontWeight="Bold" Text="Játék"/>
                             menüre, majd kattintson a 
                             <Run FontWeight="Bold" Text="Megjelenés módosítása"/>
                             parancsra.
                         </TextBlock>
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black">
                             4. Adja meg a kívánt beállításokat, majd kattintson az 
                             <Run FontWeight="Bold" Text="OK"/>
                             gombra.
