@@ -25,6 +25,9 @@
     <Compile Update="GameWin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Help.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="LoadGame_OpenDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

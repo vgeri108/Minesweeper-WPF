@@ -73,6 +73,7 @@ namespace Minesweeper_WPF
                 { "Mines", "Images/Mine.png" },
                 { "Numbers", "Images/1.png" },
                 { "Background", "Images/GUI/hatter.png" },
+                { "HelpWindowBoard", "Images/GUI/BoardImage.png" },
 
                 { "_comment6", "----- Tippek ablak -----" },
                 { "Warning", "Images/GUI/warning.png" },
@@ -198,6 +199,7 @@ namespace Minesweeper_WPF
             public static Uri Mines => ResolveUri(ImageNames["Mines"]);
             public static Uri Numbers => ResolveUri(ImageNames["Numbers"]);
             public static Uri Background => ResolveUri(ImageNames["Background"]);
+            public static Uri HelpWindowBoard => ResolveUri(ImageNames["HelpWindowBoard"]);
 
             public static Uri Warning => ResolveUri(ImageNames["Warning"]);
         }

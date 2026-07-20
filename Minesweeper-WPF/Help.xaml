@@ -1,0 +1,225 @@
+﻿<Window x:Class="Minesweeper_WPF.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minesweeper_WPF"
+        mc:Ignorable="d"
+        Title="Windows súgó és támogatás" Height="600" Width="450">
+    <Grid>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10">
+
+                <TextBlock Grid.Row="0" FontSize="16" Foreground="#FF0077B6">Aknakereső: játékszabályok</TextBlock>
+                <TextBlock/>
+                <TextBlock Grid.Row="1" TextWrapping="Wrap">
+                    Az aknakereső a memória és a logikus gondolkodás látszólag egyszerű példája - és minden idők egyik legnépszerűbb Windows-játéka.
+                    A cél: az üres négyzetek felderítése és a rejtett aknák elkerülése.<LineBreak/><LineBreak/>
+                    Ugye milyen egyszerűnek tűnik?
+                </TextBlock>
+                <TextBlock/>
+
+                <Expander Header="Játék indítása" IsExpanded="True">
+                    <StackPanel Margin="10">
+
+                        <TextBlock TextWrapping="Wrap">
+                            1.
+                            <Run Foreground="Green" Text="➜"/>
+                            <Hyperlink>Kattintson ide a Játékok mappa megnyitásához.</Hyperlink>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            2. Kattintson duplán az
+                            <Run FontWeight="Bold" Text="Aknakereső"/>
+                            elemre.
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="(Nem látható? Előfordulhat, hogy engedélyeznie kell a Windows-játékok szolgáltatást. "/>
+                            <Hyperlink>Lásd a Hol találhatók a játékok?</Hyperlink>
+                            <Run Text=" című témakört.)"/>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            3. Válasszon a következő nehézségi szintek közül:
+                            <Run FontWeight="Bold" Text="Kezdő, Középhaladó"/>
+                            vagy
+                            <Run FontWeight="Bold" Text="Haladó"/>.
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            4. A kezdéshez kattintson az egyik négyzetre.
+                        </TextBlock>
+
+                    </StackPanel>
+                </Expander>
+
+                <Expander Header="Játék mentése" IsExpanded="True">
+                    <StackPanel Margin="10">
+
+                        <TextBlock TextWrapping="Wrap">
+                            • Ha egy játékot csak később tud befejezni, nyugodtan zárja be, majd kattintson a
+                            <Run FontWeight="Bold" Text="Mentés"/>
+                            gombra. A következő indításkor a játék rá fog kérdezni, hogy folytatni szeretné-e az utolsó játszmát. Ehhez kattintson az Igen lehetőségre.
+                        </TextBlock>
+                    </StackPanel>
+                </Expander>
+
+                <Expander Header="Játékbeállítások módosítása" IsExpanded="True">
+                    <StackPanel Margin="10">
+                        <TextBlock TextWrapping="Wrap">
+                            Módosíthatja a nehézségi szintet, be- vagy kikapcsolhatja az animációkat amik jelenleg nincsenek, és további beállításokat végezhet.
+                        </TextBlock>
+
+
+                        <TextBlock TextWrapping="Wrap">
+                            1.
+                            <Run Foreground="Green" Text="➜"/>
+                            <Hyperlink>Kattintson ide a Játékok mappa megnyitásához.</Hyperlink>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            2. Kattintson duplán az
+                            <Run FontWeight="Bold" Text="Aknakereső"/>
+                            elemre.
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="(Nem látható? Előfordulhat, hogy engedélyeznie kell a Windows-játékok szolgáltatást. "/>
+                            <Hyperlink>Lásd a Hol találhatók a játékok?</Hyperlink>
+                            <Run Text=" című témakört.)"/>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            3. Kattintson a
+                            <Run FontWeight="Bold" Text="Játék"/>
+                            menüre, majd kattintson a 
+                            <Run FontWeight="Bold" Text="Beállítások"/>
+                            parancsra.
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap">
+                            4. Adja meg a kívánt beállításokat, majd kattintson az 
+                            <Run FontWeight="Bold" Text="OK"/>
+                            gombra.
+                        </TextBlock>
+
+
+                    </StackPanel>
+                </Expander>
+
+
+                <Expander Header="A játék megjelenésének testreszabása" IsExpanded="True">
+                    <StackPanel Margin="10">
+                        <TextBlock TextWrapping="Wrap">
+                            A tábla színének módosításán túl azt is megadhatja, hogy aknákat vagy virágokat rejtsen-e.
+                        </TextBlock>
+
+
+                        <TextBlock TextWrapping="Wrap">
+                            1.
+                            <Run Foreground="Green" Text="➜"/>
+                            <Hyperlink>Kattintson ide a Játékok mappa megnyitásához.</Hyperlink>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            2. Kattintson duplán az
+                            <Run FontWeight="Bold" Text="Aknakereső"/>
+                            elemre.
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="(Nem látható? Előfordulhat, hogy engedélyeznie kell a Windows-játékok szolgáltatást. "/>
+                            <Hyperlink>Lásd a Hol találhatók a játékok?</Hyperlink>
+                            <Run Text=" című témakört.)"/>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            3. Kattintson a
+                            <Run FontWeight="Bold" Text="Játék"/>
+                            menüre, majd kattintson a 
+                            <Run FontWeight="Bold" Text="Megjelenés módosítása"/>
+                            parancsra.
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap">
+                            4. Adja meg a kívánt beállításokat, majd kattintson az 
+                            <Run FontWeight="Bold" Text="OK"/>
+                            gombra.
+                        </TextBlock>
+
+                        
+
+
+                    </StackPanel>
+                </Expander>
+
+                <StackPanel Width="180" Margin="20">
+                    <Image x:Name="BoardShowcase" Source="/Assets/Themes/Default/Images/GUI/BoardImage.png" />
+                    <TextBlock Text="Aknakereső" FontStyle="Italic" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Aknakereső: szabályok és alapismeretek" FontWeight="Bold"/>
+                    <StackPanel Margin="20">
+                        <TextBlock FontWeight="Bold">A cél</TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            Az üres négyzetek felderítse a rejtett aknák elkerülése közben.
+                            Minél hamarabb deríti fel a táblát, annál magasabb pontszámot ér el.
+                            <LineBreak/>
+                        </TextBlock>
+
+                        <TextBlock FontWeight="Bold">A tábla</TextBlock>
+
+                        <TextBlock TextWrapping="Wrap">
+                            Az aknakeresőben három szabványos tábla közül választhat, amelyek
+                            egyre bonyolultabbak.<LineBreak/>
+                            <LineBreak/>
+                            • Kezdő: 81 négyzet, 10 akna<LineBreak/>
+                            • Középhaladó: 256 négyzet, 40 akna<LineBreak/>
+                            • Haladó: 480 négyzet, 99 akna<LineBreak/>
+                        </TextBlock>
+                        <TextBlock>
+                            Egyéni táblákat is létrehozhat, ha a
+                            <Run FontWeight="Bold" Text="Játék"/> menü
+                            <Run FontWeight="Bold" Text="Beállítások"/> parancsára kattint.
+                            <LineBreak/>
+                            Az aknakereső táblája akár 720 négyzetet és 668 aknát is tartalmazhat.
+                            <LineBreak/>
+                        </TextBlock>
+
+                        <TextBlock Text="Játékszabályok" FontWeight="Bold"/>
+                        <TextBlock TextWrapping="Wrap">
+                            Az Aknakereső szabályai igen egyszerűek:<LineBreak/>
+                            • Ha aknára lel, a játéknak vége.<LineBreak/>
+                            • Ha azonban üres négyzetet talál, folytathatja.<LineBreak/>
+                            • Fedjen fel egy számot, és ez elárulja, mennyi akna rejlik a nyolc
+                            szomszédos négyzetben. Ebből következtethet arra, hogy melyik közeli
+                            négyzetre kattinthat biztonságosan.<LineBreak/>
+                        </TextBlock>
+
+                        <TextBlock Text="Tippek és javaslatok" FontWeight="Bold"/>
+                        <TextBlock TextWrapping="Wrap">
+                            <Run FontWeight="Bold">• Jelölje meg az aknákat.</Run>
+                            Ha valamelyik négyzetről azt gyanítja, hogy aknát rejt, 
+                            Kattintson rá a jobb gombbal. Ekkor a négyzeten egy zászló
+                            jelenik meg. Ha bizonytalan, kattintson még egyet, hogy a négyzetet
+                            kérdőjellel lássa el.<LineBreak/>
+                            
+                            <Run FontWeight="Bold">• Tanulmányozza a mintákat.</Run>
+                            Ha három egymás melletti négyzeten a 2-3-2 számsor jelenik meg,
+                            tudhatja, hogy a sor valamelyik oldalán 3 akna lapul. Amelyik négyzeten
+                            a nyolcas számot látja, annak minden szomszédja alá van aknázva.<LineBreak/>
+                            
+                            <Run FontWeight="Bold">• Fedezzen fel felderítetlen területeket.</Run>
+                            Nem tudja, hogy legközelebb hova kattintson? Fedezzen fel felderítetlen
+                            területeket. Érdemes inkább a jelöletlen négyzetek közé kattintani, és
+                            elkerülni az aknagyanús területeket.<LineBreak/>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
