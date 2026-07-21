@@ -270,9 +270,15 @@ namespace Minesweeper_WPF
         }
         private void Help_Click(object sender, RoutedEventArgs e)
         {
+            bool Timer = Time.Timer.IsEnabled;
+            Time.StopTimer();
             Help help = new Help();
             help.Owner = this;
-            help.Show();
+            help.ShowDialog();
+            if (Timer && !AllCellsAreHidden())
+            {
+                Time.StartTimer(Time.ElapsedSeconds);
+            }
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
