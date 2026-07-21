@@ -70,7 +70,7 @@ namespace Minesweeper_WPF
                 gameover_type = "-";
                 RandomizeCover();
                 InitGenerate();
-                Sounds.Start.Play();
+                if (Configuration.Sounds) Sounds.Start.Play();
             }
             else
             {
@@ -621,7 +621,7 @@ namespace Minesweeper_WPF
                         JsonManager.Stats.Save();
                         if (!LoadedGame && firstClick)
                         {
-                            Sounds.Click.Play();
+                            if (Configuration.Sounds) Sounds.Click.Play();
                             Time.StartTimer(1);
                             ((MainWindow)Application.Current.MainWindow).UpdateTimerText();
                         }
@@ -646,7 +646,7 @@ namespace Minesweeper_WPF
                     }
                     else
                     {
-                        Sounds.EveryClick.Play();
+                        if (Configuration.Sounds) Sounds.EveryClick.Play();
                     }
 
                     if (Data.visible[x, y] == "false" || Data.visible[x, y] == "question")
@@ -701,7 +701,7 @@ namespace Minesweeper_WPF
                     {
                         Data.visible[x, y] = "flag";
                         Flag();
-                        Sounds.Flag.Play();
+                        if (Configuration.Sounds) Sounds.Flag.Play();
                     }
                     else if (Data.visible[x, y] == "flag")
                     {
