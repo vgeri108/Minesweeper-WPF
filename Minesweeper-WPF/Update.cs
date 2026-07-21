@@ -23,7 +23,7 @@ namespace Minesweeper_WPF
             {
                 using (var ping = new Ping())
                 {
-                    PingReply reply = ping.Send("8.8.8.8", 250);
+                    PingReply reply = ping.Send("8.8.8.8", 200);
                     return reply.Status == IPStatus.Success;
                 }
             }
@@ -133,15 +133,50 @@ namespace Minesweeper_WPF
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private static int CompareVersion(int[] oldVersion, int[] newVersion)
+        {
+            int length = Math.Max(oldVersion.Length, newVersion.Length);
+
+            for (int i = 0; i < length; i++)
+            {
+                int oldPart = i < oldVersion.Length ? oldVersion[i] : 0;
+                int newPart = i < newVersion.Length ? newVersion[i] : 0;
+
+                if (oldPart < newPart) return -1;
+                if (oldPart > newPart) return 1;
+            }
+
+            return 0;
+        }
+
         public static void ApplyChanges(string version)
         {
             if (version != Version.GithubTag)
             {
                 Progress progress = new Progress("Frissítés", "A frissítés konfigurálása folyamatban van...");
                 progress.Show();
-                //frissítés után lefuttatandó kód
+                int[] oldVersion = version.Substring(2).Split('.').Select(int.Parse).ToArray();
+
+
+                //frissítés után lefuttatandó kódok
+
+
+                //vB1.8
+                if (CompareVersion(oldVersion, new[] { 1, 8 }) < 0)
+                {
+                    Configuration.CurrentTheme = "Default";
+                    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Assets", "Themes", "Frontvonal");
+                    if (Directory.Exists(path))
+                    {
+                        Directory.Delete(path, true);
+                    }
+                }
+
+
+
                 progress.Close();
-                MessageBox.Show("Az Aknakereső sikeresen frissült", "Frissítés", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Az Aknakereső frissült a(z) {Version.GithubTag} verzióra.", "Frissítés", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }
