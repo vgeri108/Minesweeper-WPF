@@ -96,9 +96,24 @@ namespace Minesweeper_WPF
             Matrix fromDevice = source?.CompositionTarget.TransformFromDevice ?? Matrix.Identity;
             Point mainContentTopLeft = fromDevice.Transform(mainContentTopLeftScreen);
 
-            double desiredWidth = Math.Max(1.0, Math.Min(mainContentWidth / 3.0, mainContentWidth));
+            double minWidth = 350;
+            double maxWidth = 550;
+            double maxHeight = 450;
+
+            double desiredWidth = mainContentWidth / 1.5;
+
+            desiredWidth = Math.Max(desiredWidth, minWidth);
+            desiredWidth = Math.Min(desiredWidth, maxWidth);
+
+            desiredWidth = Math.Min(desiredWidth, mainContentWidth);
 
             double desiredHeight = desiredWidth / originalAspect;
+
+            if (desiredHeight > maxHeight)
+            {
+                desiredHeight = maxHeight;
+                desiredWidth = desiredHeight * originalAspect;
+            }
             if (desiredHeight > mainContentHeight)
             {
                 desiredHeight = mainContentHeight;

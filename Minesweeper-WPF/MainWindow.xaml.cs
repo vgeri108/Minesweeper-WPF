@@ -78,10 +78,13 @@ namespace Minesweeper_WPF
             {
                 FirstStartDifficulty firstGame = new FirstStartDifficulty();
                 firstGame.ShowDialog();
-                Tips tips = new Tips();
+                string message =
+                    "Ha rákattint egy négyzetre, meglátja, hány virág van körülötte. " +
+                    "Ha sikerül úgy felfednie minden négyzetet, hogy közben nem lép virágra, " +
+                    "megnyerte a játékot.";
+                Tips tips = new Tips("Játékszabályok", message);
                 tips.Show();
                 tips.Owner = this;
-                tips.Topmost = true;
                 Version.FirstStart = false;
                 JsonManager.Settings.Save();
                 Statistics.GenerateStatsIfNotExists();
