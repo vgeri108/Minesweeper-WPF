@@ -31,10 +31,10 @@
                 <Grid Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="40"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="Title" Text="Tipp" FontSize="40" Foreground="#FF0077B6"/>
-                    <Button x:Name="Close" Content="X" Grid.Column="1" VerticalAlignment="Top" Click="Close_Click"/>
+                    <Button x:Name="Close" Content="X" Grid.Column="1" FontSize="20" VerticalAlignment="Top" Click="Close_Click" Width="40" Height="40"/>
                 </Grid>
 
                 <TextBlock x:Name="Description" Grid.Row="1" TextWrapping="Wrap" Text="Ne lépj aknára, mert akkor fel fogsz robbanni." FontSize="22"/>
