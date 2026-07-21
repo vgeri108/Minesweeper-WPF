@@ -58,18 +58,6 @@ namespace Minesweeper_WPF
                 }
             }
 
-            
-            if (Version.FirstStart)
-            {
-                FirstStartDifficulty firstGame = new FirstStartDifficulty();
-                firstGame.ShowDialog();
-                Version.FirstStart = false;
-                JsonManager.Settings.Save();
-                Statistics.GenerateStatsIfNotExists();
-                JsonManager.Stats.Save();
-                JsonManager.Theme.Save();
-                JsonManager.Style.Save();
-            }
             if (Configuration.AutomaticUpdateSearch)
             {
                 if (Update.IsNewAvailable())
@@ -81,12 +69,26 @@ namespace Minesweeper_WPF
                 }
             }
             Show();
-            // subscribe to Time.Timer to update UI each second
             Time.Timer.Tick += DataTimer_Tick;
-            // subscribe to Reset so UI updates immediately when timer is reset
             Time.Reset += (s, e) => UpdateTimerText();
 
             UpdateTimerText();
+
+            if (Version.FirstStart)
+            {
+                FirstStartDifficulty firstGame = new FirstStartDifficulty();
+                firstGame.ShowDialog();
+                Tips tips = new Tips();
+                tips.Show();
+                tips.Owner = this;
+                tips.Topmost = true;
+                Version.FirstStart = false;
+                JsonManager.Settings.Save();
+                Statistics.GenerateStatsIfNotExists();
+                JsonManager.Stats.Save();
+                JsonManager.Theme.Save();
+                JsonManager.Style.Save();
+            }
         }
 
         private void ApplyTheme()
