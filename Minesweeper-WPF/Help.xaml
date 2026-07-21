@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Minesweeper_WPF"
         mc:Ignorable="d"
         Icon="/help.ico"
+        ShowInTaskbar="False"
         Title="Súgó" Height="765" Width="512">
     <Grid>
 

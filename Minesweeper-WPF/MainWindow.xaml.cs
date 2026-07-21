@@ -82,9 +82,12 @@ namespace Minesweeper_WPF
                     "Ha rákattint egy négyzetre, meglátja, hány virág van körülötte. " +
                     "Ha sikerül úgy felfednie minden négyzetet, hogy közben nem lép virágra, " +
                     "megnyerte a játékot.";
-                Tips tips = new Tips("Játékszabályok", message);
-                tips.Show();
-                tips.Owner = this;
+                if (Configuration.Tips)
+                {
+                    Tips tips = new Tips("Játékszabályok", message);
+                    tips.Show();
+                    tips.Owner = this;
+                }
                 Version.FirstStart = false;
                 JsonManager.Settings.Save();
                 Statistics.GenerateStatsIfNotExists();
