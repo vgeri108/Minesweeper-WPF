@@ -23,11 +23,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="help.ico" />
     <None Remove="hint_bcg.png" />
     <None Remove="infowarn1.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="help.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
