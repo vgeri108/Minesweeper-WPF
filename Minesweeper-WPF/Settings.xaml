@@ -141,9 +141,9 @@
         <!-- EGYÉB BEÁLLÍTÁSOK – NEM CSOPORTOSÍTVA -->
         <StackPanel Grid.Row="2" Margin="15,0,10,0">
 
-            <CheckBox x:Name="Animations" Margin="0,0,0,8" IsChecked="True">
+            <!-- <CheckBox x:Name="Animations" Margin="0,0,0,8" IsChecked="True">
                 <TextBlock Text="Animációk megjelenítése"/>
-            </CheckBox>
+            </CheckBox> -->
             <CheckBox x:Name="Sounds" Margin="0,0,0,8" IsChecked="True" >
                 <TextBlock Text="Hangok lejátszása"/>
             </CheckBox>
