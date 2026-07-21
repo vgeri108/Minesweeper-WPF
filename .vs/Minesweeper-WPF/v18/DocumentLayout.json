@@ -53,8 +53,7 @@
               "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\Help.xaml",
               "RelativeToolTip": "Minesweeper-WPF\\Help.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-06-04T16:22:56.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-04T16:22:56.62Z"
             },
             {
               "$type": "Document",
@@ -88,7 +87,7 @@
               "RelativeDocumentMoniker": "Minesweeper-WPF\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Geri\\source\\repos\\Minesweeper-WPF\\Minesweeper-WPF\\MainWindow.xaml.cs",
               "RelativeToolTip": "Minesweeper-WPF\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAP8AAAAAAAAAAAAAABQBAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAPwAAAAAAAAAAAAAABQBAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-27T16:38:38.482Z",
               "EditorCaption": ""

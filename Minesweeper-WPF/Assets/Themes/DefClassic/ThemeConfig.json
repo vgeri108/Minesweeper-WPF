@@ -46,6 +46,7 @@
     "Mines": "Images/Mine.png",
     "Numbers": "Images/1.png",
     "Background": "Images/GUI/hatter.png",
+    "HelpWindowBoard": "Images/GUI/BoardImage.png",
     "_comment6": "----- Tippek ablak -----",
     "Warning": "../Default/Images/GUI/warning.png",
     "TipColorUp": "#FFFFFFFF" ,
