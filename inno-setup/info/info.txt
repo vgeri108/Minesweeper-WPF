@@ -1,16 +1,29 @@
  ---===### Aknakereső ###===---
 
-Verzió: Alpha 1.7
+Verzió: Beta 1.8
 
-Ebben a verzióban még vannak dolgok amik nem csinálnak semmit, vagy éppen nem azt amit kéne.
+A verzió a következő frissítéseket tartalmazza:
 
-Ha hibát talál kérem jelentse:
-https://github.com/vgeri108/Minesweeper-WPF/issues
+=== Új funkciók ===
+   => Tippek ablak (ami jelenleg a játékszabályt írja ki első indításnál)
+   => Súgó
+   => Frissítés utáni visszajelzés
 
-=== Frissítések ===
-   => Gameover táblakinézet módosítások
+=== Vizuális módosítások ===
+   => Új téma: Microsoft
+   => Az alapértelmezett téma alsó sávjának szebbé tétele
+   => Lekerekített gombok
+   => Keret nélküli képek a játéktáblán
+   => Egér alatt lévő mező világosabbá válik
+   => Új ikon a telepítőnek
+   => Első indításkor megjelenő nehézség választó színezése
+   => Frontvonal téma törölve
 
 === Hibajavítások ===
-   => Issue #28 javítva: Sorozatszámolási hibák
-   => Issue #29 javítva: Zászlók kattinthatóak voltak
-   => Issue #22 javítva: Időmérő indulásának javítása (Névjegy ablak után)
+   => A hangok már működően ki- és bekapcsolhatóak
+   => Nem használt animációk kapcsoló törölve
+   => Lehetséges frissítés utáni hibák javítva
+   => Játékmentések jobb kezelése
+      > Folyamatjelző
+      > Zászlók számának mentése
+      > Mentések automatikus törlése
