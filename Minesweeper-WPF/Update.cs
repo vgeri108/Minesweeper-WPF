@@ -174,7 +174,8 @@ namespace Minesweeper_WPF
                 }
 
 
-
+                JsonManager.Theme.Load();
+                JsonManager.Style.Save();
                 progress.Close();
                 MessageBox.Show($"Az Aknakereső frissült a(z) {Version.GithubTag} verzióra.", "Frissítés", MessageBoxButton.OK, MessageBoxImage.Information);
             }
