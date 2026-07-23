@@ -44,18 +44,19 @@ namespace Minesweeper_WPF
             var progress = new Progress("Frissítések keresése", "A frissítések keresése folyamatban van...");
             progress.Show();
 
-            bool isNewAvailable = false;
+            await Task.Yield();
 
-            await Task.Run(() =>
-            {
-                isNewAvailable = Update.IsNewAvailable();
-            });
+            bool isNewAvailable = await Update.IsNewAvailable();
 
             progress.Close();
 
+            if (Update.CheckFailed)
+            {
+                return;
+            }
+
             if (isNewAvailable)
             {
-                Show();
                 NewInUpdate newInUpdate = new NewInUpdate();
                 newInUpdate.Owner = this;
                 newInUpdate.ShowDialog();

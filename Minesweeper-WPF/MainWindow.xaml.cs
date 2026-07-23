@@ -58,16 +58,6 @@ namespace Minesweeper_WPF
                 }
             }
 
-            if (Configuration.AutomaticUpdateSearch)
-            {
-                if (Update.IsNewAvailable())
-                {
-                    Show();
-                    NewInUpdate newInUpdate = new NewInUpdate();
-                    newInUpdate.Owner = this;
-                    newInUpdate.ShowDialog();
-                }
-            }
             Show();
             Time.Timer.Tick += DataTimer_Tick;
             Time.Reset += (s, e) => UpdateTimerText();
@@ -107,6 +97,22 @@ namespace Minesweeper_WPF
             MineCounter.Foreground = HexToBrush(Appearance.Images.ImageNames["TextBoxTextColor"]);
             TimerBox.Background = HexToBrush(Appearance.Images.ImageNames["TextBoxBackgroundColor"]);
             Timer.Foreground = HexToBrush(Appearance.Images.ImageNames["TextBoxTextColor"]);
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!Configuration.AutomaticUpdateSearch) return;
+
+            bool isNewAvailable = await Update.IsNewAvailable(true);
+
+            if (Update.CheckFailed) return;
+
+            if (isNewAvailable)
+            {
+                NewInUpdate newInUpdate = new NewInUpdate();
+                newInUpdate.Owner = this;
+                newInUpdate.ShowDialog();
+            }
         }
 
         public static System.Windows.Media.Brush HexToBrush(string hex)
@@ -347,18 +353,19 @@ namespace Minesweeper_WPF
             var progress = new Progress("Frissítések keresése", "A frissítések keresése folyamatban van...");
             progress.Show();
 
-            bool isNewAvailable = false;
+            await Task.Yield();
 
-            await Task.Run(() =>
-            {
-                isNewAvailable = Update.IsNewAvailable();
-            });
+            bool isNewAvailable = await Update.IsNewAvailable();
 
             progress.Close();
 
+            if (Update.CheckFailed)
+            {
+                return;
+            }
+
             if (isNewAvailable)
             {
-                Show();
                 NewInUpdate newInUpdate = new NewInUpdate();
                 newInUpdate.Owner = this;
                 newInUpdate.ShowDialog();

@@ -11,7 +11,8 @@
         MinHeight="260"
         MinWidth="260"
         Icon="/icon.ico"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        Loaded="MainWindow_Loaded">
 
     <Grid>
 

@@ -17,64 +17,62 @@ namespace Minesweeper_WPF
         public static List<string> NewTags = new List<string>();
         public static List<string> TagDescriptions = new List<string>();
 
-        private static bool VanInternet()
+        public static bool CheckFailed = false;
+
+        public static async Task<bool> IsNewAvailable(bool IgnoreErrors = false)
         {
+            CheckFailed = false;
+
             try
             {
-                using (var ping = new Ping())
+                NewTags.Clear();
+                TagDescriptions.Clear();
+
+                using HttpClient client = new HttpClient();
+                client.Timeout = TimeSpan.FromSeconds(5);
+
+                string GH_TagList = await client.GetStringAsync(
+                    "https://raw.githubusercontent.com/vgeri108/Minesweeper-WPF/refs/heads/main/Minesweeper-WPF/VersionTags.txt"
+                );
+
+                List<string> Tags = GH_TagList.Split('\n').Where(x => !string.IsNullOrEmpty(x)).ToList();
+
+                int currentIndex = Tags.IndexOf(Version.GithubTag);
+
+                if (currentIndex == 0) return false;
+
+                for (int i = currentIndex - 1; i >= 0; i--)
                 {
-                    PingReply reply = ping.Send("8.8.8.8", 200);
-                    return reply.Status == IPStatus.Success;
+                    try
+                    {
+                        string description = await client.GetStringAsync($"https://raw.githubusercontent.com/vgeri108/Minesweeper-WPF/refs/tags/{Tags[i]}/Minesweeper-WPF/Version.txt");
+
+                        NewTags.Insert(0, Tags[i]);
+                        TagDescriptions.Insert(0, description);
+                    }
+                    catch
+                    {
+                        
+                    }
                 }
+
+                return NewTags.Count > 0;
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                if (IgnoreErrors) return false;
+
+                CheckFailed = true;
+
+                MessageBox.Show("A frissítések ellenőrzése sikertelen:\n\n" + e.Message +
+                    "\n\nElőfordulhat, hogy nem csatlakozik az internethez.",
+                    "Kapcsolódási hiba",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Exclamation
+                );
+
                 return false;
             }
-        }
-
-        public static bool IsNewAvailable()
-        {
-            if (VanInternet())
-            {
-                try
-                {
-                    using (HttpClient client = new HttpClient())
-                    {
-                        string GH_TagList = client.GetStringAsync("https://raw.githubusercontent.com/vgeri108/Minesweeper-WPF/refs/heads/main/Minesweeper-WPF/VersionTags.txt").Result;
-                        List<string> Tags = new List<string>(GH_TagList.Split('\n'));
-
-                        if (Tags.IndexOf(Version.GithubTag) != 0)
-                        {
-                            for (int i = Tags.IndexOf(Version.GithubTag) -1; i >= 0; i--)
-                            {
-                                bool IsTagValid = true;
-                                try
-                                {
-                                    string GH_TagDescriptionCheck = client.GetStringAsync($"https://raw.githubusercontent.com/vgeri108/Minesweeper-WPF/refs/tags/{Tags[i]}/Minesweeper-WPF/Version.txt").Result;
-                                }
-                                catch { IsTagValid = false; }
-
-                                if (IsTagValid)
-                                {
-                                    NewTags.Insert(0, Tags[i]);
-                                    string GH_TagDescription = client.GetStringAsync($"https://raw.githubusercontent.com/vgeri108/Minesweeper-WPF/refs/tags/{Tags[i]}/Minesweeper-WPF/Version.txt").Result;
-                                    TagDescriptions.Insert(0,GH_TagDescription);
-                                }
-                            }
-                            return true;
-                        }
-                        else return false;
-                    }
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                    return false;
-                }
-            }
-            else return false;
         }
         public static async Task Install()
         {
