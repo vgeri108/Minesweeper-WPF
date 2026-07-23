@@ -161,7 +161,7 @@ namespace Minesweeper_WPF
 
 
                 //vB1.8
-                if (CompareVersion(oldVersion, new[] { 1, 8 }) < 0)
+                if (CompareVersion(oldVersion, new[] { 1, 8, 1}) < 0)
                 {
                     Configuration.CurrentTheme = "Default";
                     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Assets", "Themes", "Frontvonal");

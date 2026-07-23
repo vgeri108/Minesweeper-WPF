@@ -61,9 +61,9 @@ namespace Minesweeper_WPF
     public class Version
     {
         public static bool FirstStart = true;
-        public static string Game = "Beta 1.8";
+        public static string Game = "Beta 1.8.1";
         public static string Json = Game;
-        public static string GithubTag = "vB1.8";
+        public static string GithubTag = "vB1.8.1";
     }
     public class Statistics
     {

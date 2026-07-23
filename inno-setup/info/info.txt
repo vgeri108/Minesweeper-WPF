@@ -1,29 +1,14 @@
  ---===### Aknakereső ###===---
 
-Verzió: Beta 1.8
+Verzió: Beta 1.8.1
 
 A verzió a következő frissítéseket tartalmazza:
 
 === Új funkciók ===
-   => Tippek ablak (ami jelenleg a játékszabályt írja ki első indításnál)
-   => Súgó
-   => Frissítés utáni visszajelzés
+   => Jobb visszajelzés a frissítésekről
 
 === Vizuális módosítások ===
-   => Új téma: Microsoft
-   => Az alapértelmezett téma alsó sávjának szebbé tétele
-   => Lekerekített gombok
-   => Keret nélküli képek a játéktáblán
-   => Egér alatt lévő mező világosabbá válik
-   => Új ikon a telepítőnek
-   => Első indításkor megjelenő nehézség választó színezése
    => Frontvonal téma törölve
 
 === Hibajavítások ===
-   => A hangok már működően ki- és bekapcsolhatóak
-   => Nem használt animációk kapcsoló törölve
-   => Lehetséges frissítés utáni hibák javítva
-   => Játékmentések jobb kezelése
-      > Folyamatjelző
-      > Zászlók számának mentése
-      > Mentések automatikus törlése
+   => Frissítések ellenőrzések javítása
