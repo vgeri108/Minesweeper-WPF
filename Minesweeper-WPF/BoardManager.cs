@@ -46,6 +46,7 @@ namespace Minesweeper_WPF
 
         private static ControlTemplate cachedTemplate = null;
         private static double cachedCornerRadius = -1;
+        private static double currentImageCornerVal = 0;
         public static void Init()
         {
             if (!LoadedGame)
@@ -890,6 +891,25 @@ namespace Minesweeper_WPF
         public static void BoardApplyTheme()
         {
             RandomizeCover();
+            if (gameBoard == null) return;
+
+            double marginVal = double.Parse(Appearance.Images.ImageNames["GameButtonMargin"], System.Globalization.CultureInfo.InvariantCulture);
+            double cornerVal = double.Parse(Appearance.Images.ImageNames["GameButtonCorner"], System.Globalization.CultureInfo.InvariantCulture);
+            var bgColor = MainWindow.HexToBrush(Appearance.Images.ImageNames["GameButtonColor"]);
+
+            foreach (var child in gameBoard.Children)
+            {
+                if (child is Button btn)
+                {
+                    btn.Margin = new Thickness(marginVal);
+                    btn.Template = GetRoundedTemplate(cornerVal);
+                    btn.Background = bgColor;
+
+                    if (btn.Content is Image img)
+                        ApplyImageClipping(img, cornerVal);
+                }
+            }
+
             Draw();
         }
         private static void RandomizeCover()
@@ -940,24 +960,19 @@ namespace Minesweeper_WPF
 
         private static void ApplyImageClipping(Image img, double cornerVal)
         {
+            img.Loaded -= Image_Loaded;
+            currentImageCornerVal = cornerVal;
+
             if (cornerVal > 0.0)
-            {
-                double c = cornerVal;
-                img.Loaded += (s, e) =>
-                {
-                    if (s is Image im)
-                        im.Clip = new RectangleGeometry(new Rect(0, 0, im.ActualWidth, im.ActualHeight), c, c);
-                };
-                img.SizeChanged += (s, e) =>
-                {
-                    if (s is Image im)
-                        im.Clip = new RectangleGeometry(new Rect(0, 0, im.ActualWidth, im.ActualHeight), c, c);
-                };
-            }
+                img.Loaded += Image_Loaded;
             else
-            {
                 img.Clip = null;
-            }
+        }
+
+        private static void Image_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is Image img)
+                img.Clip = new RectangleGeometry(new Rect(0, 0, img.ActualWidth, img.ActualHeight), currentImageCornerVal, currentImageCornerVal);
         }
     }
 
