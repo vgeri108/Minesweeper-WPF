@@ -485,17 +485,17 @@ namespace Minesweeper_WPF
                 try
                 {
                     if (!File.Exists(".version"))
-                        return Version.GithubTag;
+                        return "vA0.0";
 
                     var content = File.ReadAllText(".version");
                     if (string.IsNullOrWhiteSpace(content))
-                        return Version.GithubTag;
+                        return "vA0.0";
                     else return content;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    return Version.GithubTag;
+                    return "vA0.0";
                 }
             }
         }
