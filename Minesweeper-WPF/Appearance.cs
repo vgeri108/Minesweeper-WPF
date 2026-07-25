@@ -54,6 +54,9 @@ namespace Minesweeper_WPF
                 { "6", "Images/6.png" },
                 { "7", "Images/7.png" },
                 { "8", "Images/8.png" },
+                {"GameButtonColor", "#ffffff00" },
+                {"GameButtonCorner", "0" },
+                {"GameButtonMargin", "0" },
 
                 { "_comment3", "----- Pálya alatti sáv -----" },
                 { "Clock", "Images/GUI/clock.png" },

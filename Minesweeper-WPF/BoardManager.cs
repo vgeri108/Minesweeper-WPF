@@ -39,13 +39,13 @@ namespace Minesweeper_WPF
         public static bool gameover = false;
         static string gameover_type = "-";
 
-        // egyszerű kép cache a nagy pályákhoz
         private static readonly Dictionary<string, BitmapImage> bitmapCache = new Dictionary<string, BitmapImage>(StringComparer.OrdinalIgnoreCase);
         private static readonly object bitmapCacheLock = new object();
 
-        // Button pool — újrafelhasználjuk a Button és Image objektumokat nagy pályákhoz
         private static readonly List<Button> buttonPool = new List<Button>();
 
+        private static ControlTemplate cachedTemplate = null;
+        private static double cachedCornerRadius = -1;
         public static void Init()
         {
             if (!LoadedGame)
@@ -104,12 +104,14 @@ namespace Minesweeper_WPF
             gameBoard.Rows = Data.meretM;
             gameBoard.Columns = Data.meretSZ;
 
-            // Pool mérete (sorok*oszlopok)
+            //sor*oszlop
             int maxX = Data.akna.GetLength(0);
             int maxY = Data.akna.GetLength(1);
             int required = maxX * maxY;
 
-            // Ha a pool nem megfelelő, újrageneráljuk egyszer — ez minimalizálja a folyamatos objektumlétrehozást
+            double marginVal = double.Parse(Appearance.Images.ImageNames["GameButtonMargin"], System.Globalization.CultureInfo.InvariantCulture);
+            double cornerVal = double.Parse(Appearance.Images.ImageNames["GameButtonCorner"], System.Globalization.CultureInfo.InvariantCulture);
+
             if (buttonPool.Count != required)
             {
                 buttonPool.Clear();
@@ -123,13 +125,14 @@ namespace Minesweeper_WPF
                         Button btn = new Button
                         {
                             Tag = new Point(x, y),
-                            Margin = new Thickness(0),
-                            Padding = new Thickness(0)
+                            Margin = new Thickness(marginVal),
+                            Padding = new Thickness(0),
+                            Background = MainWindow.HexToBrush(Appearance.Images.ImageNames["GameButtonColor"])
                         };
 
                         btn.SetResourceReference(System.Windows.FrameworkElement.StyleProperty, "GameBoardButton");
+                        btn.Template = GetRoundedTemplate(cornerVal);
 
-                        // kezdő kép (cover)
                         string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
                         Uri imageUri = new Uri(imagePath, UriKind.Absolute);
                         BitmapImage bmp = GetCachedBitmap(imageUri);
@@ -140,6 +143,8 @@ namespace Minesweeper_WPF
                             Stretch = System.Windows.Media.Stretch.UniformToFill,
                             Margin = new Thickness(0),
                         };
+
+                        ApplyImageClipping(img, cornerVal);
 
                         btn.Content = img;
                         GameBoardHelper.SetIsInteractiveCell(btn, Data.visible[x, y] != "true");
@@ -154,7 +159,6 @@ namespace Minesweeper_WPF
             }
             else
             {
-                // Frissítjük a Tag-eket és a kezdő képeket, ha pool maradt ugyanakkora (pl. csak új játék, de felbontás ugyanaz)
                 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
                 int idx = 0;
                 for (int y = 0; y < maxY; y++)
@@ -163,11 +167,24 @@ namespace Minesweeper_WPF
                     {
                         var btn = buttonPool[idx++];
                         btn.Tag = new Point(x, y);
+                        btn.Margin = new Thickness(marginVal);
+                        btn.Template = GetRoundedTemplate(cornerVal);
 
                         string imagePath = Path.Combine(baseDir, "Assets", "Themes", Configuration.CurrentTheme, Data.coverTexture[x, y]);
                         var bmp = GetCachedBitmap(new Uri(imagePath, UriKind.Absolute));
-                        if (btn.Content is Image img) img.Source = bmp;
-                        else btn.Content = new Image { Source = bmp, Stretch = System.Windows.Media.Stretch.UniformToFill };
+
+                        if (btn.Content is Image img)
+                        {
+                            img.Source = bmp;
+                            ApplyImageClipping(img, cornerVal);
+                        }
+                        else
+                        {
+                            var newImg = new Image { Source = bmp, Stretch = System.Windows.Media.Stretch.UniformToFill };
+                            ApplyImageClipping(newImg, cornerVal);
+                            btn.Content = newImg;
+                        }
+
                         GameBoardHelper.SetIsInteractiveCell(btn, Data.visible[x, y] != "true");
                     }
                 }
@@ -317,7 +334,6 @@ namespace Minesweeper_WPF
         }
         public static void Draw()
         {
-            // Nem töröljük a gameBoard.Children-t minden alkalommal — újrafelhasználjuk a poolt.
             gameBoard.Rows = Data.meretM;
             gameBoard.Columns = Data.meretSZ;
 
@@ -488,8 +504,7 @@ namespace Minesweeper_WPF
                 }
             }
         }
-
-        // Preview handler a dupla kattintásra (easy mining)
+        //EasyMining
         private static void Cell_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount != 2) return;
@@ -500,27 +515,20 @@ namespace Minesweeper_WPF
             int x = (int)pos.X;
             int y = (int)pos.Y;
 
-            // csak akkor működik, ha a mező látható és szám
             if (Data.visible == null || Data.akna == null) return;
             if (x < 0 || x >= Data.akna.GetLength(0) || y < 0 || y >= Data.akna.GetLength(1)) return;
             if (Data.visible[x, y] != "true") return;
 
-            // jelleg ellenőrzés: csak számokra
             string cell = Data.akna[x, y];
             if (!int.TryParse(cell, out int requiredFlags) || requiredFlags <= 0) return;
 
-            // elvégezzük az easy-mine műveletet
             EasyMine(x, y);
-
-            // frissítjük a megjelenítést és állapotot
             NyeresEllenorzes();
             Draw();
             if (gameover)
             {
                 ShowGameOverDialog();
             }
-
-            // fogyasszuk el az eseményt, hogy a Click ne fusson kétszer
             e.Handled = true;
         }
 
@@ -529,7 +537,6 @@ namespace Minesweeper_WPF
             int maxX = Data.akna.GetLength(0);
             int maxY = Data.akna.GetLength(1);
 
-            // megszámoljuk a környező zászlókat
             int flagCount = 0;
             for (int dx = -1; dx <= 1; dx++)
             {
@@ -544,7 +551,6 @@ namespace Minesweeper_WPF
 
             if (!int.TryParse(Data.akna[x, y], out int requiredFlags) || requiredFlags != flagCount) return;
 
-            // ha megegyezik, felnyitjuk a környező nem-zászló / nem-kérdőjeles mezőket
             for (int dx = -1; dx <= 1; dx++)
             {
                 for (int dy = -1; dy <= 1; dy++)
@@ -552,11 +558,7 @@ namespace Minesweeper_WPF
                     if (dx == 0 && dy == 0) continue;
                     int nx = x + dx, ny = y + dy;
                     if (nx < 0 || nx >= maxX || ny < 0 || ny >= maxY) continue;
-
-                    // kihagyjuk a zászlókat és kérdőjeleket és már láthatókat
                     if (Data.visible[nx, ny] == "flag" || Data.visible[nx, ny] == "question" || Data.visible[nx, ny] == "true") continue;
-
-                    // ha akna — játék vége
                     if (Data.akna[nx, ny] == minemark)
                     {
                         gameover = true;
@@ -565,12 +567,10 @@ namespace Minesweeper_WPF
                     }
                     else if (Data.akna[nx, ny] == semmi)
                     {
-                        // ha üres, teljes felfedés szükséges (rekurzív viselkedés megőrzése)
                         Felfedes(nx, ny);
                     }
                     else
                     {
-                        // szám: csak jelöljük láthatónak
                         Data.visible[nx, ny] = "true";
                     }
                 }
@@ -722,7 +722,6 @@ namespace Minesweeper_WPF
         }
         private static void AddButton(Uri CellImage, int x, int y)
         {
-            // Ez a visszaesés addolási út, ha poolból valamiért nem tudunk dolgozni.
             Button btn = new Button
             {
                 Tag = new Point(x, y),
@@ -770,7 +769,6 @@ namespace Minesweeper_WPF
                 }
                 catch
                 {
-                    // ha hiba történik, próbáljuk meg az error képet használni (szintén cache-elve)
                     var errUri = Appearance.Images.error;
                     string errKey = errUri.IsAbsoluteUri ? errUri.AbsoluteUri : errUri.ToString();
                     if (bitmapCache.TryGetValue(errKey, out var errCached)) return errCached;
@@ -788,7 +786,6 @@ namespace Minesweeper_WPF
                     }
                     catch
                     {
-                        // végső fallback: új üres BitmapImage (ritkán fordul elő)
                         var empty = new BitmapImage();
                         return empty;
                     }
@@ -913,6 +910,53 @@ namespace Minesweeper_WPF
                         Data.coverTexture[x, y] = Appearance.Images.ImageNames["fedes"];
                     }
                 }
+            }
+        }
+        private static ControlTemplate GetRoundedTemplate(double cornerVal)
+        {
+            if (cachedTemplate != null && cachedCornerRadius == cornerVal)
+                return cachedTemplate;
+
+            var template = new ControlTemplate(typeof(Button));
+            var borderFactory = new FrameworkElementFactory(typeof(Border));
+            borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(cornerVal));
+            borderFactory.SetValue(Border.BackgroundProperty, new TemplateBindingExtension(Button.BackgroundProperty));
+            borderFactory.SetValue(Border.BorderBrushProperty, new TemplateBindingExtension(Button.BorderBrushProperty));
+            borderFactory.SetValue(Border.BorderThicknessProperty, new TemplateBindingExtension(Button.BorderThicknessProperty));
+            borderFactory.SetValue(Border.PaddingProperty, new TemplateBindingExtension(Button.PaddingProperty));
+            borderFactory.SetValue(UIElement.ClipToBoundsProperty, true);
+
+            var contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
+            contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, new TemplateBindingExtension(Button.HorizontalContentAlignmentProperty));
+            contentPresenter.SetValue(ContentPresenter.VerticalAlignmentProperty, new TemplateBindingExtension(Button.VerticalContentAlignmentProperty));
+            contentPresenter.SetValue(ContentPresenter.ContentProperty, new TemplateBindingExtension(Button.ContentProperty));
+            borderFactory.AppendChild(contentPresenter);
+            template.VisualTree = borderFactory;
+
+            cachedTemplate = template;
+            cachedCornerRadius = cornerVal;
+            return template;
+        }
+
+        private static void ApplyImageClipping(Image img, double cornerVal)
+        {
+            if (cornerVal > 0.0)
+            {
+                double c = cornerVal;
+                img.Loaded += (s, e) =>
+                {
+                    if (s is Image im)
+                        im.Clip = new RectangleGeometry(new Rect(0, 0, im.ActualWidth, im.ActualHeight), c, c);
+                };
+                img.SizeChanged += (s, e) =>
+                {
+                    if (s is Image im)
+                        im.Clip = new RectangleGeometry(new Rect(0, 0, im.ActualWidth, im.ActualHeight), c, c);
+                };
+            }
+            else
+            {
+                img.Clip = null;
             }
         }
     }
