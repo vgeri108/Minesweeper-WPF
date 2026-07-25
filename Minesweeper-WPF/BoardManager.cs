@@ -47,6 +47,7 @@ namespace Minesweeper_WPF
         private static ControlTemplate cachedTemplate = null;
         private static double cachedCornerRadius = -1;
         private static double currentImageCornerVal = 0;
+        private static double cornerPercent = 0;
         public static void Init()
         {
             if (!LoadedGame)
@@ -110,8 +111,10 @@ namespace Minesweeper_WPF
             int maxY = Data.akna.GetLength(1);
             int required = maxX * maxY;
 
-            double marginVal = double.Parse(Appearance.Images.ImageNames["GameButtonMargin"], System.Globalization.CultureInfo.InvariantCulture);
-            double cornerVal = double.Parse(Appearance.Images.ImageNames["GameButtonCorner"], System.Globalization.CultureInfo.InvariantCulture);
+            double marginPercent = double.Parse(Appearance.Images.ImageNames["GameButtonMargin"], System.Globalization.CultureInfo.InvariantCulture);
+            double marginVal = marginPercent > 0 ? CalcMargin(marginPercent) : 0;
+            cornerPercent = double.Parse(Appearance.Images.ImageNames["GameButtonCorner"], System.Globalization.CultureInfo.InvariantCulture);
+            double cornerVal = cornerPercent > 0 ? CalcCorner(cornerPercent) : 0;
 
             if (buttonPool.Count != required)
             {
@@ -893,8 +896,10 @@ namespace Minesweeper_WPF
             RandomizeCover();
             if (gameBoard == null) return;
 
-            double marginVal = double.Parse(Appearance.Images.ImageNames["GameButtonMargin"], System.Globalization.CultureInfo.InvariantCulture);
-            double cornerVal = double.Parse(Appearance.Images.ImageNames["GameButtonCorner"], System.Globalization.CultureInfo.InvariantCulture);
+            double marginPercent = double.Parse(Appearance.Images.ImageNames["GameButtonMargin"], System.Globalization.CultureInfo.InvariantCulture);
+            double marginVal = marginPercent > 0 ? CalcMargin(marginPercent) : 0;
+            cornerPercent = double.Parse(Appearance.Images.ImageNames["GameButtonCorner"], System.Globalization.CultureInfo.InvariantCulture);
+            double cornerVal = cornerPercent > 0 ? CalcCorner(cornerPercent) : 0;
             var bgColor = MainWindow.HexToBrush(Appearance.Images.ImageNames["GameButtonColor"]);
 
             foreach (var child in gameBoard.Children)
@@ -932,6 +937,17 @@ namespace Minesweeper_WPF
                 }
             }
         }
+        private static double CalcCorner(double percent)
+        {
+            if (percent <= 0) return 0;
+            return Math.Min(400.0 / Data.meretSZ, 400.0 / Data.meretM) * percent / 100.0;
+        }
+        private static double CalcMargin(double percent)
+        {
+            if (percent <= 0) return 0;
+            return Math.Min(400.0 / Data.meretSZ, 400.0 / Data.meretM) * percent / 100.0;
+        }
+
         private static ControlTemplate GetRoundedTemplate(double cornerVal)
         {
             if (cachedTemplate != null && cachedCornerRadius == cornerVal)
