@@ -33,26 +33,10 @@ namespace Minesweeper_WPF
 
             foreach (string item in Statistics.Modes)
             {
-                if (item == "9_9_10")
-                {
-                    Difficulties.Items.Add("Kezdő");
-                    if (item == Statistics.currentMode) Difficulties.SelectedItem = "Kezdő";
-                }
-                else if (item == "16_16_40")
-                {
-                    Difficulties.Items.Add("Középhaladó");
-                    if (item == Statistics.currentMode) Difficulties.SelectedItem = "Középhaladó";
-                }
-                else if (item == "16_30_99")
-                {
-                    Difficulties.Items.Add("Haladó");
-                    if (item == Statistics.currentMode) Difficulties.SelectedItem = "Haladó";
-                }
-                else
-                {
-                    Difficulties.Items.Add(item);
-                    if (item == Statistics.currentMode) Difficulties.SelectedItem = item;
-                }
+                string displayName = Statistics.DisplayNames[item];
+
+                Difficulties.Items.Add(displayName);
+                if (item == Statistics.currentMode) Difficulties.SelectedItem = displayName;
             }
         }
 
@@ -61,19 +45,19 @@ namespace Minesweeper_WPF
             if (Difficulties.SelectedItem == null)
                 return;
 
-            if (Difficulties.SelectedItem.ToString() == "Kezdő")
+            string displayName = Difficulties.SelectedItem.ToString();
+
+            foreach (string mode in Statistics.Modes)
             {
-                SelectedDifficulty = "9_9_10";
+                if ((mode == "9_9_10" && displayName == "Kezdő") ||
+                    (mode == "16_16_40" && displayName == "Középhaladó") ||
+                    (mode == "16_30_99" && displayName == "Haladó") ||
+                    (mode == displayName))
+                {
+                    SelectedDifficulty = mode;
+                    break;
+                }
             }
-            else if (Difficulties.SelectedItem.ToString() == "Középhaladó")
-            {
-                SelectedDifficulty = "16_16_40";
-            }
-            else if (Difficulties.SelectedItem.ToString() == "Haladó")
-            {
-                SelectedDifficulty = "16_30_99";
-            }
-            else SelectedDifficulty = Difficulties.SelectedItem.ToString();
 
             Title = $"Aknakereső statisztikája - {Environment.UserName}";
             PlayedGames.Text = "Lejátszott játékok: " + Statistics.PlayedGames[SelectedDifficulty].ToString();
@@ -118,6 +102,15 @@ namespace Minesweeper_WPF
             ResetStats resetStats = new ResetStats(Difficulties.SelectedItem.ToString(), SelectedDifficulty);
             resetStats.Owner = this;
             resetStats.ShowDialog();
+            FillList();
+        }
+
+        private void Rename_Click(object sender, RoutedEventArgs e)
+        {
+            string displayName = Difficulties.SelectedItem?.ToString() ?? SelectedDifficulty;
+            RenameMode renameMode = new RenameMode(displayName);
+            renameMode.Owner = this;
+            renameMode.ShowDialog();
             FillList();
         }
     }

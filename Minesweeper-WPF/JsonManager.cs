@@ -143,6 +143,7 @@ namespace Minesweeper_WPF
                 public string JsonVersion { get; set; } = "WPF"; //Nincs betöltve
                 public string SerializationTime { get; set; } = DateTime.Now.ToString();
                 public List<string> Modes { get; set; } = Statistics.Modes;
+                public Dictionary<string, string> DisplayNames { get; set; } = new();
                 public Dictionary<string, int> PlayedGames { get; set; } = new();
                 public Dictionary<string, int> WinnedGames { get; set; } = new();
                 public Dictionary<string, List<string>> Times { get; set; } = new();
@@ -162,6 +163,7 @@ namespace Minesweeper_WPF
                     JsonVersion = Version.Json,
                     SerializationTime = DateTime.Now.ToString(),
                     Modes = Statistics.Modes,
+                    DisplayNames = Statistics.DisplayNames.ToDictionary(kv => kv.Key, kv => kv.Value),
                     PlayedGames = Statistics.PlayedGames.ToDictionary(kv => kv.Key, kv => kv.Value),
                     WinnedGames = Statistics.WinnedGames.ToDictionary(kv => kv.Key, kv => kv.Value),
                     Times = Statistics.Times.ToDictionary(
@@ -196,6 +198,15 @@ namespace Minesweeper_WPF
                     return;
 
                 Statistics.Modes = Stats.Modes;
+
+                if (Stats.DisplayNames != null && Stats.DisplayNames.Count > 0)
+                {
+                    Statistics.DisplayNames.Clear();
+                    foreach (var kv in Stats.DisplayNames)
+                    {
+                        Statistics.DisplayNames[kv.Key] = kv.Value;
+                    }
+                }
 
                 foreach (var kv in Stats.PlayedGames)
                 {

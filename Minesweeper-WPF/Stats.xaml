@@ -25,11 +25,17 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <ListBox x:Name="Difficulties"
-                     SelectionChanged="Difficulties_SelectionChanged"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Left"
-                     Height="Auto" Width="150"/>
+<ListBox x:Name="Difficulties"
+                      SelectionChanged="Difficulties_SelectionChanged"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Left"
+                      Height="Auto" Width="150">
+                 <ListBox.ContextMenu>
+                     <ContextMenu>
+                         <MenuItem x:Name="RenameMenuItem" Header="Név módosítása" Click="Rename_Click"/>
+                     </ContextMenu>
+                 </ListBox.ContextMenu>
+             </ListBox>
 
             <GroupBox Grid.Column="1"
                       Header="Legjobb idők" Margin="15,0,15,0"

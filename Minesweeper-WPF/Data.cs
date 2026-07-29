@@ -69,6 +69,12 @@ namespace Minesweeper_WPF
     {
         public static string currentMode = "9_9_10";
         public static List<string> Modes = new List<string>();
+        public static Dictionary<string, string> DisplayNames = new Dictionary<string, string>()
+        {
+            {"9_9_10", "Kezdő"},
+            {"16_16_40", "Középhaladó"},
+            {"16_30_99", "Haladó"},
+        };
         public static Dictionary<string, int> PlayedGames = new Dictionary<string, int>();
         public static Dictionary<string, int> WinnedGames = new Dictionary<string, int>();
         public static Dictionary<string, List<int>> Times = new Dictionary<string, List<int>>();
@@ -95,6 +101,7 @@ namespace Minesweeper_WPF
             if (!LoseStreak.ContainsKey(currentMode)) LoseStreak.Add(currentMode, 0);
             if (!LongestLoseStreak.ContainsKey(currentMode)) LongestLoseStreak.Add(currentMode, 0);
             if (!CurrentStreak.ContainsKey(currentMode)) CurrentStreak.Add(currentMode, 0);
+            if (!DisplayNames.ContainsKey(currentMode)) DisplayNames.Add(currentMode, currentMode);
             JsonManager.Stats.Save();
         }
 
