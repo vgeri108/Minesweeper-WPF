@@ -46,7 +46,7 @@ namespace Minesweeper_WPF
                 return;
 
             string displayName = Difficulties.SelectedItem.ToString();
-
+            bool isBuiltInMode = false;
             foreach (string mode in Statistics.Modes)
             {
                 if ((mode == "9_9_10" && displayName == "Kezdő") ||
@@ -55,10 +55,14 @@ namespace Minesweeper_WPF
                     (mode == displayName))
                 {
                     SelectedDifficulty = mode;
+                    if (mode == "9_9_10" || mode == "16_16_40" || mode == "16_30_99")
+                    {
+                        isBuiltInMode = true;
+                    }
                     break;
                 }
             }
-
+            RenameMenuItem.IsEnabled = !isBuiltInMode;
             Title = $"Aknakereső statisztikája - {Environment.UserName}";
             PlayedGames.Text = "Lejátszott játékok: " + Statistics.PlayedGames[SelectedDifficulty].ToString();
             WinnedGames.Text = "Megnyert játékok: " + Statistics.WinnedGames[SelectedDifficulty].ToString();

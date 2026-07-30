@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-<ListBox x:Name="Difficulties"
+            <ListBox x:Name="Difficulties"
                       SelectionChanged="Difficulties_SelectionChanged"
                       VerticalAlignment="Top"
                       HorizontalAlignment="Left"
