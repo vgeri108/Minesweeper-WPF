@@ -5,7 +5,6 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <local:WidthToMarginConverter x:Key="WidthToMarginConverter"/>
-        <local:HoverOpacityConverter x:Key="HoverOpacityConverter"/>
 
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -55,19 +54,9 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
-                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
-                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                            <Border x:Name="hoverOverlay" Background="White" IsHitTestVisible="False">
-                                <Border.Opacity>
-                                    <MultiBinding Converter="{StaticResource HoverOpacityConverter}">
-                                        <Binding Path="IsMouseOver" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                        <Binding Path="(local:GameBoardHelper.IsInteractiveCell)" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                    </MultiBinding>
-                                </Border.Opacity>
-                            </Border>
-                        </Grid>
+                        <Border x:Name="border" CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true">
                                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>

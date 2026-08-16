@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,8 +9,8 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -20,7 +19,6 @@ namespace Minesweeper_WPF
     class BoardManager
     {
         private static UniformGrid gameBoard;
-        private static bool mouseHandlersAdded = false;
         public BoardManager(UniformGrid grid)
         {
             gameBoard = grid;
@@ -197,44 +195,6 @@ namespace Minesweeper_WPF
             if (System.Windows.Application.Current?.MainWindow is MainWindow mw)
             {
                 mw.MineCounterUpdate(Data.aknakszama - Data.flagCount);
-            }
-
-            try
-            {
-                if (gameBoard != null)
-                {
-                    var mousePos = System.Windows.Input.Mouse.GetPosition(gameBoard);
-
-                    foreach (var child in gameBoard.Children)
-                    {
-                        if (child is Button b)
-                        {
-                            GameBoardHelper.SetIsSelectedCell(b, false);
-                        }
-                    }
-
-                    var hit = VisualTreeHelper.HitTest(gameBoard, mousePos);
-                    if (hit != null)
-                    {
-                        DependencyObject current = hit.VisualHit;
-                        while (current != null && current != gameBoard)
-                        {
-                            if (current is Button btn && btn.Tag is Point)
-                            {
-                                if (GameBoardHelper.GetIsInteractiveCell(btn))
-                                {
-                                    GameBoardHelper.SetIsSelectedCell(btn, true);
-                                }
-                                break;
-                            }
-                            current = VisualTreeHelper.GetParent(current);
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                
             }
         }
         public static string[,] Generate(int select_x, int select_y)
@@ -953,25 +913,32 @@ namespace Minesweeper_WPF
             if (cachedTemplate != null && cachedCornerRadius == cornerVal)
                 return cachedTemplate;
 
-            var template = new ControlTemplate(typeof(Button));
-            var borderFactory = new FrameworkElementFactory(typeof(Border));
-            borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(cornerVal));
-            borderFactory.SetValue(Border.BackgroundProperty, new TemplateBindingExtension(Button.BackgroundProperty));
-            borderFactory.SetValue(Border.BorderBrushProperty, new TemplateBindingExtension(Button.BorderBrushProperty));
-            borderFactory.SetValue(Border.BorderThicknessProperty, new TemplateBindingExtension(Button.BorderThicknessProperty));
-            borderFactory.SetValue(Border.PaddingProperty, new TemplateBindingExtension(Button.PaddingProperty));
-            borderFactory.SetValue(UIElement.ClipToBoundsProperty, true);
+            string radius = cornerVal.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            string templateXaml = $@"
+<ControlTemplate xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+                 xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+                 xmlns:local='clr-namespace:Minesweeper_WPF;assembly=Minesweeper-WPF'
+                 TargetType='Button'>
+    <Grid>
+        <Border x:Name='border' CornerRadius='{radius}' Background='{{TemplateBinding Background}}' BorderBrush='{{TemplateBinding BorderBrush}}' BorderThickness='{{TemplateBinding BorderThickness}}' Padding='{{TemplateBinding Padding}}' ClipToBounds='True'>
+            <ContentPresenter HorizontalAlignment='{{TemplateBinding HorizontalContentAlignment}}' VerticalAlignment='{{TemplateBinding VerticalContentAlignment}}'/>
+        </Border>
+        <Border x:Name='hoverOverlay' Background='White' CornerRadius='{radius}' IsHitTestVisible='False' ClipToBounds='True' Opacity='0'/>
+    </Grid>
+    <ControlTemplate.Triggers>
+        <MultiTrigger>
+            <MultiTrigger.Conditions>
+                <Condition Property='IsMouseOver' Value='True'/>
+                <Condition Property='local:GameBoardHelper.IsInteractiveCell' Value='True'/>
+            </MultiTrigger.Conditions>
+            <Setter Property='Opacity' TargetName='hoverOverlay' Value='0.25'/>
+        </MultiTrigger>
+    </ControlTemplate.Triggers>
+</ControlTemplate>";
 
-            var contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, new TemplateBindingExtension(Button.HorizontalContentAlignmentProperty));
-            contentPresenter.SetValue(ContentPresenter.VerticalAlignmentProperty, new TemplateBindingExtension(Button.VerticalContentAlignmentProperty));
-            contentPresenter.SetValue(ContentPresenter.ContentProperty, new TemplateBindingExtension(Button.ContentProperty));
-            borderFactory.AppendChild(contentPresenter);
-            template.VisualTree = borderFactory;
-
-            cachedTemplate = template;
+            cachedTemplate = (ControlTemplate)XamlReader.Parse(templateXaml);
             cachedCornerRadius = cornerVal;
-            return template;
+            return cachedTemplate;
         }
 
         private static void ApplyImageClipping(Image img, double cornerVal)
@@ -993,31 +960,6 @@ namespace Minesweeper_WPF
     }
 
 
-    //kijelölés effect kezelése
-    public class HoverOpacityConverter : IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (values == null || values.Length < 2) return 0.0;
-            bool isMouseOver = false;
-            bool isInteractive = false;
-            try
-            {
-                if (values[0] is bool b0) isMouseOver = b0;
-                if (values[1] is bool b1) isInteractive = b1;
-            }
-            catch
-            {
-            }
-            return (isMouseOver && isInteractive) ? 0.25 : 0.0;
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
-    }
-
     public static class GameBoardHelper
     {
         public static readonly DependencyProperty IsInteractiveCellProperty =
@@ -1029,15 +971,5 @@ namespace Minesweeper_WPF
 
         public static bool GetIsInteractiveCell(DependencyObject obj) => (bool)obj.GetValue(IsInteractiveCellProperty);
         public static void SetIsInteractiveCell(DependencyObject obj, bool value) => obj.SetValue(IsInteractiveCellProperty, value);
-
-        public static readonly DependencyProperty IsSelectedCellProperty =
-            DependencyProperty.RegisterAttached(
-                "IsSelectedCell",
-                typeof(bool),
-                typeof(GameBoardHelper),
-                new PropertyMetadata(false));
-
-        public static bool GetIsSelectedCell(DependencyObject obj) => (bool)obj.GetValue(IsSelectedCellProperty);
-        public static void SetIsSelectedCell(DependencyObject obj, bool value) => obj.SetValue(IsSelectedCellProperty, value);
     }
 }
