@@ -1,14 +1,14 @@
  ---===### Aknakereső ###===---
 
-Verzió: Beta 1.8.1
+Verzió: Beta 1.9
 
 A verzió a következő frissítéseket tartalmazza:
 
 === Új funkciók ===
-   => Jobb visszajelzés a frissítésekről
+   => A pálya méretek a statisztikák ablakban átnevezhetőek
 
 === Vizuális módosítások ===
-   => Frontvonal téma törölve
+   => Pálya margói, színei és a gombok lekerekítése állítható
 
 === Hibajavítások ===
    => Frissítések ellenőrzések javítása
