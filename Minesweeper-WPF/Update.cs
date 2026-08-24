@@ -172,6 +172,7 @@ namespace Minesweeper_WPF
                 }
 
 
+                JsonManager.Settings.Load();
                 JsonManager.Theme.Load();
                 JsonManager.Style.Save();
                 progress.Close();
