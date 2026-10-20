@@ -4,12 +4,14 @@
 ![.NET](https://img.shields.io/badge/.NET-10.0-purple)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## Bevezető
+> [!NOTE]
+> A projekt további fejlesztése lezárult. A játék mechanikája UI nélkül a [MinesweeperCore](https://github.com/vgeri108/MinesweeperCore) projektben készül el. A felhasználói felület külön projektként fog megvalósulni, így a kód modulárisabb és könnyebben átlátható lesz, ezáltal megkönnyíti a multiplatformos fejlesztést.
 
-Ez a játék az [Aknakereső-konzol](https://github.com/vgeri108/minesweeper) fejlett változata lesz. A nagy különbség az, hogy a konzolappban nem lehetett egérrel játszani, de ebben az alkalmazásban már lehet.
+## Bevezető
+Az aknakereső egy logikai játék, amelyben a számok azt mutatják meg, hogy az adott mező körüli szomszédos mezőkön hány akna található. A cél az összes aknamentes mező felfedése.\
+A program megjelenése a Windows 7 beépített aknakereső játékára alapul.
 
 ## Képernyőképek
-
 ![Pálya](Screenshots/Start260207a.png)
 ![Beállítások](Screenshots/Settings260207a.png)
 ![Témák](Screenshots/Themes260207a.png)
