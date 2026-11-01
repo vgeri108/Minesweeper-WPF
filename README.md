@@ -5,7 +5,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 > [!NOTE]
-> A projekt további fejlesztése lezárult. A játék mechanikája UI nélkül a [MinesweeperCore](https://github.com/vgeri108/MinesweeperCore) projektben készül el. A felhasználói felület külön projektként fog megvalósulni, így a kód modulárisabb és könnyebben átlátható lesz, ezáltal megkönnyíti a multiplatformos fejlesztést.
+> A projekt további fejlesztése lezárult. A játék mechanikája UI nélkül a [MinesweeperCore](https://github.com/vgeri108/MinesweeperCore) projektben készül el. Az új program felhasználói felülettel elkészült és elérhető a [MinesweeperReborn](https://github.com/vgeri108/MinesweeperReborn) repositoryban.
 
 ## Bevezető
 Az aknakereső egy logikai játék, amelyben a számok azt mutatják meg, hogy az adott mező körüli szomszédos mezőkön hány akna található. A cél az összes aknamentes mező felfedése.\
